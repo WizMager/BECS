@@ -1,0 +1,19 @@
+{
+  "name": "ME.BECS.Timers",
+  "rootNamespace": "",
+  "references": [
+    "ME.BECS",
+    "Unity.Burst",
+    "Unity.Mathematics",
+    "ME.BECS.Features"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": true,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

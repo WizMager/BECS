@@ -1,0 +1,225 @@
+.bar {
+}
+
+.bar .below-tick {
+    color: green;
+}
+
+.bar .current-tick {
+    color: yellow;
+}
+
+.bar .above-tick {
+    color: red;
+}
+
+.bar ScrollView {
+}
+
+.timeline {
+    height: 51px;
+    max-height: 30px;
+    width: auto;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 1px;
+    border-color: rgb(150, 150, 150);
+    margin: 8px;
+}
+
+.timeline .current,
+.timeline .realtick {
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    width: 2px;
+    background-color: greenyellow;
+}
+
+.timeline .realtick {
+    background-color: #ffac2f;
+}
+
+.timeline .buffer {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    height: 8px;
+    background-color: rgba(36, 89, 128, 0.8);
+    border-top-left-radius: 4px;
+}
+
+GridBackground {
+    --line-color: #5c5959;
+    --thick-line-color: #5c5959;
+    --grid-background-color: rgba(30, 30, 30, 0.5);
+}
+
+.timeline .min, .timeline .max {
+    position: absolute;
+    bottom: 0px;
+    font-size: 10px;
+    text-shadow: 0px -2px 0px black;
+    -unity-font-style: bold;
+    margin-bottom: -14px;
+}
+
+.timeline .max {
+    right: 0px;
+    -unity-text-align: middle-right;
+}
+.timeline .min {
+    left: 0px;
+    -unity-text-align: middle-left;
+}
+
+.timeline .tick {
+    position: absolute;
+    font-size: 8px;
+    -unity-font-style: bold;
+    opacity: 0.5;
+    margin-top: -10px;
+}
+
+.timeline .storage {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    left: 0px;
+}
+
+.timeline .events {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    top: 0px;
+    left: 0px;
+}
+
+.timeline .storage .entry {
+    position: absolute;
+    top: 0px;
+}
+
+.timeline .storage .entry .dot {
+    position: absolute;
+    width: 4px;
+    height: 20px;
+    background-color: rgba(0, 255, 0, 0.3);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-color: rgba(0, 0, 0, 0.5);
+    border-bottom-width: 2px;
+}
+
+.timeline .storage .entry:hover .dot {
+    background-color: white;
+}
+
+.timeline .storage .entry Label {
+    -unity-text-align: middle-center;
+    font-size: 8px;
+}
+
+.timeline .events .entry {
+    position: absolute;
+    bottom: 0px;
+}
+
+.timeline .events .entry .dot {
+    position: absolute;
+    width: 2px;
+    top: -10px;
+    height: 10px;
+    background-color: rgba(255, 255, 0, 1);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.timeline .events .entry.remote .dot {
+    background-color: rgb(171, 117, 255);
+}
+
+.timeline .events .entry:hover .dot {
+    background-color: white;
+}
+
+.timeline .events .entry Label {
+    -unity-text-align: middle-center;
+    font-size: 8px;
+}
+
+.timeline .entry .dot .tooltip-text {
+    min-width: 100px;
+    bottom: 0px;
+    border-radius: 4px;
+}
+
+.timeline .entry .dot .tooltip {
+    margin: 0px;
+    height: 100%;
+    padding-left: 8px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+
+
+.toolbar-container {
+    height: 20px;
+    min-height: 20px;
+}
+
+.toolbar-container .toolbar-buttons {
+    flex-direction: row;
+}
+
+.toolbar-container .space {
+    flex-grow: 1;
+}
+
+.toolbar-container DropdownField .unity-base-field__input {
+    min-width: 30px;
+}
+.toolbar-container DropdownField PopupTextElement {
+    padding-left: 2px;
+}
+
+.toolbar-container Button,
+.toolbar-container Toggle,
+.toolbar-container RepeatButton {
+    -unity-text-align: middle-center;
+    min-width: 20px;
+    margin: 0px;
+    border-radius: 0px;
+    border-width: 0px;
+    background-color: rgba(0, 0, 0, 0.3);
+    margin-left: 1px;
+    align-items: center;
+    justify-content: center;
+}
+.toolbar-container Button Image,
+.toolbar-container Toggle,
+.toolbar-container RepeatButton Image {
+    align-self: center;
+    width: 14px;
+    height: 14px;
+}
+
+.toolbar-container .toggle-on {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.toolbar-container Button:hover,
+.toolbar-container Toggle:hover,
+.toolbar-container RepeatButton:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.toolbar-container DropdownField .unity-base-field__input {
+    border-radius: 0px;
+    border-width: 0px;
+    margin: 0px;
+}
+.toolbar-container DropdownField:hover .unity-base-field__input {
+    background-color: rgba(0, 0, 0, 0.1);
+}

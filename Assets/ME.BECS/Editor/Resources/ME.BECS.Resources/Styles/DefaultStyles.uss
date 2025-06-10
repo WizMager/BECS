@@ -1,0 +1,114 @@
+.horizontal-group {
+    align-items: stretch;
+    flex-direction: row;
+}
+.horizontal-group .unity-object-field-display Label {
+    min-width: 50px;
+    width: 10px;
+}
+
+.horizontal-group > ObjectField {
+    flex-grow: 1;
+}
+
+.providers-dropdown {
+    max-width: 80px;
+    min-width: 50px;
+    width: 20%;
+}
+
+GradientAnimated {
+    width: 100%;
+    height: 1px;
+    min-height: 1px;
+    --left-color: var(--main-color);
+    --right-color: var(--highlight-color);
+    --speed: 1000;
+}
+
+.unity-toolbar {
+    background-color: var(--toolbar-color);
+    border-width: 0px;
+    padding-left: 0px;
+    padding-right: 4px;
+}
+
+.unity-toolbar > Button,
+.unity-toolbar > ToolbarButton,
+.unity-toolbar > ToolbarToggle,
+.unity-toolbar > RepeatButton,
+.unity-toolbar > DropdownField {
+    margin: var(--toolbar-buttons-margin);
+    border-width: var(--toolbar-buttons-border-width);
+    border-radius: var(--toolbar-buttons-radius);
+    background-color: var(--toolbar-buttons-background-color);
+    border-color: var(--toolbar-buttons-border-color);
+}
+.unity-toolbar > DropdownField .unity-base-field__input {
+    border-width: 0px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.unity-toolbar > Button:hover,
+.unity-toolbar > ToolbarButton:hover,
+.unity-toolbar > ToolbarToggle:hover,
+.unity-toolbar > RepeatButton:hover,
+.unity-toolbar > DropdownField:hover {
+    background-color: var(--toolbar-buttons-background-color-hover);
+}
+
+.unity-toolbar > Button:active,
+.unity-toolbar > ToolbarButton:active,
+.unity-toolbar > ToolbarToggle:active,
+.unity-toolbar > RepeatButton:active,
+.unity-toolbar > DropdownField:active {
+    border-width: var(--toolbar-buttons-border-width);
+}
+.unity-toolbar > Button:focus,
+.unity-toolbar > ToolbarButton:focus,
+.unity-toolbar > ToolbarToggle:focus,
+.unity-toolbar > RepeatButton:focus,
+.unity-toolbar > DropdownField:focus {
+    border-width: var(--toolbar-buttons-border-width);
+}
+
+.unity-toolbar ToolbarSearchField {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.unity-toolbar ToolbarSearchField .unity-search-field-base__text-field__input {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/*
+ CONTENT
+ */
+
+.window-content-back {
+    flex-grow: 1;
+    background-color: var(--main-color);
+    --left-top-color: var(--main-color);
+    --right-top-color: var(--main-color);
+    --left-bottom-color: var(--dark-color);
+    --right-bottom-color: var(--dark-color);
+}
+.window-content {
+    flex-grow: 1;
+    margin: var(--content-margin);
+    border-width: var(--content-border-width);
+    border-radius: var(--content-border-radius);
+    border-color: var(--content-border-color);
+    background-color: var(--content-background-color);
+}
+.window-content > .empty-label {
+    flex-grow: 1;
+    -unity-text-align: middle-center;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/*
+ BREADCRUMBS
+ */
+.unity-toolbar-breadcrumbs .unity-toolbar-breadcrumbs__item {
+    color: var(--highlight-text-color);
+}
