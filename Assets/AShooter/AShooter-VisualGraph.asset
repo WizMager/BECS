@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c47971b42c2144aeb6f0fb81f786410, type: 3}
-  m_Name: AShooter-FeaturesGraph
+  m_Name: AShooter-VisualGraph
   m_EditorClassIdentifier: 
-  id: 1001
+  id: 1002
   builtInGraph: 0
   isInnerGraph: 0
   serializedNodes: []
@@ -20,7 +20,6 @@ MonoBehaviour:
   - rid: 5124980229921308735
   - rid: 5124980229921308736
   - rid: 5124980229921308737
-  - rid: 5124980229921308738
   edges:
   - GUID: c0978011-e3f4-4628-940f-bb54e16b9c96
     owner: {fileID: 11400000}
@@ -30,20 +29,12 @@ MonoBehaviour:
     outputFieldName: outputNodes
     inputPortIdentifier: 
     outputPortIdentifier: 
-  - GUID: 53b6a7ac-78e4-4c93-a4dd-b045f461af77
+  - GUID: ae8f3ada-709d-492f-9b68-c29998f3ef04
     owner: {fileID: 11400000}
-    inputNodeGUID: 3f474f58-d4de-4bec-9945-10e85df96da9
+    inputNodeGUID: ab22d2cd-3d22-45b9-8ae2-4c2ce9a15d6c
     outputNodeGUID: StartNode
     inputFieldName: inputNodes
     outputFieldName: output
-    inputPortIdentifier: 
-    outputPortIdentifier: 
-  - GUID: e2264e5e-f2bb-465f-9773-0ece0fa8424e
-    owner: {fileID: 11400000}
-    inputNodeGUID: ab22d2cd-3d22-45b9-8ae2-4c2ce9a15d6c
-    outputNodeGUID: 3f474f58-d4de-4bec-9945-10e85df96da9
-    inputFieldName: inputNodes
-    outputFieldName: outputNodes
     inputPortIdentifier: 
     outputPortIdentifier: 
   groups: []
@@ -135,7 +126,7 @@ MonoBehaviour:
         nodeCustomName: 
         GUID: EndNode
         groupGUID: 
-        computeOrder: 3
+        computeOrder: 2
         position:
           serializedVersion: 2
           x: 655
@@ -181,7 +172,7 @@ MonoBehaviour:
         nodeCustomName: 
         GUID: ab22d2cd-3d22-45b9-8ae2-4c2ce9a15d6c
         groupGUID: 
-        computeOrder: 2
+        computeOrder: 1
         position:
           serializedVersion: 2
           x: 319
@@ -194,54 +185,3 @@ MonoBehaviour:
         nodeLock: 0
         customRuntimeSystemRoot: {fileID: 0}
         graphValue: {fileID: 11400000, guid: c2aa5f0bbcb444e4e8fd45055d600fbd, type: 2}
-    - rid: 5124980229921308738
-      type: {class: SystemNode, ns: ME.BECS.FeaturesGraph.Nodes, asm: ME.BECS.Features}
-      data:
-        syncPoints:
-        - method: 0
-          syncPoint: 0
-          syncCount: 0
-          hasMethod: 0
-        - method: 1
-          syncPoint: 1
-          syncCount: 0
-          hasMethod: 1
-        - method: 2
-          syncPoint: 1
-          syncCount: 0
-          hasMethod: 0
-        - method: 3
-          syncPoint: 1
-          syncCount: 0
-          hasMethod: 0
-        - method: 4
-          syncPoint: 1
-          syncCount: 0
-          hasMethod: 0
-        - method: 5
-          syncPoint: 1
-          syncCount: 0
-          hasMethod: 0
-        syncPoint: 1
-        syncCount: 0
-        nodeCustomName: 
-        GUID: 3f474f58-d4de-4bec-9945-10e85df96da9
-        groupGUID: 
-        computeOrder: 1
-        position:
-          serializedVersion: 2
-          x: -32
-          y: 0
-          width: 300
-          height: 178
-        expanded: 1
-        enabled: 1
-        debug: 0
-        nodeLock: 0
-        customRuntimeSystemRoot: {fileID: 0}
-        system:
-          rid: 5124980229921308739
-    - rid: 5124980229921308739
-      type: {class: PlayersSystem, ns: ME.BECS.Players, asm: ME.BECS.Players}
-      data:
-        playersCount: 2

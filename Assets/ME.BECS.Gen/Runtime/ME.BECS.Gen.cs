@@ -925,6 +925,16 @@ namespace ME.BECS {
                 SystemsStatic.RegisterDestroyMethod(GraphGraphAShooter_FeaturesGraphDestroy.GraphOnDestroy_1001_SystemsCodeGenerator, 1001, false);
                 SystemsStatic.RegisterGetSystemMethod(GraphGraphAShooter_FeaturesGraphInitialize.GraphGetSystem_1001_SystemsCodeGenerator, 1001, false);
             }
+            // Graph: AShooter-VisualGraph
+            {
+                SystemsStatic.RegisterMethod(GraphGraphAShooter_VisualGraphInitialize.GraphInitialize_1002_SystemsCodeGenerator, 1002, false);
+                SystemsStatic.RegisterAwakeMethod(GraphGraphAShooter_VisualGraphAwake.GraphOnAwake_1002_SystemsCodeGenerator, 1002, false);
+                SystemsStatic.RegisterStartMethod(GraphGraphAShooter_VisualGraphStart.GraphOnStart_1002_SystemsCodeGenerator, 1002, false);
+                SystemsStatic.RegisterUpdateMethod(GraphGraphAShooter_VisualGraphUpdate.GraphOnUpdate_1002_SystemsCodeGenerator, 1002, false);
+                SystemsStatic.RegisterDrawGizmosMethod(GraphGraphAShooter_VisualGraphDrawGizmos.GraphOnDrawGizmos_1002_SystemsCodeGenerator, 1002, false);
+                SystemsStatic.RegisterDestroyMethod(GraphGraphAShooter_VisualGraphDestroy.GraphOnDestroy_1002_SystemsCodeGenerator, 1002, false);
+                SystemsStatic.RegisterGetSystemMethod(GraphGraphAShooter_VisualGraphInitialize.GraphGetSystem_1002_SystemsCodeGenerator, 1002, false);
+            }
         }
         
         

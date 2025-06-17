@@ -1,0 +1,20 @@
+{
+    "items": [
+        {
+            "ns": "AShooter",
+            "className": "AShooter.NetworkInitializer",
+            "type": "AShooter.NetworkInitializer, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "assetPath": [
+                "Assets/AShooter/NetworkInitializer.cs"
+            ]
+        },
+        {
+            "ns": "AShooter",
+            "className": "AShooter.ViewInitializer",
+            "type": "AShooter.ViewInitializer, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "assetPath": [
+                "Assets/AShooter/ViewInitializer.cs"
+            ]
+        }
+    ]
+}
