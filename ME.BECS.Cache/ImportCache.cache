@@ -1,6 +1,22 @@
 {
     "items": [
         {
+            "ns": "AShooter.Aspects",
+            "className": "AShooter.Aspects.PlayerAspect",
+            "type": "AShooter.Aspects.PlayerAspect, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "assetPath": [
+                "Assets/AShooter/Aspects/PlayerAspect.cs"
+            ]
+        },
+        {
+            "ns": "AShooter.Components",
+            "className": "AShooter.Components.PlayerComponent",
+            "type": "AShooter.Components.PlayerComponent, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "assetPath": [
+                "Assets/AShooter/Components/PlayerComponent.cs"
+            ]
+        },
+        {
             "ns": "AShooter",
             "className": "AShooter.NetworkInitializer",
             "type": "AShooter.NetworkInitializer, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -9,11 +25,27 @@
             ]
         },
         {
+            "ns": "AShooter.Systems",
+            "className": "AShooter.Systems.TestSystem",
+            "type": "AShooter.Systems.TestSystem, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "assetPath": [
+                "Assets/AShooter/Systems/TestSystem.cs"
+            ]
+        },
+        {
             "ns": "AShooter",
             "className": "AShooter.ViewInitializer",
             "type": "AShooter.ViewInitializer, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
             "assetPath": [
                 "Assets/AShooter/ViewInitializer.cs"
+            ]
+        },
+        {
+            "ns": "AShooter.Views",
+            "className": "AShooter.Views.PlayerView",
+            "type": "AShooter.Views.PlayerView, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "assetPath": [
+                "Assets/AShooter/Views/PlayerView.cs"
             ]
         }
     ]

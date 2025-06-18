@@ -10,7 +10,7 @@ namespace ME.BECS {
     using s = System.Collections.Generic;
     public class EntityViewsStaticTracker {
         public static void InitializeViewsTracker() {
-            StaticTypes.SetTracker(18u);
+            StaticTypes.SetTracker(19u);
             StaticTypes<ME.BECS.Units.NavAgentRuntimeSpeedComponent>.TrackVersion();
             StaticTypes<ME.BECS.Units.NavAgentComponent>.TrackVersion();
             StaticTypes<ME.BECS.Attack.AttackTargetsComponent>.TrackVersion();
@@ -29,7 +29,18 @@ namespace ME.BECS {
             StaticTypes<ME.BECS.Transforms.LocalPositionComponent>.TrackVersion();
             StaticTypes<ME.BECS.Transforms.LocalRotationComponent>.TrackVersion();
             StaticTypes<ME.BECS.Views.CameraComponent>.TrackVersion();
-            ViewsTracker.SetTracker(16u);
+            StaticTypes<AShooter.Components.PlayerComponent>.TrackVersion();
+            ViewsTracker.SetTracker(17u);
+            // ==============================
+            // AShooter.Views.PlayerView
+            {
+                var viewInfo = new ViewsTracker.ViewInfo();
+                viewInfo.tracker.Resize(1u);
+                // ApplyState:
+                viewInfo.tracker.Get(0u) = StaticTypes<AShooter.Components.PlayerComponent>.trackerIndex;
+                // [ADD] AShooter.Components.PlayerComponent + ReadOnly
+                ViewsTracker.TrackView<AShooter.Views.PlayerView>(viewInfo);
+            }
             // ==============================
             // ME.BECS.FogOfWar.FogOfWarView
             {

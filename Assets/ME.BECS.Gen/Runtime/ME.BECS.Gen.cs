@@ -13,6 +13,10 @@ namespace ME.BECS {
         [UnityEngine.Scripting.PreserveAttribute]
         public static void AOT() {
             var nullContext = new SystemContext();
+            StaticSystemTypes<AShooter.Systems.TestSystem>.Validate();
+            BurstCompileOnUpdateNoBurst<AShooter.Systems.TestSystem>.MakeMethod(null);
+            new AShooter.Systems.TestSystem().OnUpdate(ref nullContext);
+            BurstCompileMethod.MakeUpdate<AShooter.Systems.TestSystem>(default);
             StaticSystemTypes<ME.BECS.Attack.CanFireSystem>.Validate();
             BurstCompileOnUpdate<ME.BECS.Attack.CanFireSystem>.MakeMethod(null);
             BurstCompileOnUpdateNoBurst<ME.BECS.Attack.CanFireSystem>.MakeMethod(null);
@@ -293,6 +297,7 @@ namespace ME.BECS {
             BurstCompileOnUpdateNoBurst<ME.BECS.Timers.TimersUpdateSystem<ME.BECS.Timers.DefaultTimerComponent>>.MakeMethod(null);
             new ME.BECS.Timers.TimersUpdateSystem<ME.BECS.Timers.DefaultTimerComponent>().OnUpdate(ref nullContext);
             BurstCompileMethod.MakeUpdate<ME.BECS.Timers.TimersUpdateSystem<ME.BECS.Timers.DefaultTimerComponent>>(default);
+            StaticTypes<AShooter.Components.PlayerComponent>.AOT();
             StaticTypes<ME.BECS.Attack.AttackComponent>.AOT();
             StaticTypes<ME.BECS.Attack.AttackFilterComponent>.AOT();
             StaticTypes<ME.BECS.Attack.AttackRuntimeFireComponent>.AOT();
@@ -433,6 +438,7 @@ namespace ME.BECS {
         [UnityEngine.Scripting.PreserveAttribute]
         public static void Load() {
             JobUtils.Initialize();
+            StaticSystemTypes<AShooter.Systems.TestSystem>.Validate();
             StaticSystemTypes<ME.BECS.Attack.CanFireSystem>.Validate();
             StaticSystemTypes<ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem>.Validate();
             StaticSystemTypes<ME.BECS.Attack.FireSystem>.Validate();
@@ -603,6 +609,7 @@ namespace ME.BECS {
             StaticTypes<ME.BECS.Views.MeshRendererComponent>.ApplyGroup(typeof(ME.BECS.Views.ViewsComponentGroup));
             StaticTypes<ME.BECS.Views.ViewComponent>.ApplyGroup(typeof(ME.BECS.Views.ViewsComponentGroup));
             StaticTypes<ME.BECS.Views.ViewCustomIdComponent>.ApplyGroup(typeof(ME.BECS.Views.ViewsComponentGroup));
+            StaticTypes<AShooter.Components.PlayerComponent>.Validate(isTag: true);
             StaticTypes<ME.BECS.Attack.AttackComponent>.Validate(isTag: false);
             StaticTypes<ME.BECS.Attack.AttackComponent>.SetDefaultValue(ME.BECS.Attack.AttackComponent.Default);
             StaticTypes<ME.BECS.Attack.AttackFilterComponent>.Validate(isTag: false);
@@ -742,6 +749,9 @@ namespace ME.BECS {
             StaticTypes<ME.BECS.Pathfinding.GraphMaskComponent>.ValidateStatic(isTag: false);
             StaticTypes<ME.BECS.Views.InstantiateAvatarViewComponent>.ValidateStatic(isTag: false);
             StaticTypes<ME.BECS.Views.InstantiateViewComponent>.ValidateStatic(isTag: false);
+            AspectTypeInfo<AShooter.Aspects.PlayerAspect>.Validate();
+            AspectTypeInfo.with.Get(AspectTypeInfo<AShooter.Aspects.PlayerAspect>.typeId).Resize(1);
+            AspectTypeInfo.with.Get(AspectTypeInfo<AShooter.Aspects.PlayerAspect>.typeId).Get(0) = StaticTypes<ME.BECS.Players.PlayerComponent>.typeId;
             AspectTypeInfo<ME.BECS.Attack.AttackAspect>.Validate();
             AspectTypeInfo.with.Get(AspectTypeInfo<ME.BECS.Attack.AttackAspect>.typeId).Resize(2);
             AspectTypeInfo.with.Get(AspectTypeInfo<ME.BECS.Attack.AttackAspect>.typeId).Get(0) = StaticTypes<ME.BECS.Attack.AttackComponent>.typeId;
@@ -941,6 +951,10 @@ namespace ME.BECS {
         
         public static unsafe void AspectsConstruct(ref World world) {
             {
+                ref var aspect = ref world.InitializeAspect<AShooter.Aspects.PlayerAspect>();
+                aspect.PlayerComponent = new ME.BECS.AspectDataPtr<ME.BECS.Players.PlayerComponent>(in world);
+            }
+            {
                 ref var aspect = ref world.InitializeAspect<ME.BECS.Attack.AttackAspect>();
                 aspect.attackDataPtr = new ME.BECS.AspectDataPtr<ME.BECS.Attack.AttackComponent>(in world);
                 aspect.attackRuntimeFireDataPtr = new ME.BECS.AspectDataPtr<ME.BECS.Attack.AttackRuntimeFireComponent>(in world);
@@ -1030,6 +1044,10 @@ namespace ME.BECS {
             methods.Add(ME.BECS.Players.PlayersSystem.OnSetDefeatReceived);
         }
         public static unsafe void ViewsLoad(ref ME.BECS.Views.ViewsModuleData viewsModule) {
+            ME.BECS.Views.ViewsTypeInfo.RegisterType<AShooter.Views.PlayerView>(new ME.BECS.Views.ViewTypeInfo() {
+                flags = (ME.BECS.Views.TypeFlags)16,
+                tracker = ViewsTracker.info[ViewsTracker.Tracker<AShooter.Views.PlayerView>.id],
+            });
             ME.BECS.Views.ViewsTypeInfo.RegisterType<ME.BECS.FogOfWar.FogOfWarView>(new ME.BECS.Views.ViewTypeInfo() {
                 flags = (ME.BECS.Views.TypeFlags)33,
                 tracker = ViewsTracker.info[ViewsTracker.Tracker<ME.BECS.FogOfWar.FogOfWarView>.id],
