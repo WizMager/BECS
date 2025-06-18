@@ -15,8 +15,11 @@ namespace ME.BECS.Editor {
         public static void AOT() {
             var nullContext = new SystemContext();
             StaticSystemTypes<AShooter.Systems.TestSystem>.Validate();
+            BurstCompileOnStartNoBurst<AShooter.Systems.TestSystem>.MakeMethod(null);
             BurstCompileOnUpdateNoBurst<AShooter.Systems.TestSystem>.MakeMethod(null);
+            new AShooter.Systems.TestSystem().OnStart(ref nullContext);
             new AShooter.Systems.TestSystem().OnUpdate(ref nullContext);
+            BurstCompileMethod.MakeStart<AShooter.Systems.TestSystem>(default);
             BurstCompileMethod.MakeUpdate<AShooter.Systems.TestSystem>(default);
             StaticSystemTypes<ME.BECS.Attack.CanFireSystem>.Validate();
             BurstCompileOnUpdate<ME.BECS.Attack.CanFireSystem>.MakeMethod(null);
@@ -467,7 +470,7 @@ namespace ME.BECS.Editor {
             BurstCompileOnUpdateNoBurst<ME.BECS.Timers.TimersUpdateSystem<ME.BECS.Timers.DefaultTimerComponent>>.MakeMethod(null);
             new ME.BECS.Timers.TimersUpdateSystem<ME.BECS.Timers.DefaultTimerComponent>().OnUpdate(ref nullContext);
             BurstCompileMethod.MakeUpdate<ME.BECS.Timers.TimersUpdateSystem<ME.BECS.Timers.DefaultTimerComponent>>(default);
-            StaticTypes<AShooter.Components.PlayerComponent>.AOT();
+            StaticTypes<AShooter.Components.PlayerCharacterComponent>.AOT();
             StaticTypes<ME.BECS.Attack.AttackComponent>.AOT();
             StaticTypes<ME.BECS.Attack.AttackFilterComponent>.AOT();
             StaticTypes<ME.BECS.Attack.AttackRuntimeFireComponent>.AOT();
@@ -828,7 +831,7 @@ namespace ME.BECS.Editor {
             StaticTypes<ME.BECS.Views.MeshRendererComponent>.ApplyGroup(typeof(ME.BECS.Views.ViewsComponentGroup));
             StaticTypes<ME.BECS.Views.ViewComponent>.ApplyGroup(typeof(ME.BECS.Views.ViewsComponentGroup));
             StaticTypes<ME.BECS.Views.ViewCustomIdComponent>.ApplyGroup(typeof(ME.BECS.Views.ViewsComponentGroup));
-            StaticTypes<AShooter.Components.PlayerComponent>.Validate(isTag: true);
+            StaticTypes<AShooter.Components.PlayerCharacterComponent>.Validate(isTag: true);
             StaticTypes<ME.BECS.Attack.AttackComponent>.Validate(isTag: false);
             StaticTypes<ME.BECS.Attack.AttackComponent>.SetDefaultValue(ME.BECS.Attack.AttackComponent.Default);
             StaticTypes<ME.BECS.Attack.AttackFilterComponent>.Validate(isTag: false);
@@ -995,9 +998,9 @@ namespace ME.BECS.Editor {
             StaticTypes<ME.BECS.Pathfinding.GraphMaskComponent>.ValidateStatic(isTag: false);
             StaticTypes<ME.BECS.Views.InstantiateAvatarViewComponent>.ValidateStatic(isTag: false);
             StaticTypes<ME.BECS.Views.InstantiateViewComponent>.ValidateStatic(isTag: false);
-            AspectTypeInfo<AShooter.Aspects.PlayerAspect>.Validate();
-            AspectTypeInfo.with.Get(AspectTypeInfo<AShooter.Aspects.PlayerAspect>.typeId).Resize(1);
-            AspectTypeInfo.with.Get(AspectTypeInfo<AShooter.Aspects.PlayerAspect>.typeId).Get(0) = StaticTypes<ME.BECS.Players.PlayerComponent>.typeId;
+            AspectTypeInfo<AShooter.Aspects.PlayerCharacterAspect>.Validate();
+            AspectTypeInfo.with.Get(AspectTypeInfo<AShooter.Aspects.PlayerCharacterAspect>.typeId).Resize(1);
+            AspectTypeInfo.with.Get(AspectTypeInfo<AShooter.Aspects.PlayerCharacterAspect>.typeId).Get(0) = StaticTypes<AShooter.Components.PlayerCharacterComponent>.typeId;
             AspectTypeInfo<ME.BECS.Attack.AttackAspect>.Validate();
             AspectTypeInfo.with.Get(AspectTypeInfo<ME.BECS.Attack.AttackAspect>.typeId).Resize(2);
             AspectTypeInfo.with.Get(AspectTypeInfo<ME.BECS.Attack.AttackAspect>.typeId).Get(0) = StaticTypes<ME.BECS.Attack.AttackComponent>.typeId;
@@ -4035,8 +4038,8 @@ namespace ME.BECS.Editor {
         
         public static unsafe void AspectsConstruct(ref World world) {
             {
-                ref var aspect = ref world.InitializeAspect<AShooter.Aspects.PlayerAspect>();
-                aspect.PlayerComponent = new ME.BECS.AspectDataPtr<ME.BECS.Players.PlayerComponent>(in world);
+                ref var aspect = ref world.InitializeAspect<AShooter.Aspects.PlayerCharacterAspect>();
+                aspect.PlayerCharComponent = new ME.BECS.AspectDataPtr<AShooter.Components.PlayerCharacterComponent>(in world);
             }
             {
                 ref var aspect = ref world.InitializeAspect<ME.BECS.Attack.AttackAspect>();

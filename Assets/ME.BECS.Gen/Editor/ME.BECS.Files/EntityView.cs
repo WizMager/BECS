@@ -31,7 +31,7 @@ namespace ME.BECS.Editor {
             StaticTypes<ME.BECS.Transforms.LocalPositionComponent>.TrackVersion();
             StaticTypes<ME.BECS.Transforms.LocalRotationComponent>.TrackVersion();
             StaticTypes<ME.BECS.Views.CameraComponent>.TrackVersion();
-            StaticTypes<AShooter.Components.PlayerComponent>.TrackVersion();
+            StaticTypes<AShooter.Components.PlayerCharacterComponent>.TrackVersion();
             ViewsTracker.SetTracker(17u);
             // ==============================
             // AShooter.Views.PlayerView
@@ -39,8 +39,8 @@ namespace ME.BECS.Editor {
                 var viewInfo = new ViewsTracker.ViewInfo();
                 viewInfo.tracker.Resize(1u);
                 // ApplyState:
-                viewInfo.tracker.Get(0u) = StaticTypes<AShooter.Components.PlayerComponent>.trackerIndex;
-                // [ADD] AShooter.Components.PlayerComponent + ReadOnly
+                viewInfo.tracker.Get(0u) = StaticTypes<AShooter.Components.PlayerCharacterComponent>.trackerIndex;
+                // [ADD] AShooter.Components.PlayerCharacterComponent + ReadOnly
                 ViewsTracker.TrackView<AShooter.Views.PlayerView>(viewInfo);
             }
             // ==============================

@@ -2,18 +2,18 @@
     "items": [
         {
             "ns": "AShooter.Aspects",
-            "className": "AShooter.Aspects.PlayerAspect",
-            "type": "AShooter.Aspects.PlayerAspect, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "className": "AShooter.Aspects.PlayerCharacterAspect",
+            "type": "AShooter.Aspects.PlayerCharacterAspect, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
             "assetPath": [
-                "Assets/AShooter/Aspects/PlayerAspect.cs"
+                "Assets/AShooter/Aspects/PlayerCharacterAspect.cs"
             ]
         },
         {
             "ns": "AShooter.Components",
-            "className": "AShooter.Components.PlayerComponent",
-            "type": "AShooter.Components.PlayerComponent, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "className": "AShooter.Components.PlayerCharacterComponent",
+            "type": "AShooter.Components.PlayerCharacterComponent, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
             "assetPath": [
-                "Assets/AShooter/Components/PlayerComponent.cs"
+                "Assets/AShooter/Components/PlayerCharacterComponent.cs"
             ]
         },
         {

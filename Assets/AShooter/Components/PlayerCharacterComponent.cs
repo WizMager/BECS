@@ -2,7 +2,7 @@
 
 namespace AShooter.Components
 {
-    public struct PlayerComponent : IComponent
+    public struct PlayerCharacterComponent : IComponent
     {
     }
 }

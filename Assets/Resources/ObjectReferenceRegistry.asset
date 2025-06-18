@@ -40,8 +40,45 @@ MonoBehaviour:
     sourceId: 31
     customData:
       rid: -2
+  - source: {fileID: 9096421694656720667, guid: 7a97628cb2c1ae94bb25880ffe39a405, type: 3}
+    sourceReference:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+    isGameObject: 1
+    sourceType: AShooter.Views.PlayerView, AShooter, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    sourceId: 8
+    customData:
+      rid: 5124980251745321029
+  - source: {fileID: 11400000, guid: b92e48fc0d1d37c4ab01d04e9e7f6f84, type: 2}
+    sourceReference:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+    isGameObject: 0
+    sourceType: ME.BECS.EntityConfig, ME.BECS, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    sourceId: 27
+    customData:
+      rid: -2
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 5124980251745321029
+      type: {class: ViewObjectItemData, ns: ME.BECS.Views, asm: ME.BECS.Views}
+      data:
+        info:
+          prefabId: 0
+          typeInfo:
+            flags: 0
+            cullingType: 0
+          sceneSource: 0
+          isLoaded: 0
+          flags: 0

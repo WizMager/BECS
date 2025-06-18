@@ -9,7 +9,7 @@ namespace AShooter.Views
     {
         protected override void ApplyState(in EntRO ent)
         {
-            Debug.Log($"Test component: {ent.Has<PlayerComponent>()}");
+            Debug.Log($"Test component: {ent.Has<PlayerCharacterComponent>()}");
         }
     }
 }
