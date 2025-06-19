@@ -13,6 +13,16 @@ namespace ME.BECS {
         [UnityEngine.Scripting.PreserveAttribute]
         public static void AOT() {
             var nullContext = new SystemContext();
+            StaticSystemTypes<AShooter.Systems.CharacterInputSystem>.Validate();
+            BurstCompileOnStartNoBurst<AShooter.Systems.CharacterInputSystem>.MakeMethod(null);
+            BurstCompileOnUpdateNoBurst<AShooter.Systems.CharacterInputSystem>.MakeMethod(null);
+            BurstCompileOnDestroyNoBurst<AShooter.Systems.CharacterInputSystem>.MakeMethod(null);
+            new AShooter.Systems.CharacterInputSystem().OnStart(ref nullContext);
+            new AShooter.Systems.CharacterInputSystem().OnUpdate(ref nullContext);
+            new AShooter.Systems.CharacterInputSystem().OnDestroy(ref nullContext);
+            BurstCompileMethod.MakeStart<AShooter.Systems.CharacterInputSystem>(default);
+            BurstCompileMethod.MakeUpdate<AShooter.Systems.CharacterInputSystem>(default);
+            BurstCompileMethod.MakeDestroy<AShooter.Systems.CharacterInputSystem>(default);
             StaticSystemTypes<AShooter.Systems.TestSystem>.Validate();
             BurstCompileOnStartNoBurst<AShooter.Systems.TestSystem>.MakeMethod(null);
             BurstCompileOnUpdateNoBurst<AShooter.Systems.TestSystem>.MakeMethod(null);
@@ -300,6 +310,7 @@ namespace ME.BECS {
             BurstCompileOnUpdateNoBurst<ME.BECS.Timers.TimersUpdateSystem<ME.BECS.Timers.DefaultTimerComponent>>.MakeMethod(null);
             new ME.BECS.Timers.TimersUpdateSystem<ME.BECS.Timers.DefaultTimerComponent>().OnUpdate(ref nullContext);
             BurstCompileMethod.MakeUpdate<ME.BECS.Timers.TimersUpdateSystem<ME.BECS.Timers.DefaultTimerComponent>>(default);
+            StaticTypes<AShooter.Components.MoveInputComponent>.AOT();
             StaticTypes<AShooter.Components.PlayerCharacterComponent>.AOT();
             StaticTypes<ME.BECS.Attack.AttackComponent>.AOT();
             StaticTypes<ME.BECS.Attack.AttackFilterComponent>.AOT();
@@ -441,6 +452,7 @@ namespace ME.BECS {
         [UnityEngine.Scripting.PreserveAttribute]
         public static void Load() {
             JobUtils.Initialize();
+            StaticSystemTypes<AShooter.Systems.CharacterInputSystem>.Validate();
             StaticSystemTypes<AShooter.Systems.TestSystem>.Validate();
             StaticSystemTypes<ME.BECS.Attack.CanFireSystem>.Validate();
             StaticSystemTypes<ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem>.Validate();
@@ -612,6 +624,7 @@ namespace ME.BECS {
             StaticTypes<ME.BECS.Views.MeshRendererComponent>.ApplyGroup(typeof(ME.BECS.Views.ViewsComponentGroup));
             StaticTypes<ME.BECS.Views.ViewComponent>.ApplyGroup(typeof(ME.BECS.Views.ViewsComponentGroup));
             StaticTypes<ME.BECS.Views.ViewCustomIdComponent>.ApplyGroup(typeof(ME.BECS.Views.ViewsComponentGroup));
+            StaticTypes<AShooter.Components.MoveInputComponent>.Validate(isTag: false);
             StaticTypes<AShooter.Components.PlayerCharacterComponent>.Validate(isTag: true);
             StaticTypes<ME.BECS.Attack.AttackComponent>.Validate(isTag: false);
             StaticTypes<ME.BECS.Attack.AttackComponent>.SetDefaultValue(ME.BECS.Attack.AttackComponent.Default);
@@ -809,6 +822,7 @@ namespace ME.BECS {
             #if ENABLE_UNITY_COLLECTIONS_CHECKS && ENABLE_BECS_COLLECTIONS_CHECKS
             DebugJobs.InitializeJobsDebug();
             #endif
+            EarlyInit.DoComponents<AShooter.Systems.CharacterInputSystem.MoveInputJob>();
             EarlyInit.DoComponents<ME.BECS.Attack.MoveToAttackerSystem.RemoveComebackAfterAttackComponentJob>();
             JobStaticInfo<ME.BECS.FogOfWar.ShadowCopySystem.CreateJob>.loopCount = 2u;
             JobStaticInfo<ME.BECS.FogOfWar.ShadowCopySystem.CreateJob>.inlineCount = 0u;
@@ -1044,6 +1058,7 @@ namespace ME.BECS {
             }
         }
         public static unsafe void NetworkLoad(ref ME.BECS.Network.UnsafeNetworkModule.MethodsStorage methods) {
+            methods.Add(AShooter.Systems.CharacterInputSystem.ApplyMoveInput);
             methods.Add(ME.BECS.Players.PlayersSystem.OnSetDefeatReceived);
         }
         public static unsafe void ViewsLoad(ref ME.BECS.Views.ViewsModuleData viewsModule) {

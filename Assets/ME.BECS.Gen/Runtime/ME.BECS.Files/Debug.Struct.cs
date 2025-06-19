@@ -10,13 +10,19 @@ namespace ME.BECS {
     using s = System.Collections.Generic;
     public static unsafe class DebugJobsStruct {
         #if ENABLE_UNITY_COLLECTIONS_CHECKS && ENABLE_BECS_COLLECTIONS_CHECKS
-        public struct JobDebugData1 { // ME.BECS.Attack.MoveToAttackerSystem+RemoveComebackAfterAttackComponentJob
+        public struct JobDebugData1 { // AShooter.Systems.CharacterInputSystem+MoveInputJob
+            [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
+            [NativeDisableUnsafePtrRestriction] public AShooter.Systems.CharacterInputSystem.MoveInputJob jobData;
+            [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
+        }
+        
+        public struct JobDebugData2 { // ME.BECS.Attack.MoveToAttackerSystem+RemoveComebackAfterAttackComponentJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.MoveToAttackerSystem.RemoveComebackAfterAttackComponentJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
         }
         
-        public struct JobDebugData2 { // ME.BECS.Commands.CommandAttackCleanSystem+RemoveJob
+        public struct JobDebugData3 { // ME.BECS.Commands.CommandAttackCleanSystem+RemoveJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Commands.CommandAttackCleanSystem.RemoveJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -34,7 +40,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Units.UnitHoldComponent> ME_BECS_Units_UnitHoldComponent;
         }
         
-        public struct JobDebugData3 { // ME.BECS.Commands.CommandBuildUpdateSystem+CompleteJob
+        public struct JobDebugData4 { // ME.BECS.Commands.CommandBuildUpdateSystem+CompleteJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Commands.CommandBuildUpdateSystem.CompleteJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -42,7 +48,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Commands.BuildingInProgress> ME_BECS_Commands_BuildingInProgress;
         }
         
-        public struct JobDebugData4 { // ME.BECS.Commands.CommandBuildUpdateSystem+UpdateProgressJob
+        public struct JobDebugData5 { // ME.BECS.Commands.CommandBuildUpdateSystem+UpdateProgressJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Commands.CommandBuildUpdateSystem.UpdateProgressJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -61,7 +67,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Units.UnitCommandGroupComponent> ME_BECS_Units_UnitCommandGroupComponent;
         }
         
-        public struct JobDebugData5 { // ME.BECS.DestroyWithLifetimeSystem+LifetimeJob
+        public struct JobDebugData6 { // ME.BECS.DestroyWithLifetimeSystem+LifetimeJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.DestroyWithLifetimeSystem.LifetimeJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -75,7 +81,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Transforms.ParentComponent> ME_BECS_Transforms_ParentComponent;
         }
         
-        public struct JobDebugData6 { // ME.BECS.DestroyWithLifetimeSystem+LifetimeMsJob
+        public struct JobDebugData7 { // ME.BECS.DestroyWithLifetimeSystem+LifetimeMsJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.DestroyWithLifetimeSystem.LifetimeMsJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -89,7 +95,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Transforms.ParentComponent> ME_BECS_Transforms_ParentComponent;
         }
         
-        public struct JobDebugData7 { // ME.BECS.DestroyWithTicksSystem+Job
+        public struct JobDebugData8 { // ME.BECS.DestroyWithTicksSystem+Job
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.DestroyWithTicksSystem.Job jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -103,7 +109,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Transforms.ParentComponent> ME_BECS_Transforms_ParentComponent;
         }
         
-        public struct JobDebugData8 { // ME.BECS.FogOfWar.ShadowCopySystem+CreateJob
+        public struct JobDebugData9 { // ME.BECS.FogOfWar.ShadowCopySystem+CreateJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.FogOfWar.ShadowCopySystem.CreateJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -120,7 +126,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Views.IsViewRequested> ME_BECS_Views_IsViewRequested;
         }
         
-        public struct JobDebugData9 { // ME.BECS.FogOfWar.ShadowCopyUpdateSystem+UpdatePointsJob
+        public struct JobDebugData10 { // ME.BECS.FogOfWar.ShadowCopyUpdateSystem+UpdatePointsJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.FogOfWar.ShadowCopyUpdateSystem.UpdatePointsJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -141,7 +147,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Views.IsViewRequested> ME_BECS_Views_IsViewRequested;
         }
         
-        public struct JobDebugData10 { // ME.BECS.FogOfWar.ShadowCopyUpdateSystem+UpdateRectJob
+        public struct JobDebugData11 { // ME.BECS.FogOfWar.ShadowCopyUpdateSystem+UpdateRectJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.FogOfWar.ShadowCopyUpdateSystem.UpdateRectJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -163,7 +169,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Views.IsViewRequested> ME_BECS_Views_IsViewRequested;
         }
         
-        public struct JobDebugData11 { // ME.BECS.FogOfWar.UpdateSystem+RevealRangeJob
+        public struct JobDebugData12 { // ME.BECS.FogOfWar.UpdateSystem+RevealRangeJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.FogOfWar.UpdateSystem.RevealRangeJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -177,7 +183,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Transforms.WorldMatrixComponent> ME_BECS_Transforms_WorldMatrixComponent;
         }
         
-        public struct JobDebugData12 { // ME.BECS.FogOfWar.UpdateSystem+RevealRangePartialJob
+        public struct JobDebugData13 { // ME.BECS.FogOfWar.UpdateSystem+RevealRangePartialJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.FogOfWar.UpdateSystem.RevealRangePartialJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -194,7 +200,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Transforms.WorldMatrixComponent> ME_BECS_Transforms_WorldMatrixComponent;
         }
         
-        public struct JobDebugData13 { // ME.BECS.FogOfWar.UpdateSystem+RevealRangeSectorJob
+        public struct JobDebugData14 { // ME.BECS.FogOfWar.UpdateSystem+RevealRangeSectorJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.FogOfWar.UpdateSystem.RevealRangeSectorJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -210,7 +216,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Transforms.WorldMatrixComponent> ME_BECS_Transforms_WorldMatrixComponent;
         }
         
-        public struct JobDebugData14 { // ME.BECS.FogOfWar.UpdateSystem+RevealRangeSectorPartialJob
+        public struct JobDebugData15 { // ME.BECS.FogOfWar.UpdateSystem+RevealRangeSectorPartialJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.FogOfWar.UpdateSystem.RevealRangeSectorPartialJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -228,7 +234,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Transforms.WorldMatrixComponent> ME_BECS_Transforms_WorldMatrixComponent;
         }
         
-        public struct JobDebugData15 { // ME.BECS.FogOfWar.UpdateSystem+RevealRectJob
+        public struct JobDebugData16 { // ME.BECS.FogOfWar.UpdateSystem+RevealRectJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.FogOfWar.UpdateSystem.RevealRectJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -242,7 +248,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Transforms.WorldMatrixComponent> ME_BECS_Transforms_WorldMatrixComponent;
         }
         
-        public struct JobDebugData16 { // ME.BECS.FogOfWar.UpdateSystem+RevealRectPartialJob
+        public struct JobDebugData17 { // ME.BECS.FogOfWar.UpdateSystem+RevealRectPartialJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.FogOfWar.UpdateSystem.RevealRectPartialJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -259,7 +265,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Transforms.WorldMatrixComponent> ME_BECS_Transforms_WorldMatrixComponent;
         }
         
-        public struct JobDebugData17 { // ME.BECS.Pathfinding.BuildPathSystem+UpdatePathJob
+        public struct JobDebugData18 { // ME.BECS.Pathfinding.BuildPathSystem+UpdatePathJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Pathfinding.BuildPathSystem.UpdatePathJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -270,7 +276,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Pathfinding.TargetPathComponent> ME_BECS_Pathfinding_TargetPathComponent;
         }
         
-        public struct JobDebugData18 { // ME.BECS.Pathfinding.UpdateGraphSystem+ResetPathJob
+        public struct JobDebugData19 { // ME.BECS.Pathfinding.UpdateGraphSystem+ResetPathJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Pathfinding.UpdateGraphSystem.ResetPathJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -278,7 +284,7 @@ namespace ME.BECS {
             public SafetyComponentContainerWO<ME.BECS.Pathfinding.TargetPathComponent> ME_BECS_Pathfinding_TargetPathComponent;
         }
         
-        public struct JobDebugData19 { // ME.BECS.Pathfinding.UpdateGraphSystem+UpdateGraphMaskJob
+        public struct JobDebugData20 { // ME.BECS.Pathfinding.UpdateGraphSystem+UpdateGraphMaskJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Pathfinding.UpdateGraphSystem.UpdateGraphMaskJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -294,7 +300,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Transforms.ParentComponent> ME_BECS_Transforms_ParentComponent;
         }
         
-        public struct JobDebugData20 { // ME.BECS.Units.HitSystem+Job
+        public struct JobDebugData21 { // ME.BECS.Units.HitSystem+Job
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Units.HitSystem.Job jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -303,7 +309,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Units.UnitHealthComponent> ME_BECS_Units_UnitHealthComponent;
         }
         
-        public struct JobDebugData21 { // ME.BECS.Views.Jobs+JobAddToScene
+        public struct JobDebugData22 { // ME.BECS.Views.Jobs+JobAddToScene
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Views.Jobs.JobAddToScene jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -311,7 +317,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Views.ViewComponent> ME_BECS_Views_ViewComponent;
         }
         
-        public struct JobDebugData22 { // ME.BECS.Views.Jobs+JobAssignViews
+        public struct JobDebugData23 { // ME.BECS.Views.Jobs+JobAssignViews
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Views.Jobs.JobAssignViews jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -320,14 +326,14 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Views.ViewComponent> ME_BECS_Views_ViewComponent;
         }
         
-        public struct JobDebugData23 { // ME.BECS.Views.Jobs+JobRemoveFromScene
+        public struct JobDebugData24 { // ME.BECS.Views.Jobs+JobRemoveFromScene
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Views.Jobs.JobRemoveFromScene jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
             public RefRW<ME.BECS.Views.ViewComponent> c0;
         }
         
-        public struct JobDebugData24 { // ME.BECS.Timers.TimersAutoDestroyUpdateSystem`1+Job[[ME.BECS.Timers.DefaultTimerAutoDestroyComponent, ME.BECS.Timers, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]
+        public struct JobDebugData25 { // ME.BECS.Timers.TimersAutoDestroyUpdateSystem`1+Job[[ME.BECS.Timers.DefaultTimerAutoDestroyComponent, ME.BECS.Timers, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Timers.TimersAutoDestroyUpdateSystem<ME.BECS.Timers.DefaultTimerAutoDestroyComponent>.Job jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -335,7 +341,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Timers.DefaultTimerAutoDestroyComponent> ME_BECS_Timers_DefaultTimerAutoDestroyComponent;
         }
         
-        public struct JobDebugData25 { // ME.BECS.Timers.TimersMsAutoDestroyUpdateSystem`1+Job[[ME.BECS.Timers.DefaultTimerMsAutoDestroyComponent, ME.BECS.Timers, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]
+        public struct JobDebugData26 { // ME.BECS.Timers.TimersMsAutoDestroyUpdateSystem`1+Job[[ME.BECS.Timers.DefaultTimerMsAutoDestroyComponent, ME.BECS.Timers, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Timers.TimersMsAutoDestroyUpdateSystem<ME.BECS.Timers.DefaultTimerMsAutoDestroyComponent>.Job jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -343,21 +349,21 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Timers.DefaultTimerMsAutoDestroyComponent> ME_BECS_Timers_DefaultTimerMsAutoDestroyComponent;
         }
         
-        public struct JobDebugData26 { // ME.BECS.Timers.TimersMsUpdateSystem`1+Job[[ME.BECS.Timers.DefaultTimerMsComponent, ME.BECS.Timers, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]
+        public struct JobDebugData27 { // ME.BECS.Timers.TimersMsUpdateSystem`1+Job[[ME.BECS.Timers.DefaultTimerMsComponent, ME.BECS.Timers, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Timers.TimersMsUpdateSystem<ME.BECS.Timers.DefaultTimerMsComponent>.Job jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
             public RefRW<ME.BECS.Timers.DefaultTimerMsComponent> c0;
         }
         
-        public struct JobDebugData27 { // ME.BECS.Timers.TimersUpdateSystem`1+Job[[ME.BECS.Timers.DefaultTimerComponent, ME.BECS.Timers, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]
+        public struct JobDebugData28 { // ME.BECS.Timers.TimersUpdateSystem`1+Job[[ME.BECS.Timers.DefaultTimerComponent, ME.BECS.Timers, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Timers.TimersUpdateSystem<ME.BECS.Timers.DefaultTimerComponent>.Job jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
             public RefRW<ME.BECS.Timers.DefaultTimerComponent> c0;
         }
         
-        public struct JobDebugData28 { // ME.BECS.Attack.CanFireSystem+Job
+        public struct JobDebugData29 { // ME.BECS.Attack.CanFireSystem+Job
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.CanFireSystem.Job jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -384,7 +390,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Units.UnitQuadSizeComponent> ME_BECS_Units_UnitQuadSizeComponent;
         }
         
-        public struct JobDebugData29 { // ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem+TargetJob
+        public struct JobDebugData30 { // ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem+TargetJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem.TargetJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -404,7 +410,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Units.NavAgentRuntimeComponent> ME_BECS_Units_NavAgentRuntimeComponent;
         }
         
-        public struct JobDebugData30 { // ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem+TargetsJob
+        public struct JobDebugData31 { // ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem+TargetsJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem.TargetsJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -420,7 +426,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Units.NavAgentRuntimeComponent> ME_BECS_Units_NavAgentRuntimeComponent;
         }
         
-        public struct JobDebugData31 { // ME.BECS.Attack.FireSystem+FireTargetJob
+        public struct JobDebugData32 { // ME.BECS.Attack.FireSystem+FireTargetJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.FireSystem.FireTargetJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -454,7 +460,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Views.ViewComponent> ME_BECS_Views_ViewComponent;
         }
         
-        public struct JobDebugData32 { // ME.BECS.Attack.FireSystem+FireTargetsJob
+        public struct JobDebugData33 { // ME.BECS.Attack.FireSystem+FireTargetsJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.FireSystem.FireTargetsJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -488,7 +494,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Views.ViewComponent> ME_BECS_Views_ViewComponent;
         }
         
-        public struct JobDebugData33 { // ME.BECS.Attack.ReloadSystem+ReloadJob
+        public struct JobDebugData34 { // ME.BECS.Attack.ReloadSystem+ReloadJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.ReloadSystem.ReloadJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -498,7 +504,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Attack.ReloadedComponent> ME_BECS_Attack_ReloadedComponent;
         }
         
-        public struct JobDebugData34 { // ME.BECS.Attack.ResetCanFireSystem+Job
+        public struct JobDebugData35 { // ME.BECS.Attack.ResetCanFireSystem+Job
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.ResetCanFireSystem.Job jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -513,7 +519,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Units.IsUnitStaticComponent> ME_BECS_Units_IsUnitStaticComponent;
         }
         
-        public struct JobDebugData35 { // ME.BECS.Attack.RotateWhileAttackSystem+IdleJob
+        public struct JobDebugData36 { // ME.BECS.Attack.RotateWhileAttackSystem+IdleJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.RotateWhileAttackSystem.IdleJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -528,7 +534,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Units.NavAgentRuntimeComponent> ME_BECS_Units_NavAgentRuntimeComponent;
         }
         
-        public struct JobDebugData36 { // ME.BECS.Attack.SearchTargetSystem+SearchTargetJob
+        public struct JobDebugData37 { // ME.BECS.Attack.SearchTargetSystem+SearchTargetJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.SearchTargetSystem.SearchTargetJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -546,7 +552,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Units.UnitHealthComponent> ME_BECS_Units_UnitHealthComponent;
         }
         
-        public struct JobDebugData37 { // ME.BECS.Attack.StopWhileAttackSystem+JobRemove
+        public struct JobDebugData38 { // ME.BECS.Attack.StopWhileAttackSystem+JobRemove
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.StopWhileAttackSystem.JobRemove jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -557,7 +563,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Units.UnitHoldComponent> ME_BECS_Units_UnitHoldComponent;
         }
         
-        public struct JobDebugData38 { // ME.BECS.Bullets.DestroySystem+DestroyJob
+        public struct JobDebugData39 { // ME.BECS.Bullets.DestroySystem+DestroyJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Bullets.DestroySystem.DestroyJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -588,7 +594,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Units.UnitHealthComponent> ME_BECS_Units_UnitHealthComponent;
         }
         
-        public struct JobDebugData39 { // ME.BECS.Bullets.FlySystem+FlyJob
+        public struct JobDebugData40 { // ME.BECS.Bullets.FlySystem+FlyJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Bullets.FlySystem.FlyJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -605,7 +611,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Transforms.WorldMatrixComponent> ME_BECS_Transforms_WorldMatrixComponent;
         }
         
-        public struct JobDebugData40 { // ME.BECS.Commands.CommandAttackSystem+CleanUpJob
+        public struct JobDebugData41 { // ME.BECS.Commands.CommandAttackSystem+CleanUpJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Commands.CommandAttackSystem.CleanUpJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -616,7 +622,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Units.UnitHoldComponent> ME_BECS_Units_UnitHoldComponent;
         }
         
-        public struct JobDebugData41 { // ME.BECS.Commands.CommandAttackSystem+MoveJob
+        public struct JobDebugData42 { // ME.BECS.Commands.CommandAttackSystem+MoveJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Commands.CommandAttackSystem.MoveJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -633,7 +639,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Units.IsCommandGroupDirty> ME_BECS_Units_IsCommandGroupDirty;
         }
         
-        public struct JobDebugData42 { // ME.BECS.Commands.CommandBuildSystem+Job
+        public struct JobDebugData43 { // ME.BECS.Commands.CommandBuildSystem+Job
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Commands.CommandBuildSystem.Job jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -655,7 +661,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Units.UnitCommandGroupComponent> ME_BECS_Units_UnitCommandGroupComponent;
         }
         
-        public struct JobDebugData43 { // ME.BECS.Commands.CommandMoveSystem+Job
+        public struct JobDebugData44 { // ME.BECS.Commands.CommandMoveSystem+Job
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Commands.CommandMoveSystem.Job jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -680,7 +686,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Units.UnitIsCollideWithEnd> ME_BECS_Units_UnitIsCollideWithEnd;
         }
         
-        public struct JobDebugData44 { // ME.BECS.FogOfWar.CreateSystem+CleanUpJob
+        public struct JobDebugData45 { // ME.BECS.FogOfWar.CreateSystem+CleanUpJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.FogOfWar.CreateSystem.CleanUpJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -688,7 +694,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.FogOfWar.FogOfWarComponent> ME_BECS_FogOfWar_FogOfWarComponent;
         }
         
-        public struct JobDebugData45 { // ME.BECS.FogOfWar.CreateSystem+CreateJob
+        public struct JobDebugData46 { // ME.BECS.FogOfWar.CreateSystem+CreateJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.FogOfWar.CreateSystem.CreateJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -696,7 +702,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.FogOfWar.FogOfWarComponent> ME_BECS_FogOfWar_FogOfWarComponent;
         }
         
-        public struct JobDebugData46 { // ME.BECS.Pathfinding.FollowPathSystem+PathFollowJob
+        public struct JobDebugData47 { // ME.BECS.Pathfinding.FollowPathSystem+PathFollowJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Pathfinding.FollowPathSystem.PathFollowJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -723,7 +729,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Units.UnitIsCollideWithEnd> ME_BECS_Units_UnitIsCollideWithEnd;
         }
         
-        public struct JobDebugData47 { // ME.BECS.Pathfinding.FollowPathSystem+SpeedDownOnHoldJob
+        public struct JobDebugData48 { // ME.BECS.Pathfinding.FollowPathSystem+SpeedDownOnHoldJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Pathfinding.FollowPathSystem.SpeedDownOnHoldJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -732,7 +738,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Units.NavAgentRuntimeSpeedComponent> ME_BECS_Units_NavAgentRuntimeSpeedComponent;
         }
         
-        public struct JobDebugData48 { // ME.BECS.Pathfinding.FollowPathWithAvoidanceSystem+PathFollowJob
+        public struct JobDebugData49 { // ME.BECS.Pathfinding.FollowPathWithAvoidanceSystem+PathFollowJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Pathfinding.FollowPathWithAvoidanceSystem.PathFollowJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -759,7 +765,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Units.UnitIsCollideWithEnd> ME_BECS_Units_UnitIsCollideWithEnd;
         }
         
-        public struct JobDebugData49 { // ME.BECS.Pathfinding.FollowPathWithAvoidanceSystem+SpeedDownOnHoldJob
+        public struct JobDebugData50 { // ME.BECS.Pathfinding.FollowPathWithAvoidanceSystem+SpeedDownOnHoldJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Pathfinding.FollowPathWithAvoidanceSystem.SpeedDownOnHoldJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -768,7 +774,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Units.NavAgentRuntimeSpeedComponent> ME_BECS_Units_NavAgentRuntimeSpeedComponent;
         }
         
-        public struct JobDebugData50 { // ME.BECS.Pathfinding.LookAtSystem+Job
+        public struct JobDebugData51 { // ME.BECS.Pathfinding.LookAtSystem+Job
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Pathfinding.LookAtSystem.Job jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -781,7 +787,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Units.UnitLookAtComponent> ME_BECS_Units_UnitLookAtComponent;
         }
         
-        public struct JobDebugData51 { // ME.BECS.QuadTreeInsertSystem+CollectJob
+        public struct JobDebugData52 { // ME.BECS.QuadTreeInsertSystem+CollectJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.QuadTreeInsertSystem.CollectJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -792,7 +798,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Transforms.WorldMatrixComponent> ME_BECS_Transforms_WorldMatrixComponent;
         }
         
-        public struct JobDebugData52 { // ME.BECS.QuadTreeInsertSystem+CollectRectJob
+        public struct JobDebugData53 { // ME.BECS.QuadTreeInsertSystem+CollectRectJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.QuadTreeInsertSystem.CollectRectJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -804,7 +810,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Transforms.WorldMatrixComponent> ME_BECS_Transforms_WorldMatrixComponent;
         }
         
-        public struct JobDebugData53 { // ME.BECS.QuadTreeQuerySystem+Job
+        public struct JobDebugData54 { // ME.BECS.QuadTreeQuerySystem+Job
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.QuadTreeQuerySystem.Job jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -815,7 +821,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Transforms.WorldMatrixComponent> ME_BECS_Transforms_WorldMatrixComponent;
         }
         
-        public struct JobDebugData54 { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+CalculateJob
+        public struct JobDebugData55 { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+CalculateJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -825,7 +831,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Transforms.WorldMatrixComponent> ME_BECS_Transforms_WorldMatrixComponent;
         }
         
-        public struct JobDebugData55 { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+CalculateLocalMatrixJob
+        public struct JobDebugData56 { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+CalculateLocalMatrixJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateLocalMatrixJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -836,7 +842,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Transforms.LocalScaleComponent> ME_BECS_Transforms_LocalScaleComponent;
         }
         
-        public struct JobDebugData56 { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+CalculateRootsJob
+        public struct JobDebugData57 { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+CalculateRootsJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateRootsJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -845,7 +851,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Transforms.WorldMatrixComponent> ME_BECS_Transforms_WorldMatrixComponent;
         }
         
-        public struct JobDebugData57 { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+ClearJob
+        public struct JobDebugData58 { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+ClearJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.ClearJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -853,7 +859,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Transforms.WorldMatrixComponent> ME_BECS_Transforms_WorldMatrixComponent;
         }
         
-        public struct JobDebugData58 { // ME.BECS.Units.DestroySystem+DestroyJob
+        public struct JobDebugData59 { // ME.BECS.Units.DestroySystem+DestroyJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Units.DestroySystem.DestroyJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -881,7 +887,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Units.UnitSelectionGroupComponent> ME_BECS_Units_UnitSelectionGroupComponent;
         }
         
-        public struct JobDebugData59 { // ME.BECS.Units.SteeringSystem+Job
+        public struct JobDebugData60 { // ME.BECS.Units.SteeringSystem+Job
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Units.SteeringSystem.Job jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -901,7 +907,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Units.UnitIsCollideWithEnd> ME_BECS_Units_UnitIsCollideWithEnd;
         }
         
-        public struct JobDebugData60 { // ME.BECS.Units.SteeringWithAvoidanceSystem+Job
+        public struct JobDebugData61 { // ME.BECS.Units.SteeringWithAvoidanceSystem+Job
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Units.SteeringWithAvoidanceSystem.Job jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -922,7 +928,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Units.UnitIsCollideWithEnd> ME_BECS_Units_UnitIsCollideWithEnd;
         }
         
-        public struct JobDebugData61 { // ME.BECS.UnitsHealthBars.DrawHealthBarsSystem+Job
+        public struct JobDebugData62 { // ME.BECS.UnitsHealthBars.DrawHealthBarsSystem+Job
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.UnitsHealthBars.DrawHealthBarsSystem.Job jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -937,7 +943,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Views.CameraComponent> ME_BECS_Views_CameraComponent;
         }
         
-        public struct JobDebugData62 { // ME.BECS.Attack.MoveToAttackerSystem+ComebackAfterAttackJob
+        public struct JobDebugData63 { // ME.BECS.Attack.MoveToAttackerSystem+ComebackAfterAttackJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.MoveToAttackerSystem.ComebackAfterAttackJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -962,7 +968,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Units.UnitCommandGroupComponent> ME_BECS_Units_UnitCommandGroupComponent;
         }
         
-        public struct JobDebugData63 { // ME.BECS.Attack.MoveToAttackerSystem+MoveToAttackerJob
+        public struct JobDebugData64 { // ME.BECS.Attack.MoveToAttackerSystem+MoveToAttackerJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.MoveToAttackerSystem.MoveToAttackerJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -1002,7 +1008,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Units.UnitQuadSizeComponent> ME_BECS_Units_UnitQuadSizeComponent;
         }
         
-        public struct JobDebugData64 { // ME.BECS.Attack.MoveToAttackerSystem+StopOnTargetJob
+        public struct JobDebugData65 { // ME.BECS.Attack.MoveToAttackerSystem+StopOnTargetJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.MoveToAttackerSystem.StopOnTargetJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -1029,7 +1035,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Units.UnitQuadSizeComponent> ME_BECS_Units_UnitQuadSizeComponent;
         }
         
-        public struct JobDebugData65 { // ME.BECS.Attack.MoveToAttackerSystem+UpdatePathJob
+        public struct JobDebugData66 { // ME.BECS.Attack.MoveToAttackerSystem+UpdatePathJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.MoveToAttackerSystem.UpdatePathJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -1063,7 +1069,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Units.UnitQuadSizeComponent> ME_BECS_Units_UnitQuadSizeComponent;
         }
         
-        public struct JobDebugData66 { // ME.BECS.Attack.RotateWhileAttackSystem+RotateAttackSensorJob
+        public struct JobDebugData67 { // ME.BECS.Attack.RotateWhileAttackSystem+RotateAttackSensorJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.RotateWhileAttackSystem.RotateAttackSensorJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -1078,7 +1084,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Transforms.WorldMatrixComponent> ME_BECS_Transforms_WorldMatrixComponent;
         }
         
-        public struct JobDebugData67 { // ME.BECS.Attack.SearchTargetSystem+SearchTargetsJob
+        public struct JobDebugData68 { // ME.BECS.Attack.SearchTargetSystem+SearchTargetsJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.SearchTargetSystem.SearchTargetsJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -1097,7 +1103,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Transforms.ParentComponent> ME_BECS_Transforms_ParentComponent;
         }
         
-        public struct JobDebugData68 { // ME.BECS.Attack.StopWhileAttackSystem+JobSet
+        public struct JobDebugData69 { // ME.BECS.Attack.StopWhileAttackSystem+JobSet
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.StopWhileAttackSystem.JobSet jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -1110,7 +1116,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRW<ME.BECS.Units.UnitHoldComponent> ME_BECS_Units_UnitHoldComponent;
         }
         
-        public struct JobDebugData69 { // ME.BECS.FogOfWar.QuadTreeQueryFogOfWarSystem+Job
+        public struct JobDebugData70 { // ME.BECS.FogOfWar.QuadTreeQueryFogOfWarSystem+Job
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.FogOfWar.QuadTreeQueryFogOfWarSystem.Job jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
@@ -1123,7 +1129,7 @@ namespace ME.BECS {
             public SafetyComponentContainerRO<ME.BECS.Transforms.WorldMatrixComponent> ME_BECS_Transforms_WorldMatrixComponent;
         }
         
-        public struct JobDebugData70 { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+CalculateRootsWithChildrenJob
+        public struct JobDebugData71 { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+CalculateRootsWithChildrenJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateRootsWithChildrenJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;

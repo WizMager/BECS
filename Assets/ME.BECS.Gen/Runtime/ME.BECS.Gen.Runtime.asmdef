@@ -1,7 +1,7 @@
 {
                         "name": "ME.BECS.Gen.Runtime",
                         "references": [
-                            "AShooter","ME.BECS","ME.BECS.Attack","ME.BECS.Bullets","ME.BECS.Commands","ME.BECS.Destroy","ME.BECS.Effects","ME.BECS.Features","ME.BECS.FogOfWar","ME.BECS.Network","ME.BECS.ObjectReference.Runtime","ME.BECS.Pathfinding","ME.BECS.Players","ME.BECS.SceneEntityView","ME.BECS.Timers","ME.BECS.Transforms","ME.BECS.Trees","ME.BECS.UI","ME.BECS.Units","ME.BECS.UnitsHealthBars","ME.BECS.Views","ME.BECS.WorldHelper","ME.ECS.Pathfinding","PhotonRealtime","PhotonUnityNetworking","Ragon.Runtime","Unity.Addressables","Unity.Burst","Unity.Collections","Unity.Mathematics","Unity.RenderPipelines.Core.Runtime","Unity.RenderPipelines.Universal.Runtime","Unity.ResourceManager"
+                            "AShooter","InputDef","ME.BECS","ME.BECS.Attack","ME.BECS.Bullets","ME.BECS.Commands","ME.BECS.Destroy","ME.BECS.Effects","ME.BECS.Features","ME.BECS.FogOfWar","ME.BECS.Network","ME.BECS.ObjectReference.Runtime","ME.BECS.Pathfinding","ME.BECS.Players","ME.BECS.SceneEntityView","ME.BECS.Timers","ME.BECS.Transforms","ME.BECS.Trees","ME.BECS.UI","ME.BECS.Units","ME.BECS.UnitsHealthBars","ME.BECS.Views","ME.BECS.WorldHelper","ME.ECS.Pathfinding","PhotonRealtime","PhotonUnityNetworking","Ragon.Runtime","Unity.Addressables","Unity.Burst","Unity.Collections","Unity.InputSystem","Unity.Mathematics","Unity.RenderPipelines.Core.Runtime","Unity.RenderPipelines.Universal.Runtime","Unity.ResourceManager"
                             ],
                         "allowUnsafeCode": true
                     }

@@ -11,7 +11,7 @@ namespace ME.BECS {
     public static unsafe class DebugJobsFunc {
         #if ENABLE_UNITY_COLLECTIONS_CHECKS && ENABLE_BECS_COLLECTIONS_CHECKS
         public static void InitializeJobsDebug() {
-            { // ME.BECS.Attack.MoveToAttackerSystem+RemoveComebackAfterAttackComponentJob
+            { // AShooter.Systems.CharacterInputSystem+MoveInputJob
                 CacheJobDebugData1.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -26,15 +26,15 @@ namespace ME.BECS {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Attack.MoveToAttackerSystem.RemoveComebackAfterAttackComponentJob*)jobData;
+                    data->jobData = *(AShooter.Systems.CharacterInputSystem.MoveInputJob*)jobData;
                     data->buffer = buffer;
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.MoveToAttackerSystem.RemoveComebackAfterAttackComponentJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData1Unsafe) : typeof(JobDebugData1));
+                CompiledJobs<AShooter.Systems.CharacterInputSystem.MoveInputJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData1Unsafe) : typeof(JobDebugData1));
             }
             
-            { // ME.BECS.Commands.CommandAttackCleanSystem+RemoveJob
+            { // ME.BECS.Attack.MoveToAttackerSystem+RemoveComebackAfterAttackComponentJob
                 CacheJobDebugData2.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -46,6 +46,29 @@ namespace ME.BECS {
                             data = (JobDebugData2*)_makeDefault(new JobDebugData2(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
                         CacheJobDebugData2.cache.Data = (System.IntPtr)data;
+                    }
+                    data->scheduleFlags = scheduleFlags;
+                    data->jobInfo = jobInfo;
+                    data->jobData = *(ME.BECS.Attack.MoveToAttackerSystem.RemoveComebackAfterAttackComponentJob*)jobData;
+                    data->buffer = buffer;
+                    return data;
+                }
+                var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
+                CompiledJobs<ME.BECS.Attack.MoveToAttackerSystem.RemoveComebackAfterAttackComponentJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData2Unsafe) : typeof(JobDebugData2));
+            }
+            
+            { // ME.BECS.Commands.CommandAttackCleanSystem+RemoveJob
+                CacheJobDebugData3.cache.Data = default;
+                [BurstCompile]
+                static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
+                    JobDebugData3* data = (JobDebugData3*)CacheJobDebugData3.cache.Data;
+                    if (data == null) {
+                        if (unsafeMode == true) {
+                            data = (JobDebugData3*)_makeDefault(new JobDebugData3Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            } else {
+                            data = (JobDebugData3*)_makeDefault(new JobDebugData3(), Constants.ALLOCATOR_DOMAIN).ptr;
+                        }
+                        CacheJobDebugData3.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -66,35 +89,10 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Commands.CommandAttackCleanSystem.RemoveJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData2Unsafe) : typeof(JobDebugData2));
+                CompiledJobs<ME.BECS.Commands.CommandAttackCleanSystem.RemoveJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData3Unsafe) : typeof(JobDebugData3));
             }
             
             { // ME.BECS.Commands.CommandBuildUpdateSystem+CompleteJob
-                CacheJobDebugData3.cache.Data = default;
-                [BurstCompile]
-                static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData3* data = (JobDebugData3*)CacheJobDebugData3.cache.Data;
-                    if (data == null) {
-                        if (unsafeMode == true) {
-                            data = (JobDebugData3*)_makeDefault(new JobDebugData3Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
-                            } else {
-                            data = (JobDebugData3*)_makeDefault(new JobDebugData3(), Constants.ALLOCATOR_DOMAIN).ptr;
-                        }
-                        CacheJobDebugData3.cache.Data = (System.IntPtr)data;
-                    }
-                    data->scheduleFlags = scheduleFlags;
-                    data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Commands.CommandBuildUpdateSystem.CompleteJob*)jobData;
-                    data->buffer = buffer;
-                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Commands.BuildingInProgress>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Commands_BuildingInProgress = new SafetyComponentContainerRW<ME.BECS.Commands.BuildingInProgress>(buffer->state, buffer->worldId);
-                    return data;
-                }
-                var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Commands.CommandBuildUpdateSystem.CompleteJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData3Unsafe) : typeof(JobDebugData3));
-            }
-            
-            { // ME.BECS.Commands.CommandBuildUpdateSystem+UpdateProgressJob
                 CacheJobDebugData4.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -106,6 +104,31 @@ namespace ME.BECS {
                             data = (JobDebugData4*)_makeDefault(new JobDebugData4(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
                         CacheJobDebugData4.cache.Data = (System.IntPtr)data;
+                    }
+                    data->scheduleFlags = scheduleFlags;
+                    data->jobInfo = jobInfo;
+                    data->jobData = *(ME.BECS.Commands.CommandBuildUpdateSystem.CompleteJob*)jobData;
+                    data->buffer = buffer;
+                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Commands.BuildingInProgress>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Commands_BuildingInProgress = new SafetyComponentContainerRW<ME.BECS.Commands.BuildingInProgress>(buffer->state, buffer->worldId);
+                    return data;
+                }
+                var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
+                CompiledJobs<ME.BECS.Commands.CommandBuildUpdateSystem.CompleteJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData4Unsafe) : typeof(JobDebugData4));
+            }
+            
+            { // ME.BECS.Commands.CommandBuildUpdateSystem+UpdateProgressJob
+                CacheJobDebugData5.cache.Data = default;
+                [BurstCompile]
+                static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
+                    JobDebugData5* data = (JobDebugData5*)CacheJobDebugData5.cache.Data;
+                    if (data == null) {
+                        if (unsafeMode == true) {
+                            data = (JobDebugData5*)_makeDefault(new JobDebugData5Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            } else {
+                            data = (JobDebugData5*)_makeDefault(new JobDebugData5(), Constants.ALLOCATOR_DOMAIN).ptr;
+                        }
+                        CacheJobDebugData5.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -127,21 +150,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Commands.CommandBuildUpdateSystem.UpdateProgressJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData4Unsafe) : typeof(JobDebugData4));
+                CompiledJobs<ME.BECS.Commands.CommandBuildUpdateSystem.UpdateProgressJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData5Unsafe) : typeof(JobDebugData5));
             }
             
             { // ME.BECS.DestroyWithLifetimeSystem+LifetimeJob
-                CacheJobDebugData5.cache.Data = default;
+                CacheJobDebugData6.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData5* data = (JobDebugData5*)CacheJobDebugData5.cache.Data;
+                    JobDebugData6* data = (JobDebugData6*)CacheJobDebugData6.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData5*)_makeDefault(new JobDebugData5Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData6*)_makeDefault(new JobDebugData6Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData5*)_makeDefault(new JobDebugData5(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData6*)_makeDefault(new JobDebugData6(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData5.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData6.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -158,21 +181,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.DestroyWithLifetimeSystem.LifetimeJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData5Unsafe) : typeof(JobDebugData5));
+                CompiledJobs<ME.BECS.DestroyWithLifetimeSystem.LifetimeJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData6Unsafe) : typeof(JobDebugData6));
             }
             
             { // ME.BECS.DestroyWithLifetimeSystem+LifetimeMsJob
-                CacheJobDebugData6.cache.Data = default;
+                CacheJobDebugData7.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData6* data = (JobDebugData6*)CacheJobDebugData6.cache.Data;
+                    JobDebugData7* data = (JobDebugData7*)CacheJobDebugData7.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData6*)_makeDefault(new JobDebugData6Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData7*)_makeDefault(new JobDebugData7Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData6*)_makeDefault(new JobDebugData6(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData7*)_makeDefault(new JobDebugData7(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData6.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData7.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -189,21 +212,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.DestroyWithLifetimeSystem.LifetimeMsJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData6Unsafe) : typeof(JobDebugData6));
+                CompiledJobs<ME.BECS.DestroyWithLifetimeSystem.LifetimeMsJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData7Unsafe) : typeof(JobDebugData7));
             }
             
             { // ME.BECS.DestroyWithTicksSystem+Job
-                CacheJobDebugData7.cache.Data = default;
+                CacheJobDebugData8.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData7* data = (JobDebugData7*)CacheJobDebugData7.cache.Data;
+                    JobDebugData8* data = (JobDebugData8*)CacheJobDebugData8.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData7*)_makeDefault(new JobDebugData7Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData8*)_makeDefault(new JobDebugData8Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData7*)_makeDefault(new JobDebugData7(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData8*)_makeDefault(new JobDebugData8(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData7.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData8.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -220,21 +243,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.DestroyWithTicksSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData7Unsafe) : typeof(JobDebugData7));
+                CompiledJobs<ME.BECS.DestroyWithTicksSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData8Unsafe) : typeof(JobDebugData8));
             }
             
             { // ME.BECS.FogOfWar.ShadowCopySystem+CreateJob
-                CacheJobDebugData8.cache.Data = default;
+                CacheJobDebugData9.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData8* data = (JobDebugData8*)CacheJobDebugData8.cache.Data;
+                    JobDebugData9* data = (JobDebugData9*)CacheJobDebugData9.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData8*)_makeDefault(new JobDebugData8Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData9*)_makeDefault(new JobDebugData9Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData8*)_makeDefault(new JobDebugData8(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData9*)_makeDefault(new JobDebugData9(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData8.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData9.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -254,21 +277,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.FogOfWar.ShadowCopySystem.CreateJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData8Unsafe) : typeof(JobDebugData8));
+                CompiledJobs<ME.BECS.FogOfWar.ShadowCopySystem.CreateJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData9Unsafe) : typeof(JobDebugData9));
             }
             
             { // ME.BECS.FogOfWar.ShadowCopyUpdateSystem+UpdatePointsJob
-                CacheJobDebugData9.cache.Data = default;
+                CacheJobDebugData10.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData9* data = (JobDebugData9*)CacheJobDebugData9.cache.Data;
+                    JobDebugData10* data = (JobDebugData10*)CacheJobDebugData10.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData9*)_makeDefault(new JobDebugData9Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData10*)_makeDefault(new JobDebugData10Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData9*)_makeDefault(new JobDebugData9(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData10*)_makeDefault(new JobDebugData10(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData9.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData10.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -292,21 +315,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.FogOfWar.ShadowCopyUpdateSystem.UpdatePointsJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData9Unsafe) : typeof(JobDebugData9));
+                CompiledJobs<ME.BECS.FogOfWar.ShadowCopyUpdateSystem.UpdatePointsJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData10Unsafe) : typeof(JobDebugData10));
             }
             
             { // ME.BECS.FogOfWar.ShadowCopyUpdateSystem+UpdateRectJob
-                CacheJobDebugData10.cache.Data = default;
+                CacheJobDebugData11.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData10* data = (JobDebugData10*)CacheJobDebugData10.cache.Data;
+                    JobDebugData11* data = (JobDebugData11*)CacheJobDebugData11.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData10*)_makeDefault(new JobDebugData10Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData11*)_makeDefault(new JobDebugData11Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData10*)_makeDefault(new JobDebugData10(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData11*)_makeDefault(new JobDebugData11(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData10.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData11.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -331,21 +354,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.FogOfWar.ShadowCopyUpdateSystem.UpdateRectJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData10Unsafe) : typeof(JobDebugData10));
+                CompiledJobs<ME.BECS.FogOfWar.ShadowCopyUpdateSystem.UpdateRectJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData11Unsafe) : typeof(JobDebugData11));
             }
             
             { // ME.BECS.FogOfWar.UpdateSystem+RevealRangeJob
-                CacheJobDebugData11.cache.Data = default;
+                CacheJobDebugData12.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData11* data = (JobDebugData11*)CacheJobDebugData11.cache.Data;
+                    JobDebugData12* data = (JobDebugData12*)CacheJobDebugData12.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData11*)_makeDefault(new JobDebugData11Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData12*)_makeDefault(new JobDebugData12Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData11*)_makeDefault(new JobDebugData11(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData12*)_makeDefault(new JobDebugData12(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData11.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData12.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -362,21 +385,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.FogOfWar.UpdateSystem.RevealRangeJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData11Unsafe) : typeof(JobDebugData11));
+                CompiledJobs<ME.BECS.FogOfWar.UpdateSystem.RevealRangeJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData12Unsafe) : typeof(JobDebugData12));
             }
             
             { // ME.BECS.FogOfWar.UpdateSystem+RevealRangePartialJob
-                CacheJobDebugData12.cache.Data = default;
+                CacheJobDebugData13.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData12* data = (JobDebugData12*)CacheJobDebugData12.cache.Data;
+                    JobDebugData13* data = (JobDebugData13*)CacheJobDebugData13.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData12*)_makeDefault(new JobDebugData12Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData13*)_makeDefault(new JobDebugData13Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData12*)_makeDefault(new JobDebugData12(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData13*)_makeDefault(new JobDebugData13(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData12.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData13.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -396,21 +419,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.FogOfWar.UpdateSystem.RevealRangePartialJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData12Unsafe) : typeof(JobDebugData12));
+                CompiledJobs<ME.BECS.FogOfWar.UpdateSystem.RevealRangePartialJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData13Unsafe) : typeof(JobDebugData13));
             }
             
             { // ME.BECS.FogOfWar.UpdateSystem+RevealRangeSectorJob
-                CacheJobDebugData13.cache.Data = default;
+                CacheJobDebugData14.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData13* data = (JobDebugData13*)CacheJobDebugData13.cache.Data;
+                    JobDebugData14* data = (JobDebugData14*)CacheJobDebugData14.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData13*)_makeDefault(new JobDebugData13Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData14*)_makeDefault(new JobDebugData14Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData13*)_makeDefault(new JobDebugData13(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData14*)_makeDefault(new JobDebugData14(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData13.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData14.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -429,21 +452,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.FogOfWar.UpdateSystem.RevealRangeSectorJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData13Unsafe) : typeof(JobDebugData13));
+                CompiledJobs<ME.BECS.FogOfWar.UpdateSystem.RevealRangeSectorJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData14Unsafe) : typeof(JobDebugData14));
             }
             
             { // ME.BECS.FogOfWar.UpdateSystem+RevealRangeSectorPartialJob
-                CacheJobDebugData14.cache.Data = default;
+                CacheJobDebugData15.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData14* data = (JobDebugData14*)CacheJobDebugData14.cache.Data;
+                    JobDebugData15* data = (JobDebugData15*)CacheJobDebugData15.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData14*)_makeDefault(new JobDebugData14Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData15*)_makeDefault(new JobDebugData15Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData14*)_makeDefault(new JobDebugData14(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData15*)_makeDefault(new JobDebugData15(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData14.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData15.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -464,21 +487,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.FogOfWar.UpdateSystem.RevealRangeSectorPartialJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData14Unsafe) : typeof(JobDebugData14));
+                CompiledJobs<ME.BECS.FogOfWar.UpdateSystem.RevealRangeSectorPartialJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData15Unsafe) : typeof(JobDebugData15));
             }
             
             { // ME.BECS.FogOfWar.UpdateSystem+RevealRectJob
-                CacheJobDebugData15.cache.Data = default;
+                CacheJobDebugData16.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData15* data = (JobDebugData15*)CacheJobDebugData15.cache.Data;
+                    JobDebugData16* data = (JobDebugData16*)CacheJobDebugData16.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData15*)_makeDefault(new JobDebugData15Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData16*)_makeDefault(new JobDebugData16Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData15*)_makeDefault(new JobDebugData15(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData16*)_makeDefault(new JobDebugData16(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData15.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData16.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -495,21 +518,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.FogOfWar.UpdateSystem.RevealRectJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData15Unsafe) : typeof(JobDebugData15));
+                CompiledJobs<ME.BECS.FogOfWar.UpdateSystem.RevealRectJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData16Unsafe) : typeof(JobDebugData16));
             }
             
             { // ME.BECS.FogOfWar.UpdateSystem+RevealRectPartialJob
-                CacheJobDebugData16.cache.Data = default;
+                CacheJobDebugData17.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData16* data = (JobDebugData16*)CacheJobDebugData16.cache.Data;
+                    JobDebugData17* data = (JobDebugData17*)CacheJobDebugData17.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData16*)_makeDefault(new JobDebugData16Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData17*)_makeDefault(new JobDebugData17Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData16*)_makeDefault(new JobDebugData16(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData17*)_makeDefault(new JobDebugData17(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData16.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData17.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -529,38 +552,10 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.FogOfWar.UpdateSystem.RevealRectPartialJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData16Unsafe) : typeof(JobDebugData16));
+                CompiledJobs<ME.BECS.FogOfWar.UpdateSystem.RevealRectPartialJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData17Unsafe) : typeof(JobDebugData17));
             }
             
             { // ME.BECS.Pathfinding.BuildPathSystem+UpdatePathJob
-                CacheJobDebugData17.cache.Data = default;
-                [BurstCompile]
-                static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData17* data = (JobDebugData17*)CacheJobDebugData17.cache.Data;
-                    if (data == null) {
-                        if (unsafeMode == true) {
-                            data = (JobDebugData17*)_makeDefault(new JobDebugData17Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
-                            } else {
-                            data = (JobDebugData17*)_makeDefault(new JobDebugData17(), Constants.ALLOCATOR_DOMAIN).ptr;
-                        }
-                        CacheJobDebugData17.cache.Data = (System.IntPtr)data;
-                    }
-                    data->scheduleFlags = scheduleFlags;
-                    data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Pathfinding.BuildPathSystem.UpdatePathJob*)jobData;
-                    data->buffer = buffer;
-                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Pathfinding.TargetComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Pathfinding_RootGraphComponent = new SafetyComponentContainerRW<ME.BECS.Pathfinding.RootGraphComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Pathfinding_TargetComponent = new SafetyComponentContainerWO<ME.BECS.Pathfinding.TargetComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Pathfinding_TargetInfoComponent = new SafetyComponentContainerRO<ME.BECS.Pathfinding.TargetInfoComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Pathfinding_TargetPathComponent = new SafetyComponentContainerRW<ME.BECS.Pathfinding.TargetPathComponent>(buffer->state, buffer->worldId);
-                    return data;
-                }
-                var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Pathfinding.BuildPathSystem.UpdatePathJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData17Unsafe) : typeof(JobDebugData17));
-            }
-            
-            { // ME.BECS.Pathfinding.UpdateGraphSystem+ResetPathJob
                 CacheJobDebugData18.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -575,17 +570,20 @@ namespace ME.BECS {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Pathfinding.UpdateGraphSystem.ResetPathJob*)jobData;
+                    data->jobData = *(ME.BECS.Pathfinding.BuildPathSystem.UpdatePathJob*)jobData;
                     data->buffer = buffer;
-                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Pathfinding.TargetPathComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Pathfinding_TargetPathComponent = new SafetyComponentContainerWO<ME.BECS.Pathfinding.TargetPathComponent>(buffer->state, buffer->worldId);
+                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Pathfinding.TargetComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Pathfinding_RootGraphComponent = new SafetyComponentContainerRW<ME.BECS.Pathfinding.RootGraphComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Pathfinding_TargetComponent = new SafetyComponentContainerWO<ME.BECS.Pathfinding.TargetComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Pathfinding_TargetInfoComponent = new SafetyComponentContainerRO<ME.BECS.Pathfinding.TargetInfoComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Pathfinding_TargetPathComponent = new SafetyComponentContainerRW<ME.BECS.Pathfinding.TargetPathComponent>(buffer->state, buffer->worldId);
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Pathfinding.UpdateGraphSystem.ResetPathJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData18Unsafe) : typeof(JobDebugData18));
+                CompiledJobs<ME.BECS.Pathfinding.BuildPathSystem.UpdatePathJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData18Unsafe) : typeof(JobDebugData18));
             }
             
-            { // ME.BECS.Pathfinding.UpdateGraphSystem+UpdateGraphMaskJob
+            { // ME.BECS.Pathfinding.UpdateGraphSystem+ResetPathJob
                 CacheJobDebugData19.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -597,6 +595,31 @@ namespace ME.BECS {
                             data = (JobDebugData19*)_makeDefault(new JobDebugData19(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
                         CacheJobDebugData19.cache.Data = (System.IntPtr)data;
+                    }
+                    data->scheduleFlags = scheduleFlags;
+                    data->jobInfo = jobInfo;
+                    data->jobData = *(ME.BECS.Pathfinding.UpdateGraphSystem.ResetPathJob*)jobData;
+                    data->buffer = buffer;
+                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Pathfinding.TargetPathComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Pathfinding_TargetPathComponent = new SafetyComponentContainerWO<ME.BECS.Pathfinding.TargetPathComponent>(buffer->state, buffer->worldId);
+                    return data;
+                }
+                var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
+                CompiledJobs<ME.BECS.Pathfinding.UpdateGraphSystem.ResetPathJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData19Unsafe) : typeof(JobDebugData19));
+            }
+            
+            { // ME.BECS.Pathfinding.UpdateGraphSystem+UpdateGraphMaskJob
+                CacheJobDebugData20.cache.Data = default;
+                [BurstCompile]
+                static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
+                    JobDebugData20* data = (JobDebugData20*)CacheJobDebugData20.cache.Data;
+                    if (data == null) {
+                        if (unsafeMode == true) {
+                            data = (JobDebugData20*)_makeDefault(new JobDebugData20Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            } else {
+                            data = (JobDebugData20*)_makeDefault(new JobDebugData20(), Constants.ALLOCATOR_DOMAIN).ptr;
+                        }
+                        CacheJobDebugData20.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -615,36 +638,10 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Pathfinding.UpdateGraphSystem.UpdateGraphMaskJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData19Unsafe) : typeof(JobDebugData19));
+                CompiledJobs<ME.BECS.Pathfinding.UpdateGraphSystem.UpdateGraphMaskJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData20Unsafe) : typeof(JobDebugData20));
             }
             
             { // ME.BECS.Units.HitSystem+Job
-                CacheJobDebugData20.cache.Data = default;
-                [BurstCompile]
-                static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData20* data = (JobDebugData20*)CacheJobDebugData20.cache.Data;
-                    if (data == null) {
-                        if (unsafeMode == true) {
-                            data = (JobDebugData20*)_makeDefault(new JobDebugData20Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
-                            } else {
-                            data = (JobDebugData20*)_makeDefault(new JobDebugData20(), Constants.ALLOCATOR_DOMAIN).ptr;
-                        }
-                        CacheJobDebugData20.cache.Data = (System.IntPtr)data;
-                    }
-                    data->scheduleFlags = scheduleFlags;
-                    data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Units.HitSystem.Job*)jobData;
-                    data->buffer = buffer;
-                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Units.DamageTookComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Units_DamageTookComponent = new SafetyComponentContainerRW<ME.BECS.Units.DamageTookComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Units_UnitHealthComponent = new SafetyComponentContainerRW<ME.BECS.Units.UnitHealthComponent>(buffer->state, buffer->worldId);
-                    return data;
-                }
-                var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Units.HitSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData20Unsafe) : typeof(JobDebugData20));
-            }
-            
-            { // ME.BECS.Views.Jobs+JobAddToScene
                 CacheJobDebugData21.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -659,17 +656,18 @@ namespace ME.BECS {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Views.Jobs.JobAddToScene*)jobData;
+                    data->jobData = *(ME.BECS.Units.HitSystem.Job*)jobData;
                     data->buffer = buffer;
-                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Views.IsViewRequested>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Views_ViewComponent = new SafetyComponentContainerRO<ME.BECS.Views.ViewComponent>(buffer->state, buffer->worldId);
+                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Units.DamageTookComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Units_DamageTookComponent = new SafetyComponentContainerRW<ME.BECS.Units.DamageTookComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Units_UnitHealthComponent = new SafetyComponentContainerRW<ME.BECS.Units.UnitHealthComponent>(buffer->state, buffer->worldId);
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Views.Jobs.JobAddToScene>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData21Unsafe) : typeof(JobDebugData21));
+                CompiledJobs<ME.BECS.Units.HitSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData21Unsafe) : typeof(JobDebugData21));
             }
             
-            { // ME.BECS.Views.Jobs+JobAssignViews
+            { // ME.BECS.Views.Jobs+JobAddToScene
                 CacheJobDebugData22.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -684,18 +682,17 @@ namespace ME.BECS {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Views.Jobs.JobAssignViews*)jobData;
+                    data->jobData = *(ME.BECS.Views.Jobs.JobAddToScene*)jobData;
                     data->buffer = buffer;
-                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Views.AssignViewComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Views_AssignViewComponent = new SafetyComponentContainerRW<ME.BECS.Views.AssignViewComponent>(buffer->state, buffer->worldId);
+                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Views.IsViewRequested>(buffer->state, buffer->worldId);
                     data->ME_BECS_Views_ViewComponent = new SafetyComponentContainerRO<ME.BECS.Views.ViewComponent>(buffer->state, buffer->worldId);
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Views.Jobs.JobAssignViews>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData22Unsafe) : typeof(JobDebugData22));
+                CompiledJobs<ME.BECS.Views.Jobs.JobAddToScene>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData22Unsafe) : typeof(JobDebugData22));
             }
             
-            { // ME.BECS.Views.Jobs+JobRemoveFromScene
+            { // ME.BECS.Views.Jobs+JobAssignViews
                 CacheJobDebugData23.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -710,16 +707,18 @@ namespace ME.BECS {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Views.Jobs.JobRemoveFromScene*)jobData;
+                    data->jobData = *(ME.BECS.Views.Jobs.JobAssignViews*)jobData;
                     data->buffer = buffer;
-                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Views.ViewComponent>(buffer->state, buffer->worldId);
+                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Views.AssignViewComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Views_AssignViewComponent = new SafetyComponentContainerRW<ME.BECS.Views.AssignViewComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Views_ViewComponent = new SafetyComponentContainerRO<ME.BECS.Views.ViewComponent>(buffer->state, buffer->worldId);
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Views.Jobs.JobRemoveFromScene>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData23Unsafe) : typeof(JobDebugData23));
+                CompiledJobs<ME.BECS.Views.Jobs.JobAssignViews>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData23Unsafe) : typeof(JobDebugData23));
             }
             
-            { // ME.BECS.Timers.TimersAutoDestroyUpdateSystem`1+Job[[ME.BECS.Timers.DefaultTimerAutoDestroyComponent, ME.BECS.Timers, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]
+            { // ME.BECS.Views.Jobs+JobRemoveFromScene
                 CacheJobDebugData24.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -734,17 +733,16 @@ namespace ME.BECS {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Timers.TimersAutoDestroyUpdateSystem<ME.BECS.Timers.DefaultTimerAutoDestroyComponent>.Job*)jobData;
+                    data->jobData = *(ME.BECS.Views.Jobs.JobRemoveFromScene*)jobData;
                     data->buffer = buffer;
-                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Timers.DefaultTimerAutoDestroyComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Timers_DefaultTimerAutoDestroyComponent = new SafetyComponentContainerRW<ME.BECS.Timers.DefaultTimerAutoDestroyComponent>(buffer->state, buffer->worldId);
+                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Views.ViewComponent>(buffer->state, buffer->worldId);
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Timers.TimersAutoDestroyUpdateSystem<ME.BECS.Timers.DefaultTimerAutoDestroyComponent>.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData24Unsafe) : typeof(JobDebugData24));
+                CompiledJobs<ME.BECS.Views.Jobs.JobRemoveFromScene>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData24Unsafe) : typeof(JobDebugData24));
             }
             
-            { // ME.BECS.Timers.TimersMsAutoDestroyUpdateSystem`1+Job[[ME.BECS.Timers.DefaultTimerMsAutoDestroyComponent, ME.BECS.Timers, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]
+            { // ME.BECS.Timers.TimersAutoDestroyUpdateSystem`1+Job[[ME.BECS.Timers.DefaultTimerAutoDestroyComponent, ME.BECS.Timers, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]
                 CacheJobDebugData25.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -759,17 +757,17 @@ namespace ME.BECS {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Timers.TimersMsAutoDestroyUpdateSystem<ME.BECS.Timers.DefaultTimerMsAutoDestroyComponent>.Job*)jobData;
+                    data->jobData = *(ME.BECS.Timers.TimersAutoDestroyUpdateSystem<ME.BECS.Timers.DefaultTimerAutoDestroyComponent>.Job*)jobData;
                     data->buffer = buffer;
-                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Timers.DefaultTimerMsAutoDestroyComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Timers_DefaultTimerMsAutoDestroyComponent = new SafetyComponentContainerRW<ME.BECS.Timers.DefaultTimerMsAutoDestroyComponent>(buffer->state, buffer->worldId);
+                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Timers.DefaultTimerAutoDestroyComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Timers_DefaultTimerAutoDestroyComponent = new SafetyComponentContainerRW<ME.BECS.Timers.DefaultTimerAutoDestroyComponent>(buffer->state, buffer->worldId);
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Timers.TimersMsAutoDestroyUpdateSystem<ME.BECS.Timers.DefaultTimerMsAutoDestroyComponent>.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData25Unsafe) : typeof(JobDebugData25));
+                CompiledJobs<ME.BECS.Timers.TimersAutoDestroyUpdateSystem<ME.BECS.Timers.DefaultTimerAutoDestroyComponent>.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData25Unsafe) : typeof(JobDebugData25));
             }
             
-            { // ME.BECS.Timers.TimersMsUpdateSystem`1+Job[[ME.BECS.Timers.DefaultTimerMsComponent, ME.BECS.Timers, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]
+            { // ME.BECS.Timers.TimersMsAutoDestroyUpdateSystem`1+Job[[ME.BECS.Timers.DefaultTimerMsAutoDestroyComponent, ME.BECS.Timers, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]
                 CacheJobDebugData26.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -784,16 +782,17 @@ namespace ME.BECS {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Timers.TimersMsUpdateSystem<ME.BECS.Timers.DefaultTimerMsComponent>.Job*)jobData;
+                    data->jobData = *(ME.BECS.Timers.TimersMsAutoDestroyUpdateSystem<ME.BECS.Timers.DefaultTimerMsAutoDestroyComponent>.Job*)jobData;
                     data->buffer = buffer;
-                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Timers.DefaultTimerMsComponent>(buffer->state, buffer->worldId);
+                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Timers.DefaultTimerMsAutoDestroyComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Timers_DefaultTimerMsAutoDestroyComponent = new SafetyComponentContainerRW<ME.BECS.Timers.DefaultTimerMsAutoDestroyComponent>(buffer->state, buffer->worldId);
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Timers.TimersMsUpdateSystem<ME.BECS.Timers.DefaultTimerMsComponent>.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData26Unsafe) : typeof(JobDebugData26));
+                CompiledJobs<ME.BECS.Timers.TimersMsAutoDestroyUpdateSystem<ME.BECS.Timers.DefaultTimerMsAutoDestroyComponent>.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData26Unsafe) : typeof(JobDebugData26));
             }
             
-            { // ME.BECS.Timers.TimersUpdateSystem`1+Job[[ME.BECS.Timers.DefaultTimerComponent, ME.BECS.Timers, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]
+            { // ME.BECS.Timers.TimersMsUpdateSystem`1+Job[[ME.BECS.Timers.DefaultTimerMsComponent, ME.BECS.Timers, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]
                 CacheJobDebugData27.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -808,16 +807,16 @@ namespace ME.BECS {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Timers.TimersUpdateSystem<ME.BECS.Timers.DefaultTimerComponent>.Job*)jobData;
+                    data->jobData = *(ME.BECS.Timers.TimersMsUpdateSystem<ME.BECS.Timers.DefaultTimerMsComponent>.Job*)jobData;
                     data->buffer = buffer;
-                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Timers.DefaultTimerComponent>(buffer->state, buffer->worldId);
+                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Timers.DefaultTimerMsComponent>(buffer->state, buffer->worldId);
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Timers.TimersUpdateSystem<ME.BECS.Timers.DefaultTimerComponent>.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData27Unsafe) : typeof(JobDebugData27));
+                CompiledJobs<ME.BECS.Timers.TimersMsUpdateSystem<ME.BECS.Timers.DefaultTimerMsComponent>.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData27Unsafe) : typeof(JobDebugData27));
             }
             
-            { // ME.BECS.Attack.CanFireSystem+Job
+            { // ME.BECS.Timers.TimersUpdateSystem`1+Job[[ME.BECS.Timers.DefaultTimerComponent, ME.BECS.Timers, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]
                 CacheJobDebugData28.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -829,6 +828,30 @@ namespace ME.BECS {
                             data = (JobDebugData28*)_makeDefault(new JobDebugData28(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
                         CacheJobDebugData28.cache.Data = (System.IntPtr)data;
+                    }
+                    data->scheduleFlags = scheduleFlags;
+                    data->jobInfo = jobInfo;
+                    data->jobData = *(ME.BECS.Timers.TimersUpdateSystem<ME.BECS.Timers.DefaultTimerComponent>.Job*)jobData;
+                    data->buffer = buffer;
+                    data->c0 = buffer->state.ptr->components.GetRW<ME.BECS.Timers.DefaultTimerComponent>(buffer->state, buffer->worldId);
+                    return data;
+                }
+                var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
+                CompiledJobs<ME.BECS.Timers.TimersUpdateSystem<ME.BECS.Timers.DefaultTimerComponent>.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData28Unsafe) : typeof(JobDebugData28));
+            }
+            
+            { // ME.BECS.Attack.CanFireSystem+Job
+                CacheJobDebugData29.cache.Data = default;
+                [BurstCompile]
+                static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
+                    JobDebugData29* data = (JobDebugData29*)CacheJobDebugData29.cache.Data;
+                    if (data == null) {
+                        if (unsafeMode == true) {
+                            data = (JobDebugData29*)_makeDefault(new JobDebugData29Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            } else {
+                            data = (JobDebugData29*)_makeDefault(new JobDebugData29(), Constants.ALLOCATOR_DOMAIN).ptr;
+                        }
+                        CacheJobDebugData29.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -858,21 +881,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.CanFireSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData28Unsafe) : typeof(JobDebugData28));
+                CompiledJobs<ME.BECS.Attack.CanFireSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData29Unsafe) : typeof(JobDebugData29));
             }
             
             { // ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem+TargetJob
-                CacheJobDebugData29.cache.Data = default;
+                CacheJobDebugData30.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData29* data = (JobDebugData29*)CacheJobDebugData29.cache.Data;
+                    JobDebugData30* data = (JobDebugData30*)CacheJobDebugData30.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData29*)_makeDefault(new JobDebugData29Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData30*)_makeDefault(new JobDebugData30Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData29*)_makeDefault(new JobDebugData29(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData30*)_makeDefault(new JobDebugData30(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData29.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData30.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -895,21 +918,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem.TargetJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData29Unsafe) : typeof(JobDebugData29));
+                CompiledJobs<ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem.TargetJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData30Unsafe) : typeof(JobDebugData30));
             }
             
             { // ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem+TargetsJob
-                CacheJobDebugData30.cache.Data = default;
+                CacheJobDebugData31.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData30* data = (JobDebugData30*)CacheJobDebugData30.cache.Data;
+                    JobDebugData31* data = (JobDebugData31*)CacheJobDebugData31.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData30*)_makeDefault(new JobDebugData30Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData31*)_makeDefault(new JobDebugData31Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData30*)_makeDefault(new JobDebugData30(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData31*)_makeDefault(new JobDebugData31(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData30.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData31.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -928,21 +951,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem.TargetsJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData30Unsafe) : typeof(JobDebugData30));
+                CompiledJobs<ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem.TargetsJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData31Unsafe) : typeof(JobDebugData31));
             }
             
             { // ME.BECS.Attack.FireSystem+FireTargetJob
-                CacheJobDebugData31.cache.Data = default;
+                CacheJobDebugData32.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData31* data = (JobDebugData31*)CacheJobDebugData31.cache.Data;
+                    JobDebugData32* data = (JobDebugData32*)CacheJobDebugData32.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData31*)_makeDefault(new JobDebugData31Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData32*)_makeDefault(new JobDebugData32Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData31*)_makeDefault(new JobDebugData31(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData32*)_makeDefault(new JobDebugData32(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData31.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData32.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -979,21 +1002,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.FireSystem.FireTargetJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData31Unsafe) : typeof(JobDebugData31));
+                CompiledJobs<ME.BECS.Attack.FireSystem.FireTargetJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData32Unsafe) : typeof(JobDebugData32));
             }
             
             { // ME.BECS.Attack.FireSystem+FireTargetsJob
-                CacheJobDebugData32.cache.Data = default;
+                CacheJobDebugData33.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData32* data = (JobDebugData32*)CacheJobDebugData32.cache.Data;
+                    JobDebugData33* data = (JobDebugData33*)CacheJobDebugData33.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData32*)_makeDefault(new JobDebugData32Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData33*)_makeDefault(new JobDebugData33Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData32*)_makeDefault(new JobDebugData32(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData33*)_makeDefault(new JobDebugData33(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData32.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData33.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1030,21 +1053,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.FireSystem.FireTargetsJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData32Unsafe) : typeof(JobDebugData32));
+                CompiledJobs<ME.BECS.Attack.FireSystem.FireTargetsJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData33Unsafe) : typeof(JobDebugData33));
             }
             
             { // ME.BECS.Attack.ReloadSystem+ReloadJob
-                CacheJobDebugData33.cache.Data = default;
+                CacheJobDebugData34.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData33* data = (JobDebugData33*)CacheJobDebugData33.cache.Data;
+                    JobDebugData34* data = (JobDebugData34*)CacheJobDebugData34.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData33*)_makeDefault(new JobDebugData33Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData34*)_makeDefault(new JobDebugData34Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData33*)_makeDefault(new JobDebugData33(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData34*)_makeDefault(new JobDebugData34(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData33.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData34.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1057,21 +1080,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.ReloadSystem.ReloadJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData33Unsafe) : typeof(JobDebugData33));
+                CompiledJobs<ME.BECS.Attack.ReloadSystem.ReloadJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData34Unsafe) : typeof(JobDebugData34));
             }
             
             { // ME.BECS.Attack.ResetCanFireSystem+Job
-                CacheJobDebugData34.cache.Data = default;
+                CacheJobDebugData35.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData34* data = (JobDebugData34*)CacheJobDebugData34.cache.Data;
+                    JobDebugData35* data = (JobDebugData35*)CacheJobDebugData35.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData34*)_makeDefault(new JobDebugData34Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData35*)_makeDefault(new JobDebugData35Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData34*)_makeDefault(new JobDebugData34(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData35*)_makeDefault(new JobDebugData35(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData34.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData35.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1089,21 +1112,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.ResetCanFireSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData34Unsafe) : typeof(JobDebugData34));
+                CompiledJobs<ME.BECS.Attack.ResetCanFireSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData35Unsafe) : typeof(JobDebugData35));
             }
             
             { // ME.BECS.Attack.RotateWhileAttackSystem+IdleJob
-                CacheJobDebugData35.cache.Data = default;
+                CacheJobDebugData36.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData35* data = (JobDebugData35*)CacheJobDebugData35.cache.Data;
+                    JobDebugData36* data = (JobDebugData36*)CacheJobDebugData36.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData35*)_makeDefault(new JobDebugData35Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData36*)_makeDefault(new JobDebugData36Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData35*)_makeDefault(new JobDebugData35(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData36*)_makeDefault(new JobDebugData36(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData35.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData36.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1121,21 +1144,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.RotateWhileAttackSystem.IdleJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData35Unsafe) : typeof(JobDebugData35));
+                CompiledJobs<ME.BECS.Attack.RotateWhileAttackSystem.IdleJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData36Unsafe) : typeof(JobDebugData36));
             }
             
             { // ME.BECS.Attack.SearchTargetSystem+SearchTargetJob
-                CacheJobDebugData36.cache.Data = default;
+                CacheJobDebugData37.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData36* data = (JobDebugData36*)CacheJobDebugData36.cache.Data;
+                    JobDebugData37* data = (JobDebugData37*)CacheJobDebugData37.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData36*)_makeDefault(new JobDebugData36Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData37*)_makeDefault(new JobDebugData37Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData36*)_makeDefault(new JobDebugData36(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData37*)_makeDefault(new JobDebugData37(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData36.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData37.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1156,21 +1179,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.SearchTargetSystem.SearchTargetJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData36Unsafe) : typeof(JobDebugData36));
+                CompiledJobs<ME.BECS.Attack.SearchTargetSystem.SearchTargetJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData37Unsafe) : typeof(JobDebugData37));
             }
             
             { // ME.BECS.Attack.StopWhileAttackSystem+JobRemove
-                CacheJobDebugData37.cache.Data = default;
+                CacheJobDebugData38.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData37* data = (JobDebugData37*)CacheJobDebugData37.cache.Data;
+                    JobDebugData38* data = (JobDebugData38*)CacheJobDebugData38.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData37*)_makeDefault(new JobDebugData37Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData38*)_makeDefault(new JobDebugData38Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData37*)_makeDefault(new JobDebugData37(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData38*)_makeDefault(new JobDebugData38(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData37.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData38.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1184,21 +1207,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.StopWhileAttackSystem.JobRemove>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData37Unsafe) : typeof(JobDebugData37));
+                CompiledJobs<ME.BECS.Attack.StopWhileAttackSystem.JobRemove>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData38Unsafe) : typeof(JobDebugData38));
             }
             
             { // ME.BECS.Bullets.DestroySystem+DestroyJob
-                CacheJobDebugData38.cache.Data = default;
+                CacheJobDebugData39.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData38* data = (JobDebugData38*)CacheJobDebugData38.cache.Data;
+                    JobDebugData39* data = (JobDebugData39*)CacheJobDebugData39.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData38*)_makeDefault(new JobDebugData38Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData39*)_makeDefault(new JobDebugData39Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData38*)_makeDefault(new JobDebugData38(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData39*)_makeDefault(new JobDebugData39(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData38.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData39.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1232,21 +1255,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Bullets.DestroySystem.DestroyJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData38Unsafe) : typeof(JobDebugData38));
+                CompiledJobs<ME.BECS.Bullets.DestroySystem.DestroyJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData39Unsafe) : typeof(JobDebugData39));
             }
             
             { // ME.BECS.Bullets.FlySystem+FlyJob
-                CacheJobDebugData39.cache.Data = default;
+                CacheJobDebugData40.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData39* data = (JobDebugData39*)CacheJobDebugData39.cache.Data;
+                    JobDebugData40* data = (JobDebugData40*)CacheJobDebugData40.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData39*)_makeDefault(new JobDebugData39Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData40*)_makeDefault(new JobDebugData40Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData39*)_makeDefault(new JobDebugData39(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData40*)_makeDefault(new JobDebugData40(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData39.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData40.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1266,21 +1289,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Bullets.FlySystem.FlyJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData39Unsafe) : typeof(JobDebugData39));
+                CompiledJobs<ME.BECS.Bullets.FlySystem.FlyJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData40Unsafe) : typeof(JobDebugData40));
             }
             
             { // ME.BECS.Commands.CommandAttackSystem+CleanUpJob
-                CacheJobDebugData40.cache.Data = default;
+                CacheJobDebugData41.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData40* data = (JobDebugData40*)CacheJobDebugData40.cache.Data;
+                    JobDebugData41* data = (JobDebugData41*)CacheJobDebugData41.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData40*)_makeDefault(new JobDebugData40Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData41*)_makeDefault(new JobDebugData41Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData40*)_makeDefault(new JobDebugData40(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData41*)_makeDefault(new JobDebugData41(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData40.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData41.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1294,21 +1317,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Commands.CommandAttackSystem.CleanUpJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData40Unsafe) : typeof(JobDebugData40));
+                CompiledJobs<ME.BECS.Commands.CommandAttackSystem.CleanUpJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData41Unsafe) : typeof(JobDebugData41));
             }
             
             { // ME.BECS.Commands.CommandAttackSystem+MoveJob
-                CacheJobDebugData41.cache.Data = default;
+                CacheJobDebugData42.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData41* data = (JobDebugData41*)CacheJobDebugData41.cache.Data;
+                    JobDebugData42* data = (JobDebugData42*)CacheJobDebugData42.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData41*)_makeDefault(new JobDebugData41Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData42*)_makeDefault(new JobDebugData42Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData41*)_makeDefault(new JobDebugData41(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData42*)_makeDefault(new JobDebugData42(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData41.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData42.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1328,21 +1351,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Commands.CommandAttackSystem.MoveJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData41Unsafe) : typeof(JobDebugData41));
+                CompiledJobs<ME.BECS.Commands.CommandAttackSystem.MoveJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData42Unsafe) : typeof(JobDebugData42));
             }
             
             { // ME.BECS.Commands.CommandBuildSystem+Job
-                CacheJobDebugData42.cache.Data = default;
+                CacheJobDebugData43.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData42* data = (JobDebugData42*)CacheJobDebugData42.cache.Data;
+                    JobDebugData43* data = (JobDebugData43*)CacheJobDebugData43.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData42*)_makeDefault(new JobDebugData42Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData43*)_makeDefault(new JobDebugData43Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData42*)_makeDefault(new JobDebugData42(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData43*)_makeDefault(new JobDebugData43(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData42.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData43.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1367,21 +1390,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Commands.CommandBuildSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData42Unsafe) : typeof(JobDebugData42));
+                CompiledJobs<ME.BECS.Commands.CommandBuildSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData43Unsafe) : typeof(JobDebugData43));
             }
             
             { // ME.BECS.Commands.CommandMoveSystem+Job
-                CacheJobDebugData43.cache.Data = default;
+                CacheJobDebugData44.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData43* data = (JobDebugData43*)CacheJobDebugData43.cache.Data;
+                    JobDebugData44* data = (JobDebugData44*)CacheJobDebugData44.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData43*)_makeDefault(new JobDebugData43Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData44*)_makeDefault(new JobDebugData44Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData43*)_makeDefault(new JobDebugData43(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData44*)_makeDefault(new JobDebugData44(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData43.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData44.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1409,35 +1432,10 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Commands.CommandMoveSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData43Unsafe) : typeof(JobDebugData43));
+                CompiledJobs<ME.BECS.Commands.CommandMoveSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData44Unsafe) : typeof(JobDebugData44));
             }
             
             { // ME.BECS.FogOfWar.CreateSystem+CleanUpJob
-                CacheJobDebugData44.cache.Data = default;
-                [BurstCompile]
-                static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData44* data = (JobDebugData44*)CacheJobDebugData44.cache.Data;
-                    if (data == null) {
-                        if (unsafeMode == true) {
-                            data = (JobDebugData44*)_makeDefault(new JobDebugData44Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
-                            } else {
-                            data = (JobDebugData44*)_makeDefault(new JobDebugData44(), Constants.ALLOCATOR_DOMAIN).ptr;
-                        }
-                        CacheJobDebugData44.cache.Data = (System.IntPtr)data;
-                    }
-                    data->scheduleFlags = scheduleFlags;
-                    data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.FogOfWar.CreateSystem.CleanUpJob*)jobData;
-                    data->buffer = buffer;
-                    data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Players.TeamAspect>(buffer->state);
-                    data->ME_BECS_FogOfWar_FogOfWarComponent = new SafetyComponentContainerRO<ME.BECS.FogOfWar.FogOfWarComponent>(buffer->state, buffer->worldId);
-                    return data;
-                }
-                var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.FogOfWar.CreateSystem.CleanUpJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData44Unsafe) : typeof(JobDebugData44));
-            }
-            
-            { // ME.BECS.FogOfWar.CreateSystem+CreateJob
                 CacheJobDebugData45.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -1452,17 +1450,17 @@ namespace ME.BECS {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.FogOfWar.CreateSystem.CreateJob*)jobData;
+                    data->jobData = *(ME.BECS.FogOfWar.CreateSystem.CleanUpJob*)jobData;
                     data->buffer = buffer;
                     data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Players.TeamAspect>(buffer->state);
-                    data->ME_BECS_FogOfWar_FogOfWarComponent = new SafetyComponentContainerRW<ME.BECS.FogOfWar.FogOfWarComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_FogOfWar_FogOfWarComponent = new SafetyComponentContainerRO<ME.BECS.FogOfWar.FogOfWarComponent>(buffer->state, buffer->worldId);
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.FogOfWar.CreateSystem.CreateJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData45Unsafe) : typeof(JobDebugData45));
+                CompiledJobs<ME.BECS.FogOfWar.CreateSystem.CleanUpJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData45Unsafe) : typeof(JobDebugData45));
             }
             
-            { // ME.BECS.Pathfinding.FollowPathSystem+PathFollowJob
+            { // ME.BECS.FogOfWar.CreateSystem+CreateJob
                 CacheJobDebugData46.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -1474,6 +1472,31 @@ namespace ME.BECS {
                             data = (JobDebugData46*)_makeDefault(new JobDebugData46(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
                         CacheJobDebugData46.cache.Data = (System.IntPtr)data;
+                    }
+                    data->scheduleFlags = scheduleFlags;
+                    data->jobInfo = jobInfo;
+                    data->jobData = *(ME.BECS.FogOfWar.CreateSystem.CreateJob*)jobData;
+                    data->buffer = buffer;
+                    data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Players.TeamAspect>(buffer->state);
+                    data->ME_BECS_FogOfWar_FogOfWarComponent = new SafetyComponentContainerRW<ME.BECS.FogOfWar.FogOfWarComponent>(buffer->state, buffer->worldId);
+                    return data;
+                }
+                var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
+                CompiledJobs<ME.BECS.FogOfWar.CreateSystem.CreateJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData46Unsafe) : typeof(JobDebugData46));
+            }
+            
+            { // ME.BECS.Pathfinding.FollowPathSystem+PathFollowJob
+                CacheJobDebugData47.cache.Data = default;
+                [BurstCompile]
+                static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
+                    JobDebugData47* data = (JobDebugData47*)CacheJobDebugData47.cache.Data;
+                    if (data == null) {
+                        if (unsafeMode == true) {
+                            data = (JobDebugData47*)_makeDefault(new JobDebugData47Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            } else {
+                            data = (JobDebugData47*)_makeDefault(new JobDebugData47(), Constants.ALLOCATOR_DOMAIN).ptr;
+                        }
+                        CacheJobDebugData47.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1503,36 +1526,10 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Pathfinding.FollowPathSystem.PathFollowJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData46Unsafe) : typeof(JobDebugData46));
+                CompiledJobs<ME.BECS.Pathfinding.FollowPathSystem.PathFollowJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData47Unsafe) : typeof(JobDebugData47));
             }
             
             { // ME.BECS.Pathfinding.FollowPathSystem+SpeedDownOnHoldJob
-                CacheJobDebugData47.cache.Data = default;
-                [BurstCompile]
-                static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData47* data = (JobDebugData47*)CacheJobDebugData47.cache.Data;
-                    if (data == null) {
-                        if (unsafeMode == true) {
-                            data = (JobDebugData47*)_makeDefault(new JobDebugData47Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
-                            } else {
-                            data = (JobDebugData47*)_makeDefault(new JobDebugData47(), Constants.ALLOCATOR_DOMAIN).ptr;
-                        }
-                        CacheJobDebugData47.cache.Data = (System.IntPtr)data;
-                    }
-                    data->scheduleFlags = scheduleFlags;
-                    data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Pathfinding.FollowPathSystem.SpeedDownOnHoldJob*)jobData;
-                    data->buffer = buffer;
-                    data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Units.UnitAspect>(buffer->state);
-                    data->ME_BECS_Units_NavAgentComponent = new SafetyComponentContainerRO<ME.BECS.Units.NavAgentComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Units_NavAgentRuntimeSpeedComponent = new SafetyComponentContainerRW<ME.BECS.Units.NavAgentRuntimeSpeedComponent>(buffer->state, buffer->worldId);
-                    return data;
-                }
-                var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Pathfinding.FollowPathSystem.SpeedDownOnHoldJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData47Unsafe) : typeof(JobDebugData47));
-            }
-            
-            { // ME.BECS.Pathfinding.FollowPathWithAvoidanceSystem+PathFollowJob
                 CacheJobDebugData48.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -1544,6 +1541,32 @@ namespace ME.BECS {
                             data = (JobDebugData48*)_makeDefault(new JobDebugData48(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
                         CacheJobDebugData48.cache.Data = (System.IntPtr)data;
+                    }
+                    data->scheduleFlags = scheduleFlags;
+                    data->jobInfo = jobInfo;
+                    data->jobData = *(ME.BECS.Pathfinding.FollowPathSystem.SpeedDownOnHoldJob*)jobData;
+                    data->buffer = buffer;
+                    data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Units.UnitAspect>(buffer->state);
+                    data->ME_BECS_Units_NavAgentComponent = new SafetyComponentContainerRO<ME.BECS.Units.NavAgentComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Units_NavAgentRuntimeSpeedComponent = new SafetyComponentContainerRW<ME.BECS.Units.NavAgentRuntimeSpeedComponent>(buffer->state, buffer->worldId);
+                    return data;
+                }
+                var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
+                CompiledJobs<ME.BECS.Pathfinding.FollowPathSystem.SpeedDownOnHoldJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData48Unsafe) : typeof(JobDebugData48));
+            }
+            
+            { // ME.BECS.Pathfinding.FollowPathWithAvoidanceSystem+PathFollowJob
+                CacheJobDebugData49.cache.Data = default;
+                [BurstCompile]
+                static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
+                    JobDebugData49* data = (JobDebugData49*)CacheJobDebugData49.cache.Data;
+                    if (data == null) {
+                        if (unsafeMode == true) {
+                            data = (JobDebugData49*)_makeDefault(new JobDebugData49Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            } else {
+                            data = (JobDebugData49*)_makeDefault(new JobDebugData49(), Constants.ALLOCATOR_DOMAIN).ptr;
+                        }
+                        CacheJobDebugData49.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1573,36 +1596,10 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Pathfinding.FollowPathWithAvoidanceSystem.PathFollowJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData48Unsafe) : typeof(JobDebugData48));
+                CompiledJobs<ME.BECS.Pathfinding.FollowPathWithAvoidanceSystem.PathFollowJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData49Unsafe) : typeof(JobDebugData49));
             }
             
             { // ME.BECS.Pathfinding.FollowPathWithAvoidanceSystem+SpeedDownOnHoldJob
-                CacheJobDebugData49.cache.Data = default;
-                [BurstCompile]
-                static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData49* data = (JobDebugData49*)CacheJobDebugData49.cache.Data;
-                    if (data == null) {
-                        if (unsafeMode == true) {
-                            data = (JobDebugData49*)_makeDefault(new JobDebugData49Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
-                            } else {
-                            data = (JobDebugData49*)_makeDefault(new JobDebugData49(), Constants.ALLOCATOR_DOMAIN).ptr;
-                        }
-                        CacheJobDebugData49.cache.Data = (System.IntPtr)data;
-                    }
-                    data->scheduleFlags = scheduleFlags;
-                    data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Pathfinding.FollowPathWithAvoidanceSystem.SpeedDownOnHoldJob*)jobData;
-                    data->buffer = buffer;
-                    data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Units.UnitAspect>(buffer->state);
-                    data->ME_BECS_Units_NavAgentComponent = new SafetyComponentContainerRO<ME.BECS.Units.NavAgentComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Units_NavAgentRuntimeSpeedComponent = new SafetyComponentContainerRW<ME.BECS.Units.NavAgentRuntimeSpeedComponent>(buffer->state, buffer->worldId);
-                    return data;
-                }
-                var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Pathfinding.FollowPathWithAvoidanceSystem.SpeedDownOnHoldJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData49Unsafe) : typeof(JobDebugData49));
-            }
-            
-            { // ME.BECS.Pathfinding.LookAtSystem+Job
                 CacheJobDebugData50.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -1614,6 +1611,32 @@ namespace ME.BECS {
                             data = (JobDebugData50*)_makeDefault(new JobDebugData50(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
                         CacheJobDebugData50.cache.Data = (System.IntPtr)data;
+                    }
+                    data->scheduleFlags = scheduleFlags;
+                    data->jobInfo = jobInfo;
+                    data->jobData = *(ME.BECS.Pathfinding.FollowPathWithAvoidanceSystem.SpeedDownOnHoldJob*)jobData;
+                    data->buffer = buffer;
+                    data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Units.UnitAspect>(buffer->state);
+                    data->ME_BECS_Units_NavAgentComponent = new SafetyComponentContainerRO<ME.BECS.Units.NavAgentComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Units_NavAgentRuntimeSpeedComponent = new SafetyComponentContainerRW<ME.BECS.Units.NavAgentRuntimeSpeedComponent>(buffer->state, buffer->worldId);
+                    return data;
+                }
+                var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
+                CompiledJobs<ME.BECS.Pathfinding.FollowPathWithAvoidanceSystem.SpeedDownOnHoldJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData50Unsafe) : typeof(JobDebugData50));
+            }
+            
+            { // ME.BECS.Pathfinding.LookAtSystem+Job
+                CacheJobDebugData51.cache.Data = default;
+                [BurstCompile]
+                static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
+                    JobDebugData51* data = (JobDebugData51*)CacheJobDebugData51.cache.Data;
+                    if (data == null) {
+                        if (unsafeMode == true) {
+                            data = (JobDebugData51*)_makeDefault(new JobDebugData51Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            } else {
+                            data = (JobDebugData51*)_makeDefault(new JobDebugData51(), Constants.ALLOCATOR_DOMAIN).ptr;
+                        }
+                        CacheJobDebugData51.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1629,38 +1652,10 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Pathfinding.LookAtSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData50Unsafe) : typeof(JobDebugData50));
+                CompiledJobs<ME.BECS.Pathfinding.LookAtSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData51Unsafe) : typeof(JobDebugData51));
             }
             
             { // ME.BECS.QuadTreeInsertSystem+CollectJob
-                CacheJobDebugData51.cache.Data = default;
-                [BurstCompile]
-                static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData51* data = (JobDebugData51*)CacheJobDebugData51.cache.Data;
-                    if (data == null) {
-                        if (unsafeMode == true) {
-                            data = (JobDebugData51*)_makeDefault(new JobDebugData51Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
-                            } else {
-                            data = (JobDebugData51*)_makeDefault(new JobDebugData51(), Constants.ALLOCATOR_DOMAIN).ptr;
-                        }
-                        CacheJobDebugData51.cache.Data = (System.IntPtr)data;
-                    }
-                    data->scheduleFlags = scheduleFlags;
-                    data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.QuadTreeInsertSystem.CollectJob*)jobData;
-                    data->buffer = buffer;
-                    data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.QuadTreeAspect>(buffer->state);
-                    data->a1 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Transforms.TransformAspect>(buffer->state);
-                    data->ME_BECS_QuadTreeElement = new SafetyComponentContainerRW<ME.BECS.QuadTreeElement>(buffer->state, buffer->worldId);
-                    data->ME_BECS_QuadTreeHeightComponent = new SafetyComponentContainerRO<ME.BECS.QuadTreeHeightComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Transforms_WorldMatrixComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.WorldMatrixComponent>(buffer->state, buffer->worldId);
-                    return data;
-                }
-                var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.QuadTreeInsertSystem.CollectJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData51Unsafe) : typeof(JobDebugData51));
-            }
-            
-            { // ME.BECS.QuadTreeInsertSystem+CollectRectJob
                 CacheJobDebugData52.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -1675,21 +1670,20 @@ namespace ME.BECS {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.QuadTreeInsertSystem.CollectRectJob*)jobData;
+                    data->jobData = *(ME.BECS.QuadTreeInsertSystem.CollectJob*)jobData;
                     data->buffer = buffer;
                     data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.QuadTreeAspect>(buffer->state);
                     data->a1 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Transforms.TransformAspect>(buffer->state);
                     data->ME_BECS_QuadTreeElement = new SafetyComponentContainerRW<ME.BECS.QuadTreeElement>(buffer->state, buffer->worldId);
-                    data->ME_BECS_QuadTreeElementRect = new SafetyComponentContainerRO<ME.BECS.QuadTreeElementRect>(buffer->state, buffer->worldId);
                     data->ME_BECS_QuadTreeHeightComponent = new SafetyComponentContainerRO<ME.BECS.QuadTreeHeightComponent>(buffer->state, buffer->worldId);
                     data->ME_BECS_Transforms_WorldMatrixComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.WorldMatrixComponent>(buffer->state, buffer->worldId);
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.QuadTreeInsertSystem.CollectRectJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData52Unsafe) : typeof(JobDebugData52));
+                CompiledJobs<ME.BECS.QuadTreeInsertSystem.CollectJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData52Unsafe) : typeof(JobDebugData52));
             }
             
-            { // ME.BECS.QuadTreeQuerySystem+Job
+            { // ME.BECS.QuadTreeInsertSystem+CollectRectJob
                 CacheJobDebugData53.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -1704,20 +1698,21 @@ namespace ME.BECS {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.QuadTreeQuerySystem.Job*)jobData;
+                    data->jobData = *(ME.BECS.QuadTreeInsertSystem.CollectRectJob*)jobData;
                     data->buffer = buffer;
-                    data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.QuadTreeQueryAspect>(buffer->state);
+                    data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.QuadTreeAspect>(buffer->state);
                     data->a1 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Transforms.TransformAspect>(buffer->state);
-                    data->ME_BECS_QuadTreeQuery = new SafetyComponentContainerRO<ME.BECS.QuadTreeQuery>(buffer->state, buffer->worldId);
-                    data->ME_BECS_QuadTreeResult = new SafetyComponentContainerRW<ME.BECS.QuadTreeResult>(buffer->state, buffer->worldId);
+                    data->ME_BECS_QuadTreeElement = new SafetyComponentContainerRW<ME.BECS.QuadTreeElement>(buffer->state, buffer->worldId);
+                    data->ME_BECS_QuadTreeElementRect = new SafetyComponentContainerRO<ME.BECS.QuadTreeElementRect>(buffer->state, buffer->worldId);
+                    data->ME_BECS_QuadTreeHeightComponent = new SafetyComponentContainerRO<ME.BECS.QuadTreeHeightComponent>(buffer->state, buffer->worldId);
                     data->ME_BECS_Transforms_WorldMatrixComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.WorldMatrixComponent>(buffer->state, buffer->worldId);
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.QuadTreeQuerySystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData53Unsafe) : typeof(JobDebugData53));
+                CompiledJobs<ME.BECS.QuadTreeInsertSystem.CollectRectJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData53Unsafe) : typeof(JobDebugData53));
             }
             
-            { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+CalculateJob
+            { // ME.BECS.QuadTreeQuerySystem+Job
                 CacheJobDebugData54.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -1732,19 +1727,20 @@ namespace ME.BECS {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateJob*)jobData;
+                    data->jobData = *(ME.BECS.QuadTreeQuerySystem.Job*)jobData;
                     data->buffer = buffer;
-                    data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Transforms.TransformAspect>(buffer->state);
-                    data->ME_BECS_Transforms_LocalMatrixComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.LocalMatrixComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Transforms_ParentComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.ParentComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Transforms_WorldMatrixComponent = new SafetyComponentContainerRW<ME.BECS.Transforms.WorldMatrixComponent>(buffer->state, buffer->worldId);
+                    data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.QuadTreeQueryAspect>(buffer->state);
+                    data->a1 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Transforms.TransformAspect>(buffer->state);
+                    data->ME_BECS_QuadTreeQuery = new SafetyComponentContainerRO<ME.BECS.QuadTreeQuery>(buffer->state, buffer->worldId);
+                    data->ME_BECS_QuadTreeResult = new SafetyComponentContainerRW<ME.BECS.QuadTreeResult>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Transforms_WorldMatrixComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.WorldMatrixComponent>(buffer->state, buffer->worldId);
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData54Unsafe) : typeof(JobDebugData54));
+                CompiledJobs<ME.BECS.QuadTreeQuerySystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData54Unsafe) : typeof(JobDebugData54));
             }
             
-            { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+CalculateLocalMatrixJob
+            { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+CalculateJob
                 CacheJobDebugData55.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -1759,20 +1755,19 @@ namespace ME.BECS {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateLocalMatrixJob*)jobData;
+                    data->jobData = *(ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateJob*)jobData;
                     data->buffer = buffer;
                     data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Transforms.TransformAspect>(buffer->state);
-                    data->ME_BECS_Transforms_LocalMatrixComponent = new SafetyComponentContainerRW<ME.BECS.Transforms.LocalMatrixComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Transforms_LocalPositionComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.LocalPositionComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Transforms_LocalRotationComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.LocalRotationComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Transforms_LocalScaleComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.LocalScaleComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Transforms_LocalMatrixComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.LocalMatrixComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Transforms_ParentComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.ParentComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Transforms_WorldMatrixComponent = new SafetyComponentContainerRW<ME.BECS.Transforms.WorldMatrixComponent>(buffer->state, buffer->worldId);
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateLocalMatrixJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData55Unsafe) : typeof(JobDebugData55));
+                CompiledJobs<ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData55Unsafe) : typeof(JobDebugData55));
             }
             
-            { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+CalculateRootsJob
+            { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+CalculateLocalMatrixJob
                 CacheJobDebugData56.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -1787,18 +1782,20 @@ namespace ME.BECS {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateRootsJob*)jobData;
+                    data->jobData = *(ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateLocalMatrixJob*)jobData;
                     data->buffer = buffer;
                     data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Transforms.TransformAspect>(buffer->state);
-                    data->ME_BECS_Transforms_LocalMatrixComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.LocalMatrixComponent>(buffer->state, buffer->worldId);
-                    data->ME_BECS_Transforms_WorldMatrixComponent = new SafetyComponentContainerRW<ME.BECS.Transforms.WorldMatrixComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Transforms_LocalMatrixComponent = new SafetyComponentContainerRW<ME.BECS.Transforms.LocalMatrixComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Transforms_LocalPositionComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.LocalPositionComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Transforms_LocalRotationComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.LocalRotationComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Transforms_LocalScaleComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.LocalScaleComponent>(buffer->state, buffer->worldId);
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateRootsJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData56Unsafe) : typeof(JobDebugData56));
+                CompiledJobs<ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateLocalMatrixJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData56Unsafe) : typeof(JobDebugData56));
             }
             
-            { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+ClearJob
+            { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+CalculateRootsJob
                 CacheJobDebugData57.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -1813,17 +1810,18 @@ namespace ME.BECS {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.ClearJob*)jobData;
+                    data->jobData = *(ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateRootsJob*)jobData;
                     data->buffer = buffer;
                     data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Transforms.TransformAspect>(buffer->state);
+                    data->ME_BECS_Transforms_LocalMatrixComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.LocalMatrixComponent>(buffer->state, buffer->worldId);
                     data->ME_BECS_Transforms_WorldMatrixComponent = new SafetyComponentContainerRW<ME.BECS.Transforms.WorldMatrixComponent>(buffer->state, buffer->worldId);
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.ClearJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData57Unsafe) : typeof(JobDebugData57));
+                CompiledJobs<ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateRootsJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData57Unsafe) : typeof(JobDebugData57));
             }
             
-            { // ME.BECS.Units.DestroySystem+DestroyJob
+            { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+ClearJob
                 CacheJobDebugData58.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -1835,6 +1833,31 @@ namespace ME.BECS {
                             data = (JobDebugData58*)_makeDefault(new JobDebugData58(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
                         CacheJobDebugData58.cache.Data = (System.IntPtr)data;
+                    }
+                    data->scheduleFlags = scheduleFlags;
+                    data->jobInfo = jobInfo;
+                    data->jobData = *(ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.ClearJob*)jobData;
+                    data->buffer = buffer;
+                    data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Transforms.TransformAspect>(buffer->state);
+                    data->ME_BECS_Transforms_WorldMatrixComponent = new SafetyComponentContainerRW<ME.BECS.Transforms.WorldMatrixComponent>(buffer->state, buffer->worldId);
+                    return data;
+                }
+                var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
+                CompiledJobs<ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.ClearJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData58Unsafe) : typeof(JobDebugData58));
+            }
+            
+            { // ME.BECS.Units.DestroySystem+DestroyJob
+                CacheJobDebugData59.cache.Data = default;
+                [BurstCompile]
+                static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
+                    JobDebugData59* data = (JobDebugData59*)CacheJobDebugData59.cache.Data;
+                    if (data == null) {
+                        if (unsafeMode == true) {
+                            data = (JobDebugData59*)_makeDefault(new JobDebugData59Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            } else {
+                            data = (JobDebugData59*)_makeDefault(new JobDebugData59(), Constants.ALLOCATOR_DOMAIN).ptr;
+                        }
+                        CacheJobDebugData59.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1865,21 +1888,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Units.DestroySystem.DestroyJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData58Unsafe) : typeof(JobDebugData58));
+                CompiledJobs<ME.BECS.Units.DestroySystem.DestroyJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData59Unsafe) : typeof(JobDebugData59));
             }
             
             { // ME.BECS.Units.SteeringSystem+Job
-                CacheJobDebugData59.cache.Data = default;
+                CacheJobDebugData60.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData59* data = (JobDebugData59*)CacheJobDebugData59.cache.Data;
+                    JobDebugData60* data = (JobDebugData60*)CacheJobDebugData60.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData59*)_makeDefault(new JobDebugData59Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData60*)_makeDefault(new JobDebugData60Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData59*)_makeDefault(new JobDebugData59(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData60*)_makeDefault(new JobDebugData60(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData59.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData60.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1902,21 +1925,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Units.SteeringSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData59Unsafe) : typeof(JobDebugData59));
+                CompiledJobs<ME.BECS.Units.SteeringSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData60Unsafe) : typeof(JobDebugData60));
             }
             
             { // ME.BECS.Units.SteeringWithAvoidanceSystem+Job
-                CacheJobDebugData60.cache.Data = default;
+                CacheJobDebugData61.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData60* data = (JobDebugData60*)CacheJobDebugData60.cache.Data;
+                    JobDebugData61* data = (JobDebugData61*)CacheJobDebugData61.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData60*)_makeDefault(new JobDebugData60Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData61*)_makeDefault(new JobDebugData61Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData60*)_makeDefault(new JobDebugData60(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData61*)_makeDefault(new JobDebugData61(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData60.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData61.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1940,21 +1963,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Units.SteeringWithAvoidanceSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData60Unsafe) : typeof(JobDebugData60));
+                CompiledJobs<ME.BECS.Units.SteeringWithAvoidanceSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData61Unsafe) : typeof(JobDebugData61));
             }
             
             { // ME.BECS.UnitsHealthBars.DrawHealthBarsSystem+Job
-                CacheJobDebugData61.cache.Data = default;
+                CacheJobDebugData62.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData61* data = (JobDebugData61*)CacheJobDebugData61.cache.Data;
+                    JobDebugData62* data = (JobDebugData62*)CacheJobDebugData62.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData61*)_makeDefault(new JobDebugData61Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData62*)_makeDefault(new JobDebugData62Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData61*)_makeDefault(new JobDebugData61(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData62*)_makeDefault(new JobDebugData62(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData61.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData62.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -1972,21 +1995,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.UnitsHealthBars.DrawHealthBarsSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData61Unsafe) : typeof(JobDebugData61));
+                CompiledJobs<ME.BECS.UnitsHealthBars.DrawHealthBarsSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData62Unsafe) : typeof(JobDebugData62));
             }
             
             { // ME.BECS.Attack.MoveToAttackerSystem+ComebackAfterAttackJob
-                CacheJobDebugData62.cache.Data = default;
+                CacheJobDebugData63.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData62* data = (JobDebugData62*)CacheJobDebugData62.cache.Data;
+                    JobDebugData63* data = (JobDebugData63*)CacheJobDebugData63.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData62*)_makeDefault(new JobDebugData62Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData63*)_makeDefault(new JobDebugData63Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData62*)_makeDefault(new JobDebugData62(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData63*)_makeDefault(new JobDebugData63(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData62.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData63.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -2014,21 +2037,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.MoveToAttackerSystem.ComebackAfterAttackJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData62Unsafe) : typeof(JobDebugData62));
+                CompiledJobs<ME.BECS.Attack.MoveToAttackerSystem.ComebackAfterAttackJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData63Unsafe) : typeof(JobDebugData63));
             }
             
             { // ME.BECS.Attack.MoveToAttackerSystem+MoveToAttackerJob
-                CacheJobDebugData63.cache.Data = default;
+                CacheJobDebugData64.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData63* data = (JobDebugData63*)CacheJobDebugData63.cache.Data;
+                    JobDebugData64* data = (JobDebugData64*)CacheJobDebugData64.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData63*)_makeDefault(new JobDebugData63Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData64*)_makeDefault(new JobDebugData64Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData63*)_makeDefault(new JobDebugData63(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData64*)_makeDefault(new JobDebugData64(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData63.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData64.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -2071,21 +2094,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.MoveToAttackerSystem.MoveToAttackerJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData63Unsafe) : typeof(JobDebugData63));
+                CompiledJobs<ME.BECS.Attack.MoveToAttackerSystem.MoveToAttackerJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData64Unsafe) : typeof(JobDebugData64));
             }
             
             { // ME.BECS.Attack.MoveToAttackerSystem+StopOnTargetJob
-                CacheJobDebugData64.cache.Data = default;
+                CacheJobDebugData65.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData64* data = (JobDebugData64*)CacheJobDebugData64.cache.Data;
+                    JobDebugData65* data = (JobDebugData65*)CacheJobDebugData65.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData64*)_makeDefault(new JobDebugData64Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData65*)_makeDefault(new JobDebugData65Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData64*)_makeDefault(new JobDebugData64(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData65*)_makeDefault(new JobDebugData65(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData64.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData65.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -2115,21 +2138,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.MoveToAttackerSystem.StopOnTargetJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData64Unsafe) : typeof(JobDebugData64));
+                CompiledJobs<ME.BECS.Attack.MoveToAttackerSystem.StopOnTargetJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData65Unsafe) : typeof(JobDebugData65));
             }
             
             { // ME.BECS.Attack.MoveToAttackerSystem+UpdatePathJob
-                CacheJobDebugData65.cache.Data = default;
+                CacheJobDebugData66.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData65* data = (JobDebugData65*)CacheJobDebugData65.cache.Data;
+                    JobDebugData66* data = (JobDebugData66*)CacheJobDebugData66.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData65*)_makeDefault(new JobDebugData65Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData66*)_makeDefault(new JobDebugData66Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData65*)_makeDefault(new JobDebugData65(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData66*)_makeDefault(new JobDebugData66(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData65.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData66.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -2166,21 +2189,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.MoveToAttackerSystem.UpdatePathJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData65Unsafe) : typeof(JobDebugData65));
+                CompiledJobs<ME.BECS.Attack.MoveToAttackerSystem.UpdatePathJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData66Unsafe) : typeof(JobDebugData66));
             }
             
             { // ME.BECS.Attack.RotateWhileAttackSystem+RotateAttackSensorJob
-                CacheJobDebugData66.cache.Data = default;
+                CacheJobDebugData67.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData66* data = (JobDebugData66*)CacheJobDebugData66.cache.Data;
+                    JobDebugData67* data = (JobDebugData67*)CacheJobDebugData67.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData66*)_makeDefault(new JobDebugData66Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData67*)_makeDefault(new JobDebugData67Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData66*)_makeDefault(new JobDebugData66(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData67*)_makeDefault(new JobDebugData67(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData66.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData67.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -2198,21 +2221,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.RotateWhileAttackSystem.RotateAttackSensorJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData66Unsafe) : typeof(JobDebugData66));
+                CompiledJobs<ME.BECS.Attack.RotateWhileAttackSystem.RotateAttackSensorJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData67Unsafe) : typeof(JobDebugData67));
             }
             
             { // ME.BECS.Attack.SearchTargetSystem+SearchTargetsJob
-                CacheJobDebugData67.cache.Data = default;
+                CacheJobDebugData68.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData67* data = (JobDebugData67*)CacheJobDebugData67.cache.Data;
+                    JobDebugData68* data = (JobDebugData68*)CacheJobDebugData68.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData67*)_makeDefault(new JobDebugData67Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData68*)_makeDefault(new JobDebugData68Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData67*)_makeDefault(new JobDebugData67(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData68*)_makeDefault(new JobDebugData68(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData67.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData68.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -2234,21 +2257,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.SearchTargetSystem.SearchTargetsJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData67Unsafe) : typeof(JobDebugData67));
+                CompiledJobs<ME.BECS.Attack.SearchTargetSystem.SearchTargetsJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData68Unsafe) : typeof(JobDebugData68));
             }
             
             { // ME.BECS.Attack.StopWhileAttackSystem+JobSet
-                CacheJobDebugData68.cache.Data = default;
+                CacheJobDebugData69.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData68* data = (JobDebugData68*)CacheJobDebugData68.cache.Data;
+                    JobDebugData69* data = (JobDebugData69*)CacheJobDebugData69.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData68*)_makeDefault(new JobDebugData68Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData69*)_makeDefault(new JobDebugData69Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData68*)_makeDefault(new JobDebugData68(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData69*)_makeDefault(new JobDebugData69(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData68.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData69.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -2264,21 +2287,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Attack.StopWhileAttackSystem.JobSet>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData68Unsafe) : typeof(JobDebugData68));
+                CompiledJobs<ME.BECS.Attack.StopWhileAttackSystem.JobSet>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData69Unsafe) : typeof(JobDebugData69));
             }
             
             { // ME.BECS.FogOfWar.QuadTreeQueryFogOfWarSystem+Job
-                CacheJobDebugData69.cache.Data = default;
+                CacheJobDebugData70.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData69* data = (JobDebugData69*)CacheJobDebugData69.cache.Data;
+                    JobDebugData70* data = (JobDebugData70*)CacheJobDebugData70.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData69*)_makeDefault(new JobDebugData69Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData70*)_makeDefault(new JobDebugData70Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData69*)_makeDefault(new JobDebugData69(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData70*)_makeDefault(new JobDebugData70(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData69.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData70.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -2294,21 +2317,21 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.FogOfWar.QuadTreeQueryFogOfWarSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData69Unsafe) : typeof(JobDebugData69));
+                CompiledJobs<ME.BECS.FogOfWar.QuadTreeQueryFogOfWarSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData70Unsafe) : typeof(JobDebugData70));
             }
             
             { // ME.BECS.Transforms.TransformWorldMatrixUpdateSystem+CalculateRootsWithChildrenJob
-                CacheJobDebugData70.cache.Data = default;
+                CacheJobDebugData71.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
-                    JobDebugData70* data = (JobDebugData70*)CacheJobDebugData70.cache.Data;
+                    JobDebugData71* data = (JobDebugData71*)CacheJobDebugData71.cache.Data;
                     if (data == null) {
                         if (unsafeMode == true) {
-                            data = (JobDebugData70*)_makeDefault(new JobDebugData70Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData71*)_makeDefault(new JobDebugData71Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
                             } else {
-                            data = (JobDebugData70*)_makeDefault(new JobDebugData70(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            data = (JobDebugData71*)_makeDefault(new JobDebugData71(), Constants.ALLOCATOR_DOMAIN).ptr;
                         }
-                        CacheJobDebugData70.cache.Data = (System.IntPtr)data;
+                        CacheJobDebugData71.cache.Data = (System.IntPtr)data;
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
@@ -2324,7 +2347,7 @@ namespace ME.BECS {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateRootsWithChildrenJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData70Unsafe) : typeof(JobDebugData70));
+                CompiledJobs<ME.BECS.Transforms.TransformWorldMatrixUpdateSystem.CalculateRootsWithChildrenJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData71Unsafe) : typeof(JobDebugData71));
             }
             
         }

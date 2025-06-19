@@ -2,6 +2,7 @@
 using AShooter.Components;
 using ME.BECS;
 using ME.BECS.Views;
+using UnityEngine;
 
 namespace AShooter.Systems
 {
@@ -11,7 +12,7 @@ namespace AShooter.Systems
         
         public void OnUpdate(ref SystemContext context)
         {
-            
+            Debug.Log(API.Query(context.world).With<PlayerCharacterComponent>().Count());
         }
 
         public void OnStart(ref SystemContext context)

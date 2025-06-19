@@ -290,6 +290,10 @@ namespace ME.BECS {
             public static readonly SharedStatic<System.IntPtr> cache = SharedStatic<System.IntPtr>.GetOrCreate<CacheJobDebugData70>();
         }
         
+        private struct CacheJobDebugData71 {
+            public static readonly SharedStatic<System.IntPtr> cache = SharedStatic<System.IntPtr>.GetOrCreate<CacheJobDebugData71>();
+        }
+        
         #endif
         
     }

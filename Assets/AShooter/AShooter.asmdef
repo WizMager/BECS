@@ -21,7 +21,9 @@
         "ME.BECS.Views",
         "ME.BECS.Network",
         "ME.BECS.Pathfinding",
-        "ME.BECS.FogOfWar"
+        "ME.BECS.FogOfWar",
+        "Unity.InputSystem",
+        "InputDef"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
