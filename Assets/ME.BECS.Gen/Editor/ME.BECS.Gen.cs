@@ -15,15 +15,9 @@ namespace ME.BECS.Editor {
         public static void AOT() {
             var nullContext = new SystemContext();
             StaticSystemTypes<AShooter.Systems.CharacterInputSystem>.Validate();
-            BurstCompileOnStartNoBurst<AShooter.Systems.CharacterInputSystem>.MakeMethod(null);
             BurstCompileOnUpdateNoBurst<AShooter.Systems.CharacterInputSystem>.MakeMethod(null);
-            BurstCompileOnDestroyNoBurst<AShooter.Systems.CharacterInputSystem>.MakeMethod(null);
-            new AShooter.Systems.CharacterInputSystem().OnStart(ref nullContext);
             new AShooter.Systems.CharacterInputSystem().OnUpdate(ref nullContext);
-            new AShooter.Systems.CharacterInputSystem().OnDestroy(ref nullContext);
-            BurstCompileMethod.MakeStart<AShooter.Systems.CharacterInputSystem>(default);
             BurstCompileMethod.MakeUpdate<AShooter.Systems.CharacterInputSystem>(default);
-            BurstCompileMethod.MakeDestroy<AShooter.Systems.CharacterInputSystem>(default);
             StaticSystemTypes<AShooter.Systems.TestSystem>.Validate();
             BurstCompileOnStartNoBurst<AShooter.Systems.TestSystem>.MakeMethod(null);
             BurstCompileOnUpdateNoBurst<AShooter.Systems.TestSystem>.MakeMethod(null);
@@ -1182,6 +1176,7 @@ namespace ME.BECS.Editor {
             EarlyInit.DoAspect<ME.BECS.Units.SteeringSystem.Job, ME.BECS.Transforms.TransformAspect, ME.BECS.Units.UnitAspect, ME.BECS.QuadTreeQueryAspect>();
             EarlyInit.DoAspect<ME.BECS.Units.SteeringWithAvoidanceSystem.Job, ME.BECS.Transforms.TransformAspect, ME.BECS.Units.UnitAspect, ME.BECS.QuadTreeQueryAspect>();
             EarlyInit.DoAspect<ME.BECS.UnitsHealthBars.DrawHealthBarsSystem.Job, ME.BECS.Units.UnitAspect>();
+            EarlyInit.DoAspectsComponents1_1<AShooter.Systems.TestSystem.MoveJob, ME.BECS.Transforms.TransformAspect, AShooter.Components.MoveInputComponent>();
             JobStaticInfo<ME.BECS.Attack.MoveToAttackerSystem.ComebackAfterAttackJob>.loopCount = 0u;
             JobStaticInfo<ME.BECS.Attack.MoveToAttackerSystem.ComebackAfterAttackJob>.inlineCount = 1u;
             EarlyInit.DoAspectsComponents2_1<ME.BECS.Attack.MoveToAttackerSystem.ComebackAfterAttackJob, ME.BECS.Transforms.TransformAspect, ME.BECS.Units.UnitAspect, ME.BECS.Attack.ComebackAfterAttackComponent>();

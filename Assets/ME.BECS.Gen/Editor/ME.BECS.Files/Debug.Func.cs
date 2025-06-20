@@ -2423,6 +2423,36 @@ namespace ME.BECS.Editor {
                 CompiledJobs<ME.BECS.UnitsHealthBars.DrawHealthBarsSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData79Unsafe) : typeof(JobDebugData79));
             }
             
+            { // AShooter.Systems.TestSystem+MoveJob
+                CacheJobDebugData80.cache.Data = default;
+                [BurstCompile]
+                static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
+                    JobDebugData80* data = (JobDebugData80*)CacheJobDebugData80.cache.Data;
+                    if (data == null) {
+                        if (unsafeMode == true) {
+                            data = (JobDebugData80*)_makeDefault(new JobDebugData80Unsafe(), Constants.ALLOCATOR_DOMAIN).ptr;
+                            } else {
+                            data = (JobDebugData80*)_makeDefault(new JobDebugData80(), Constants.ALLOCATOR_DOMAIN).ptr;
+                        }
+                        CacheJobDebugData80.cache.Data = (System.IntPtr)data;
+                    }
+                    data->scheduleFlags = scheduleFlags;
+                    data->jobInfo = jobInfo;
+                    data->jobData = *(AShooter.Systems.TestSystem.MoveJob*)jobData;
+                    data->buffer = buffer;
+                    data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Transforms.TransformAspect>(buffer->state);
+                    data->c0 = buffer->state.ptr->components.GetRW<AShooter.Components.MoveInputComponent>(buffer->state, buffer->worldId);
+                    data->AShooter_Components_MoveInputComponent = new SafetyComponentContainerWO<AShooter.Components.MoveInputComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Transforms_LocalPositionComponent = new SafetyComponentContainerRW<ME.BECS.Transforms.LocalPositionComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Transforms_LocalRotationComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.LocalRotationComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Transforms_LocalScaleComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.LocalScaleComponent>(buffer->state, buffer->worldId);
+                    data->ME_BECS_Transforms_ParentComponent = new SafetyComponentContainerRO<ME.BECS.Transforms.ParentComponent>(buffer->state, buffer->worldId);
+                    return data;
+                }
+                var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
+                CompiledJobs<AShooter.Systems.TestSystem.MoveJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData80Unsafe) : typeof(JobDebugData80));
+            }
+            
             { // ME.BECS.Attack.MoveToAttackerSystem+ComebackAfterAttackJob
                 CacheJobDebugData80.cache.Data = default;
                 [BurstCompile]

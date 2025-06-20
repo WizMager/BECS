@@ -46,6 +46,7 @@ namespace ME.BECS {
                 graphNodes1001_SystemsCodeGenerator[4] = (System.IntPtr)item;
             }
             // Injections:
+            JobInject<AShooter.Systems.TestSystem.MoveJob>.RegisterDeltaTime(0, 1);
         }
         [AOT.MonoPInvokeCallback(typeof(SystemsStatic.GetSystem))]
         public static void GraphGetSystem_1001_SystemsCodeGenerator(int index, out void* ptr) {

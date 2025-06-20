@@ -20,6 +20,7 @@ MonoBehaviour:
   - rid: 5124980229921308735
   - rid: 5124980229921308736
   - rid: 5124980229921308737
+  - rid: 5124980298744856639
   edges:
   - GUID: c0978011-e3f4-4628-940f-bb54e16b9c96
     owner: {fileID: 11400000}
@@ -29,12 +30,20 @@ MonoBehaviour:
     outputFieldName: outputNodes
     inputPortIdentifier: 
     outputPortIdentifier: 
-  - GUID: ae8f3ada-709d-492f-9b68-c29998f3ef04
+  - GUID: 31b76cae-9ce8-4d21-8fa5-9bba1cd9c77d
     owner: {fileID: 11400000}
-    inputNodeGUID: ab22d2cd-3d22-45b9-8ae2-4c2ce9a15d6c
+    inputNodeGUID: 9cd847cf-fae0-41e2-97cb-d879d2e885d2
     outputNodeGUID: StartNode
     inputFieldName: inputNodes
     outputFieldName: output
+    inputPortIdentifier: 
+    outputPortIdentifier: 
+  - GUID: c4409830-71a6-45e2-b933-75785eae6987
+    owner: {fileID: 11400000}
+    inputNodeGUID: ab22d2cd-3d22-45b9-8ae2-4c2ce9a15d6c
+    outputNodeGUID: 9cd847cf-fae0-41e2-97cb-d879d2e885d2
+    inputFieldName: inputNodes
+    outputFieldName: outputNodes
     inputPortIdentifier: 
     outputPortIdentifier: 
   groups: []
@@ -126,7 +135,7 @@ MonoBehaviour:
         nodeCustomName: 
         GUID: EndNode
         groupGUID: 
-        computeOrder: 2
+        computeOrder: 3
         position:
           serializedVersion: 2
           x: 655
@@ -172,7 +181,7 @@ MonoBehaviour:
         nodeCustomName: 
         GUID: ab22d2cd-3d22-45b9-8ae2-4c2ce9a15d6c
         groupGUID: 
-        computeOrder: 1
+        computeOrder: 2
         position:
           serializedVersion: 2
           x: 319
@@ -185,3 +194,53 @@ MonoBehaviour:
         nodeLock: 0
         customRuntimeSystemRoot: {fileID: 0}
         graphValue: {fileID: 11400000, guid: c2aa5f0bbcb444e4e8fd45055d600fbd, type: 2}
+    - rid: 5124980298744856639
+      type: {class: SystemNode, ns: ME.BECS.FeaturesGraph.Nodes, asm: ME.BECS.Features}
+      data:
+        syncPoints:
+        - method: 0
+          syncPoint: 0
+          syncCount: 0
+          hasMethod: 0
+        - method: 1
+          syncPoint: 1
+          syncCount: 0
+          hasMethod: 0
+        - method: 2
+          syncPoint: 1
+          syncCount: 0
+          hasMethod: 1
+        - method: 3
+          syncPoint: 1
+          syncCount: 0
+          hasMethod: 1
+        - method: 4
+          syncPoint: 1
+          syncCount: 0
+          hasMethod: 1
+        - method: 5
+          syncPoint: 1
+          syncCount: 0
+          hasMethod: 0
+        syncPoint: 1
+        syncCount: 0
+        nodeCustomName: 
+        GUID: 9cd847cf-fae0-41e2-97cb-d879d2e885d2
+        groupGUID: 
+        computeOrder: 1
+        position:
+          serializedVersion: 2
+          x: -59
+          y: 0.00006866455
+          width: 300
+          height: 136
+        expanded: 1
+        enabled: 1
+        debug: 0
+        nodeLock: 0
+        customRuntimeSystemRoot: {fileID: 0}
+        system:
+          rid: 5124980298744856640
+    - rid: 5124980298744856640
+      type: {class: CharacterInputSystem, ns: AShooter.Systems, asm: AShooter}
+      data: 

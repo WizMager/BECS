@@ -1,6 +1,5 @@
 ﻿using AOT;
 using AShooter.Components;
-using AShooter.Utils;
 using ME.BECS;
 using ME.BECS.FixedPoint;
 using ME.BECS.Jobs;
@@ -11,39 +10,28 @@ using IJobForComponents = ME.BECS.Jobs.IJobForComponents;
 
 namespace AShooter.Systems
 {
-    public struct CharacterInputSystem : IStart, IUpdate, IDestroy
+    public struct CharacterInputSystem : IUpdate
     {
-        public ObjectReference<InputUtils> Input;
-
         private Vector2 _previousMoveInput;
-        
-        public void OnStart(ref SystemContext context)
-        {
-            _previousMoveInput = Vector2.zero;
-            Input.Value.InputActions.Enable();
-        }
+
         
         public void OnUpdate(ref SystemContext context)
         {
-            var moveInput = Input.Value.InputActions.Player.Move.ReadValue<Vector2>();
-            
-            if (moveInput == _previousMoveInput)
-                return;
+            var horizontal = Input.GetAxisRaw("Horizontal");
+            var vertical = Input.GetAxisRaw("Vertical");
+            var moveInput = new Vector2(horizontal, vertical);
 
-            var normalizedMoveInput = math.normalizesafe((float2)moveInput);
-            
-            context.world.parent.SendNetworkEvent(new MoveInputData
+            if (moveInput != _previousMoveInput)
             {
-                InputData = normalizedMoveInput
-            }, ApplyMoveInput);
+                var normalizedMoveInput = math.normalizesafe((float2)moveInput);
             
-            _previousMoveInput = moveInput;
-        }
-
-        public void OnDestroy(ref SystemContext context)
-        {
-            Input.Value.InputActions.Disable();
-            Input.Value.InputActions.Dispose();
+                context.world.parent.SendNetworkEvent(new MoveInputData
+                {
+                    InputData = normalizedMoveInput
+                }, ApplyMoveInput);
+            
+                _previousMoveInput = moveInput;
+            }
         }
 
         [NetworkMethod]
@@ -66,7 +54,7 @@ namespace AShooter.Systems
             {
                 ent.Set(new MoveInputComponent
                 {
-                    MoveInput = (Vector2)InputData
+                    MoveInput = InputData
                 });
             }
         }

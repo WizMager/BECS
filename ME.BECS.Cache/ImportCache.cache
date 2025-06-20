@@ -2,6 +2,14 @@
     "items": [
         {
             "ns": "AShooter.Systems",
+            "className": "AShooter.Systems.MoveJob",
+            "type": "",
+            "assetPath": [
+                "Assets/AShooter/Systems/TestSystem.cs"
+            ]
+        },
+        {
+            "ns": "AShooter.Systems",
             "className": "AShooter.Systems.MoveInputData",
             "type": "",
             "assetPath": [
@@ -14,22 +22,6 @@
             "type": "",
             "assetPath": [
                 "Assets/AShooter/Systems/CharacterInputSystem.cs"
-            ]
-        },
-        {
-            "ns": "",
-            "className": "PlayerActions",
-            "type": "",
-            "assetPath": [
-                "Assets/Input/InputSystem_Actions.cs"
-            ]
-        },
-        {
-            "ns": "",
-            "className": "UIActions",
-            "type": "",
-            "assetPath": [
-                "Assets/Input/InputSystem_Actions.cs"
             ]
         },
         {
@@ -2886,6 +2878,22 @@
             ]
         },
         {
+            "ns": "",
+            "className": "PlayerActions",
+            "type": "",
+            "assetPath": [
+                "Assets/Input/InputSystem_Actions.cs"
+            ]
+        },
+        {
+            "ns": "",
+            "className": "UIActions",
+            "type": "",
+            "assetPath": [
+                "Assets/Input/InputSystem_Actions.cs"
+            ]
+        },
+        {
             "ns": "AShooter.Aspects",
             "className": "AShooter.Aspects.PlayerCharacterAspect",
             "type": "AShooter.Aspects.PlayerCharacterAspect, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
@@ -2931,14 +2939,6 @@
             "type": "AShooter.Systems.TestSystem, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
             "assetPath": [
                 "Assets/AShooter/Systems/TestSystem.cs"
-            ]
-        },
-        {
-            "ns": "AShooter.Utils",
-            "className": "AShooter.Utils.InputUtils",
-            "type": "AShooter.Utils.InputUtils, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-            "assetPath": [
-                "Assets/AShooter/Utils/InputUtils.cs"
             ]
         },
         {

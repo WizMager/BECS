@@ -331,6 +331,10 @@ namespace ME.BECS.Editor {
             public static readonly SharedStatic<System.IntPtr> cache = SharedStatic<System.IntPtr>.GetOrCreate<CacheJobDebugData80>();
         }
         
+        private struct CacheJobDebugData80 {
+            public static readonly SharedStatic<System.IntPtr> cache = SharedStatic<System.IntPtr>.GetOrCreate<CacheJobDebugData80>();
+        }
+        
         private struct CacheJobDebugData81 {
             public static readonly SharedStatic<System.IntPtr> cache = SharedStatic<System.IntPtr>.GetOrCreate<CacheJobDebugData81>();
         }

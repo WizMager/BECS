@@ -14,7 +14,7 @@ namespace ME.BECS {
         public static void GraphInitialize_1002_SystemsCodeGenerator() {
             // AShooter-VisualGraph
             var allocator = (AllocatorManager.AllocatorHandle)Constants.ALLOCATOR_DOMAIN;
-            graphNodes1002_SystemsCodeGenerator = CollectionHelper.CreateNativeArray<System.IntPtr>(3, allocator);
+            graphNodes1002_SystemsCodeGenerator = CollectionHelper.CreateNativeArray<System.IntPtr>(4, allocator);
             {
                 var item = allocator.Allocate(TSize<ME.BECS.DestroyWithLifetimeSystem>.sizeInt, TAlign<ME.BECS.DestroyWithLifetimeSystem>.alignInt);
                 *(ME.BECS.DestroyWithLifetimeSystem*)item = (ME.BECS.DestroyWithLifetimeSystem)((ME.BECS.FeaturesGraph.Nodes.SystemNode)ObjectReferenceRegistry.GetObjectBySourceId<ME.BECS.FeaturesGraph.SystemsGraph>(6).nodes[0]).system;
@@ -32,6 +32,12 @@ namespace ME.BECS {
                 *(ME.BECS.DestroyWithTicksSystem*)item = (ME.BECS.DestroyWithTicksSystem)((ME.BECS.FeaturesGraph.Nodes.SystemNode)ObjectReferenceRegistry.GetObjectBySourceId<ME.BECS.FeaturesGraph.SystemsGraph>(6).nodes[4]).system;
                 TSystemGraph.Register<ME.BECS.DestroyWithTicksSystem>(1002, item);
                 graphNodes1002_SystemsCodeGenerator[2] = (System.IntPtr)item;
+            }
+            {
+                var item = allocator.Allocate(TSize<AShooter.Systems.CharacterInputSystem>.sizeInt, TAlign<AShooter.Systems.CharacterInputSystem>.alignInt);
+                *(AShooter.Systems.CharacterInputSystem*)item = (AShooter.Systems.CharacterInputSystem)((ME.BECS.FeaturesGraph.Nodes.SystemNode)ObjectReferenceRegistry.GetObjectBySourceId<ME.BECS.FeaturesGraph.SystemsGraph>(221).nodes[3]).system;
+                TSystemGraph.Register<AShooter.Systems.CharacterInputSystem>(1002, item);
+                graphNodes1002_SystemsCodeGenerator[3] = (System.IntPtr)item;
             }
             // Injections:
         }

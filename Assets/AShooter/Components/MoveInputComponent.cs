@@ -1,10 +1,10 @@
 ﻿using ME.BECS;
-using UnityEngine;
+using float2 = Unity.Mathematics.float2;
 
 namespace AShooter.Components
 {
     public struct MoveInputComponent : IComponent
     {
-        public Vector2 MoveInput;
+        public float2 MoveInput;
     }
 }

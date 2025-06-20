@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e9c3df6c94406bbe8e411da76ce60e, type: 3}
   m_Name: ObjectReferenceRegistry
   m_EditorClassIdentifier: 
-  sourceId: 31
+  sourceId: 221
   items:
   - source: {fileID: 11400000, guid: c2aa5f0bbcb444e4e8fd45055d600fbd, type: 2}
     sourceReference:
@@ -64,6 +64,32 @@ MonoBehaviour:
     sourceType: ME.BECS.EntityConfig, ME.BECS, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
     sourceId: 27
+    customData:
+      rid: -2
+  - source: {fileID: 11400000, guid: 1fe90aa721bfc2a46a42fda78d000fd3, type: 2}
+    sourceReference:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+    isGameObject: 0
+    sourceType: ME.BECS.FeaturesGraph.SystemsGraph, ME.BECS.Features, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+    sourceId: 221
+    customData:
+      rid: -2
+  - source: {fileID: 1403657968391100528, guid: 096e96f04085ec0408d3a73a00fa87eb, type: 3}
+    sourceReference:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+    isGameObject: 0
+    sourceType: AShooter.Utils.InputUtils, AShooter, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    sourceId: 200
     customData:
       rid: -2
   references:

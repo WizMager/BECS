@@ -23,7 +23,8 @@
         "ME.BECS.Pathfinding",
         "ME.BECS.FogOfWar",
         "Unity.InputSystem",
-        "InputDef"
+        "InputDef",
+        "Unity.Mathematics"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

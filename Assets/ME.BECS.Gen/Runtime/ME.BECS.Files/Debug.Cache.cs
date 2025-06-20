@@ -262,6 +262,10 @@ namespace ME.BECS {
             public static readonly SharedStatic<System.IntPtr> cache = SharedStatic<System.IntPtr>.GetOrCreate<CacheJobDebugData63>();
         }
         
+        private struct CacheJobDebugData63 {
+            public static readonly SharedStatic<System.IntPtr> cache = SharedStatic<System.IntPtr>.GetOrCreate<CacheJobDebugData63>();
+        }
+        
         private struct CacheJobDebugData64 {
             public static readonly SharedStatic<System.IntPtr> cache = SharedStatic<System.IntPtr>.GetOrCreate<CacheJobDebugData64>();
         }

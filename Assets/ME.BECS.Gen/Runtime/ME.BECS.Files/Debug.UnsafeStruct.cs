@@ -943,6 +943,19 @@ namespace ME.BECS {
             [NativeDisableContainerSafetyRestriction] public SafetyComponentContainerRO<ME.BECS.Views.CameraComponent> ME_BECS_Views_CameraComponent;
         }
         
+        public struct JobDebugData63Unsafe { // AShooter.Systems.TestSystem+MoveJob
+            [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
+            [NativeDisableUnsafePtrRestriction] public AShooter.Systems.TestSystem.MoveJob jobData;
+            [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
+            [NativeDisableContainerSafetyRestriction] public ME.BECS.Transforms.TransformAspect a0;
+            [NativeDisableContainerSafetyRestriction] public RefRW<AShooter.Components.MoveInputComponent> c0;
+            [NativeDisableContainerSafetyRestriction] public SafetyComponentContainerWO<AShooter.Components.MoveInputComponent> AShooter_Components_MoveInputComponent;
+            [NativeDisableContainerSafetyRestriction] public SafetyComponentContainerRW<ME.BECS.Transforms.LocalPositionComponent> ME_BECS_Transforms_LocalPositionComponent;
+            [NativeDisableContainerSafetyRestriction] public SafetyComponentContainerRO<ME.BECS.Transforms.LocalRotationComponent> ME_BECS_Transforms_LocalRotationComponent;
+            [NativeDisableContainerSafetyRestriction] public SafetyComponentContainerRO<ME.BECS.Transforms.LocalScaleComponent> ME_BECS_Transforms_LocalScaleComponent;
+            [NativeDisableContainerSafetyRestriction] public SafetyComponentContainerRO<ME.BECS.Transforms.ParentComponent> ME_BECS_Transforms_ParentComponent;
+        }
+        
         public struct JobDebugData63Unsafe { // ME.BECS.Attack.MoveToAttackerSystem+ComebackAfterAttackJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
             [NativeDisableUnsafePtrRestriction] public ME.BECS.Attack.MoveToAttackerSystem.ComebackAfterAttackJob jobData;
