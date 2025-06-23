@@ -305,6 +305,7 @@ namespace ME.BECS {
             new ME.BECS.Timers.TimersUpdateSystem<ME.BECS.Timers.DefaultTimerComponent>().OnUpdate(ref nullContext);
             BurstCompileMethod.MakeUpdate<ME.BECS.Timers.TimersUpdateSystem<ME.BECS.Timers.DefaultTimerComponent>>(default);
             StaticTypes<AShooter.Components.MoveInputComponent>.AOT();
+            StaticTypes<AShooter.Components.MoveSpeedComponent>.AOT();
             StaticTypes<AShooter.Components.PlayerCharacterComponent>.AOT();
             StaticTypes<ME.BECS.Attack.AttackComponent>.AOT();
             StaticTypes<ME.BECS.Attack.AttackFilterComponent>.AOT();
@@ -619,6 +620,7 @@ namespace ME.BECS {
             StaticTypes<ME.BECS.Views.ViewComponent>.ApplyGroup(typeof(ME.BECS.Views.ViewsComponentGroup));
             StaticTypes<ME.BECS.Views.ViewCustomIdComponent>.ApplyGroup(typeof(ME.BECS.Views.ViewsComponentGroup));
             StaticTypes<AShooter.Components.MoveInputComponent>.Validate(isTag: false);
+            StaticTypes<AShooter.Components.MoveSpeedComponent>.Validate(isTag: false);
             StaticTypes<AShooter.Components.PlayerCharacterComponent>.Validate(isTag: true);
             StaticTypes<ME.BECS.Attack.AttackComponent>.Validate(isTag: false);
             StaticTypes<ME.BECS.Attack.AttackComponent>.SetDefaultValue(ME.BECS.Attack.AttackComponent.Default);
@@ -760,8 +762,6 @@ namespace ME.BECS {
             StaticTypes<ME.BECS.Views.InstantiateAvatarViewComponent>.ValidateStatic(isTag: false);
             StaticTypes<ME.BECS.Views.InstantiateViewComponent>.ValidateStatic(isTag: false);
             AspectTypeInfo<AShooter.Aspects.PlayerCharacterAspect>.Validate();
-            AspectTypeInfo.with.Get(AspectTypeInfo<AShooter.Aspects.PlayerCharacterAspect>.typeId).Resize(1);
-            AspectTypeInfo.with.Get(AspectTypeInfo<AShooter.Aspects.PlayerCharacterAspect>.typeId).Get(0) = StaticTypes<AShooter.Components.PlayerCharacterComponent>.typeId;
             AspectTypeInfo<ME.BECS.Attack.AttackAspect>.Validate();
             AspectTypeInfo.with.Get(AspectTypeInfo<ME.BECS.Attack.AttackAspect>.typeId).Resize(2);
             AspectTypeInfo.with.Get(AspectTypeInfo<ME.BECS.Attack.AttackAspect>.typeId).Get(0) = StaticTypes<ME.BECS.Attack.AttackComponent>.typeId;
@@ -964,7 +964,7 @@ namespace ME.BECS {
         public static unsafe void AspectsConstruct(ref World world) {
             {
                 ref var aspect = ref world.InitializeAspect<AShooter.Aspects.PlayerCharacterAspect>();
-                aspect.PlayerCharComponent = new ME.BECS.AspectDataPtr<AShooter.Components.PlayerCharacterComponent>(in world);
+                aspect.MoveSpeedComponent = new ME.BECS.AspectDataPtr<AShooter.Components.MoveSpeedComponent>(in world);
             }
             {
                 ref var aspect = ref world.InitializeAspect<ME.BECS.Attack.AttackAspect>();

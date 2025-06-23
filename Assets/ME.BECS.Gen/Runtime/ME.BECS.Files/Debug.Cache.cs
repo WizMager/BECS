@@ -262,10 +262,6 @@ namespace ME.BECS {
             public static readonly SharedStatic<System.IntPtr> cache = SharedStatic<System.IntPtr>.GetOrCreate<CacheJobDebugData63>();
         }
         
-        private struct CacheJobDebugData63 {
-            public static readonly SharedStatic<System.IntPtr> cache = SharedStatic<System.IntPtr>.GetOrCreate<CacheJobDebugData63>();
-        }
-        
         private struct CacheJobDebugData64 {
             public static readonly SharedStatic<System.IntPtr> cache = SharedStatic<System.IntPtr>.GetOrCreate<CacheJobDebugData64>();
         }
@@ -296,6 +292,10 @@ namespace ME.BECS {
         
         private struct CacheJobDebugData71 {
             public static readonly SharedStatic<System.IntPtr> cache = SharedStatic<System.IntPtr>.GetOrCreate<CacheJobDebugData71>();
+        }
+        
+        private struct CacheJobDebugData72 {
+            public static readonly SharedStatic<System.IntPtr> cache = SharedStatic<System.IntPtr>.GetOrCreate<CacheJobDebugData72>();
         }
         
         #endif

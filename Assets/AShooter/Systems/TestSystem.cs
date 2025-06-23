@@ -1,7 +1,5 @@
-﻿using AShooter.Aspects;
-using AShooter.Components;
+﻿using AShooter.Components;
 using ME.BECS;
-using ME.BECS.FixedPoint;
 using ME.BECS.Jobs;
 using ME.BECS.Transforms;
 using ME.BECS.Views;
@@ -26,20 +24,23 @@ namespace AShooter.Systems
             
             var cameraAspect = CameraUtils.CreateCamera(context.world);
             
-            var playerEnt = Ent.New();
+            var playerEnt = Ent.New(context);
             PlayerCharacterConfig.Apply(playerEnt);
-            playerEnt.Set<PlayerCharacterAspect>();
+            playerEnt.Set(new PlayerCharacterComponent());
+            playerEnt.Set(new MoveSpeedComponent
+            {
+                Value = 5
+            });
         }
         
         public struct MoveJob : IJobFor1Aspects1Components<TransformAspect, MoveInputComponent>
         {
             [InjectDeltaTime] public sfloat DeltaTime;
-            public sfloat Speed;
 
             public void Execute(in JobInfo jobInfo, in Ent ent, ref TransformAspect transformAspect, ref MoveInputComponent moveInput)
             {
                 var moveDirection = new float3(moveInput.MoveInput.x, 0, moveInput.MoveInput.y);
-                transformAspect.position += moveDirection * (float)Speed * (float)DeltaTime;
+                transformAspect.position += moveDirection * ent.Get<MoveSpeedComponent>().Value * (float)DeltaTime;
             }
         }
     }

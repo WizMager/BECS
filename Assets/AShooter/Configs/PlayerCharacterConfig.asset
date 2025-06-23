@@ -15,10 +15,7 @@ MonoBehaviour:
   baseConfig: {fileID: 0}
   data:
     components:
-    - rid: 5124980255173378114
-    - rid: 5124980255173378115
-    - rid: 5124980255173378116
-    - rid: 5124980255173378117
+    - rid: 5124980365923189277
   sharedData:
     components: []
   staticData:
@@ -46,33 +43,7 @@ MonoBehaviour:
     - rid: 5124980255173378113
       type: {class: TransformAspect, ns: ME.BECS.Transforms, asm: ME.BECS.Transforms}
       data: 
-    - rid: 5124980255173378114
-      type: {class: LocalPositionComponent, ns: ME.BECS.Transforms, asm: ME.BECS.Transforms}
+    - rid: 5124980365923189277
+      type: {class: MoveSpeedComponent, ns: AShooter.Components, asm: AShooter}
       data:
-        value:
-          x: 0
-          y: 0
-          z: 0
-    - rid: 5124980255173378115
-      type: {class: LocalRotationComponent, ns: ME.BECS.Transforms, asm: ME.BECS.Transforms}
-      data:
-        value:
-          value:
-            x: 0
-            y: 0
-            z: 0
-            w: 1
-    - rid: 5124980255173378116
-      type: {class: LocalScaleComponent, ns: ME.BECS.Transforms, asm: ME.BECS.Transforms}
-      data:
-        value:
-          x: 1
-          y: 1
-          z: 1
-    - rid: 5124980255173378117
-      type: {class: BoundsSizeComponent, ns: ME.BECS.Transforms, asm: ME.BECS.Transforms}
-      data:
-        value:
-          x: 1
-          y: 1
-          z: 1
+        Value: 5

@@ -6,11 +6,12 @@ namespace AShooter.Aspects
     public struct PlayerCharacterAspect : IAspect
     {
         public Ent ent { get; set; }
-
+        
+        public AspectDataPtr<MoveSpeedComponent> MoveSpeedComponent;
         [QueryWith]
-        public AspectDataPtr<PlayerCharacterComponent> PlayerCharComponent;
+        public PlayerCharacterComponent PlayerCharacterComponent;
 
-        public readonly ref PlayerCharacterComponent PlayerTag => ref PlayerCharComponent.Get(ent.id, ent.gen);
-        public readonly PlayerCharacterComponent ReadPlayerTag => PlayerCharComponent.Read(ent.id, ent.gen);
+        public readonly ref MoveSpeedComponent PlayerMoveSpeed => ref MoveSpeedComponent.Get(ent.id, ent.gen);
+        public readonly float ReadMoveSpeed => MoveSpeedComponent.Read(ent.id, ent.gen).Value;
     }
 }
