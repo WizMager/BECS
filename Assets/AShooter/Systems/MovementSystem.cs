@@ -2,35 +2,19 @@
 using ME.BECS;
 using ME.BECS.Jobs;
 using ME.BECS.Transforms;
-using ME.BECS.Views;
+using Unity.Burst;
 using float3 = Unity.Mathematics.float3;
 
 namespace AShooter.Systems
 {
-    public struct TestSystem : IStart,IUpdate
+    [BurstCompile]
+    public struct MovementSystem : IUpdate
     {
-        public Config PlayerCharacterConfig;
-        
         public void OnUpdate(ref SystemContext context)
         {
             context.Query().AsParallel().With<PlayerCharacterComponent>()
                 .Schedule<MoveJob, TransformAspect, MoveInputComponent>()
                 .AddDependency(ref context);
-        }
-
-        public void OnStart(ref SystemContext context)
-        {
-            context.dependsOn.Complete();
-            
-            var cameraAspect = CameraUtils.CreateCamera(context.world);
-            
-            var playerEnt = Ent.New(context);
-            PlayerCharacterConfig.Apply(playerEnt);
-            playerEnt.Set(new PlayerCharacterComponent());
-            playerEnt.Set(new MoveSpeedComponent
-            {
-                Value = 5
-            });
         }
         
         public struct MoveJob : IJobFor1Aspects1Components<TransformAspect, MoveInputComponent>

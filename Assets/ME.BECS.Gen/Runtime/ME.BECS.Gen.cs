@@ -17,13 +17,15 @@ namespace ME.BECS {
             BurstCompileOnUpdateNoBurst<AShooter.Systems.CharacterInputSystem>.MakeMethod(null);
             new AShooter.Systems.CharacterInputSystem().OnUpdate(ref nullContext);
             BurstCompileMethod.MakeUpdate<AShooter.Systems.CharacterInputSystem>(default);
-            StaticSystemTypes<AShooter.Systems.TestSystem>.Validate();
-            BurstCompileOnStartNoBurst<AShooter.Systems.TestSystem>.MakeMethod(null);
-            BurstCompileOnUpdateNoBurst<AShooter.Systems.TestSystem>.MakeMethod(null);
-            new AShooter.Systems.TestSystem().OnStart(ref nullContext);
-            new AShooter.Systems.TestSystem().OnUpdate(ref nullContext);
-            BurstCompileMethod.MakeStart<AShooter.Systems.TestSystem>(default);
-            BurstCompileMethod.MakeUpdate<AShooter.Systems.TestSystem>(default);
+            StaticSystemTypes<AShooter.Systems.InitializeSystem>.Validate();
+            BurstCompileOnStartNoBurst<AShooter.Systems.InitializeSystem>.MakeMethod(null);
+            new AShooter.Systems.InitializeSystem().OnStart(ref nullContext);
+            BurstCompileMethod.MakeStart<AShooter.Systems.InitializeSystem>(default);
+            StaticSystemTypes<AShooter.Systems.MovementSystem>.Validate();
+            BurstCompileOnUpdate<AShooter.Systems.MovementSystem>.MakeMethod(null);
+            BurstCompileOnUpdateNoBurst<AShooter.Systems.MovementSystem>.MakeMethod(null);
+            new AShooter.Systems.MovementSystem().OnUpdate(ref nullContext);
+            BurstCompileMethod.MakeUpdate<AShooter.Systems.MovementSystem>(default);
             StaticSystemTypes<ME.BECS.Attack.CanFireSystem>.Validate();
             BurstCompileOnUpdate<ME.BECS.Attack.CanFireSystem>.MakeMethod(null);
             BurstCompileOnUpdateNoBurst<ME.BECS.Attack.CanFireSystem>.MakeMethod(null);
@@ -448,7 +450,8 @@ namespace ME.BECS {
         public static void Load() {
             JobUtils.Initialize();
             StaticSystemTypes<AShooter.Systems.CharacterInputSystem>.Validate();
-            StaticSystemTypes<AShooter.Systems.TestSystem>.Validate();
+            StaticSystemTypes<AShooter.Systems.InitializeSystem>.Validate();
+            StaticSystemTypes<AShooter.Systems.MovementSystem>.Validate();
             StaticSystemTypes<ME.BECS.Attack.CanFireSystem>.Validate();
             StaticSystemTypes<ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem>.Validate();
             StaticSystemTypes<ME.BECS.Attack.FireSystem>.Validate();
@@ -762,6 +765,8 @@ namespace ME.BECS {
             StaticTypes<ME.BECS.Views.InstantiateAvatarViewComponent>.ValidateStatic(isTag: false);
             StaticTypes<ME.BECS.Views.InstantiateViewComponent>.ValidateStatic(isTag: false);
             AspectTypeInfo<AShooter.Aspects.PlayerCharacterAspect>.Validate();
+            AspectTypeInfo.with.Get(AspectTypeInfo<AShooter.Aspects.PlayerCharacterAspect>.typeId).Resize(1);
+            AspectTypeInfo.with.Get(AspectTypeInfo<AShooter.Aspects.PlayerCharacterAspect>.typeId).Get(0) = StaticTypes<AShooter.Components.PlayerCharacterComponent>.typeId;
             AspectTypeInfo<ME.BECS.Attack.AttackAspect>.Validate();
             AspectTypeInfo.with.Get(AspectTypeInfo<ME.BECS.Attack.AttackAspect>.typeId).Resize(2);
             AspectTypeInfo.with.Get(AspectTypeInfo<ME.BECS.Attack.AttackAspect>.typeId).Get(0) = StaticTypes<ME.BECS.Attack.AttackComponent>.typeId;
@@ -892,7 +897,7 @@ namespace ME.BECS {
             EarlyInit.DoAspect<ME.BECS.Units.SteeringSystem.Job, ME.BECS.Transforms.TransformAspect, ME.BECS.Units.UnitAspect, ME.BECS.QuadTreeQueryAspect>();
             EarlyInit.DoAspect<ME.BECS.Units.SteeringWithAvoidanceSystem.Job, ME.BECS.Transforms.TransformAspect, ME.BECS.Units.UnitAspect, ME.BECS.QuadTreeQueryAspect>();
             EarlyInit.DoAspect<ME.BECS.UnitsHealthBars.DrawHealthBarsSystem.Job, ME.BECS.Units.UnitAspect>();
-            EarlyInit.DoAspectsComponents1_1<AShooter.Systems.TestSystem.MoveJob, ME.BECS.Transforms.TransformAspect, AShooter.Components.MoveInputComponent>();
+            EarlyInit.DoAspectsComponents1_1<AShooter.Systems.MovementSystem.MoveJob, ME.BECS.Transforms.TransformAspect, AShooter.Components.MoveInputComponent>();
             JobStaticInfo<ME.BECS.Attack.MoveToAttackerSystem.ComebackAfterAttackJob>.loopCount = 0u;
             JobStaticInfo<ME.BECS.Attack.MoveToAttackerSystem.ComebackAfterAttackJob>.inlineCount = 1u;
             EarlyInit.DoAspectsComponents2_1<ME.BECS.Attack.MoveToAttackerSystem.ComebackAfterAttackJob, ME.BECS.Transforms.TransformAspect, ME.BECS.Units.UnitAspect, ME.BECS.Attack.ComebackAfterAttackComponent>();
@@ -965,6 +970,7 @@ namespace ME.BECS {
             {
                 ref var aspect = ref world.InitializeAspect<AShooter.Aspects.PlayerCharacterAspect>();
                 aspect.MoveSpeedComponent = new ME.BECS.AspectDataPtr<AShooter.Components.MoveSpeedComponent>(in world);
+                aspect.PlayerCharacterComponent = new ME.BECS.AspectDataPtr<AShooter.Components.PlayerCharacterComponent>(in world);
             }
             {
                 ref var aspect = ref world.InitializeAspect<ME.BECS.Attack.AttackAspect>();
@@ -1057,6 +1063,10 @@ namespace ME.BECS {
             methods.Add(ME.BECS.Players.PlayersSystem.OnSetDefeatReceived);
         }
         public static unsafe void ViewsLoad(ref ME.BECS.Views.ViewsModuleData viewsModule) {
+            ME.BECS.Views.ViewsTypeInfo.RegisterType<AShooter.Views.CameraView>(new ME.BECS.Views.ViewTypeInfo() {
+                flags = (ME.BECS.Views.TypeFlags)0,
+                tracker = ViewsTracker.info[ViewsTracker.Tracker<AShooter.Views.CameraView>.id],
+            });
             ME.BECS.Views.ViewsTypeInfo.RegisterType<AShooter.Views.PlayerView>(new ME.BECS.Views.ViewTypeInfo() {
                 flags = (ME.BECS.Views.TypeFlags)16,
                 tracker = ViewsTracker.info[ViewsTracker.Tracker<AShooter.Views.PlayerView>.id],

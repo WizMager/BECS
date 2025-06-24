@@ -2423,7 +2423,7 @@ namespace ME.BECS.Editor {
                 CompiledJobs<ME.BECS.UnitsHealthBars.DrawHealthBarsSystem.Job>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData79Unsafe) : typeof(JobDebugData79));
             }
             
-            { // AShooter.Systems.TestSystem+MoveJob
+            { // AShooter.Systems.MovementSystem+MoveJob
                 CacheJobDebugData80.cache.Data = default;
                 [BurstCompile]
                 static void* Method(void* jobData, CommandBuffer* buffer, bool unsafeMode, ScheduleFlags scheduleFlags, in JobInfo jobInfo) {
@@ -2438,7 +2438,7 @@ namespace ME.BECS.Editor {
                     }
                     data->scheduleFlags = scheduleFlags;
                     data->jobInfo = jobInfo;
-                    data->jobData = *(AShooter.Systems.TestSystem.MoveJob*)jobData;
+                    data->jobData = *(AShooter.Systems.MovementSystem.MoveJob*)jobData;
                     data->buffer = buffer;
                     data->a0 = buffer->state.ptr->aspectsStorage.Initialize<ME.BECS.Transforms.TransformAspect>(buffer->state);
                     data->c0 = buffer->state.ptr->components.GetRW<AShooter.Components.MoveInputComponent>(buffer->state, buffer->worldId);
@@ -2451,7 +2451,7 @@ namespace ME.BECS.Editor {
                     return data;
                 }
                 var fn = BurstCompiler.CompileFunctionPointer<CompiledJobCallback>(Method);
-                CompiledJobs<AShooter.Systems.TestSystem.MoveJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData80Unsafe) : typeof(JobDebugData80));
+                CompiledJobs<AShooter.Systems.MovementSystem.MoveJob>.SetFunction(fn, (unsafeMode) => unsafeMode == true ? typeof(JobDebugData80Unsafe) : typeof(JobDebugData80));
             }
             
             { // ME.BECS.Attack.MoveToAttackerSystem+ComebackAfterAttackJob

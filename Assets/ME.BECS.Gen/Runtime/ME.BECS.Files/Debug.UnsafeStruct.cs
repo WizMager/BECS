@@ -943,9 +943,9 @@ namespace ME.BECS {
             [NativeDisableContainerSafetyRestriction] public SafetyComponentContainerRO<ME.BECS.Views.CameraComponent> ME_BECS_Views_CameraComponent;
         }
         
-        public struct JobDebugData63Unsafe { // AShooter.Systems.TestSystem+MoveJob
+        public struct JobDebugData63Unsafe { // AShooter.Systems.MovementSystem+MoveJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
-            [NativeDisableUnsafePtrRestriction] public AShooter.Systems.TestSystem.MoveJob jobData;
+            [NativeDisableUnsafePtrRestriction] public AShooter.Systems.MovementSystem.MoveJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
             [NativeDisableContainerSafetyRestriction] public ME.BECS.Transforms.TransformAspect a0;
             [NativeDisableContainerSafetyRestriction] public RefRW<AShooter.Components.MoveInputComponent> c0;

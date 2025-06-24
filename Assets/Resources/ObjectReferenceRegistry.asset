@@ -92,12 +92,62 @@ MonoBehaviour:
     sourceId: 200
     customData:
       rid: -2
+  - source: {fileID: 7324915718323982282, guid: 4defa6fc59314654ea33901418f43956, type: 3}
+    sourceReference:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+    isGameObject: 1
+    sourceType: UnityEngine.Camera, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    sourceId: 198
+    customData:
+      rid: -2
+  - source: {fileID: 11400000, guid: 8d0c360f005cbf74fa530f0d8fa20231, type: 2}
+    sourceReference:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+    isGameObject: 0
+    sourceType: ME.BECS.EntityConfig, ME.BECS, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    sourceId: 25
+    customData:
+      rid: -2
+  - source: {fileID: 5134098144544584913, guid: 4defa6fc59314654ea33901418f43956, type: 3}
+    sourceReference:
+      m_AssetGUID: 
+      m_SubObjectName: 
+      m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0
+    isGameObject: 1
+    sourceType: AShooter.Views.CameraView, AShooter, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    sourceId: 199
+    customData:
+      rid: 5124980388698521679
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
     - rid: 5124980251745321029
+      type: {class: ViewObjectItemData, ns: ME.BECS.Views, asm: ME.BECS.Views}
+      data:
+        info:
+          prefabId: 0
+          typeInfo:
+            flags: 0
+            cullingType: 0
+          sceneSource: 0
+          isLoaded: 0
+          flags: 0
+    - rid: 5124980388698521679
       type: {class: ViewObjectItemData, ns: ME.BECS.Views, asm: ME.BECS.Views}
       data:
         info:

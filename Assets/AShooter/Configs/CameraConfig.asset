@@ -10,35 +10,57 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85c23d484dd87431ab96b0d060a518f1, type: 3}
-  m_Name: PlayerCharacterConfig
+  m_Name: CameraConfig
   m_EditorClassIdentifier: 
   baseConfig: {fileID: 0}
   data:
-    components: []
+    components:
+    - rid: 5124980389694407425
+    - rid: 5124980389694407426
   sharedData:
     components: []
   staticData:
     components:
-    - rid: 5124980255173378112
+    - rid: 5124980388698521673
   dataInitialize:
     components:
-    - rid: 5124980255173378112
+    - rid: 5124980388698521673
   aspects:
     components:
-    - rid: 5124980255173378113
+    - rid: 5124980388698521674
+    - rid: 5124980388698521680
   collectionsData:
     nextId: 0
     items: []
   references:
     version: 2
     RefIds:
-    - rid: 5124980255173378112
+    - rid: 5124980388698521673
       type: {class: InstantiateViewComponent, ns: ME.BECS.Views, asm: ME.BECS.Views}
       data:
         view:
           viewSource:
             providerId: 1
-            prefabId: 8
-    - rid: 5124980255173378113
+            prefabId: 199
+    - rid: 5124980388698521674
       type: {class: TransformAspect, ns: ME.BECS.Transforms, asm: ME.BECS.Transforms}
       data: 
+    - rid: 5124980388698521680
+      type: {class: CameraAspect, ns: ME.BECS.Views, asm: ME.BECS.Views}
+      data: 
+    - rid: 5124980389694407425
+      type: {class: LocalRotationComponent, ns: ME.BECS.Transforms, asm: ME.BECS.Transforms}
+      data:
+        value:
+          value:
+            x: 0.7071068
+            y: 0
+            z: 0
+            w: 0.7071068
+    - rid: 5124980389694407426
+      type: {class: LocalPositionComponent, ns: ME.BECS.Transforms, asm: ME.BECS.Transforms}
+      data:
+        value:
+          x: 0
+          y: 10
+          z: 0

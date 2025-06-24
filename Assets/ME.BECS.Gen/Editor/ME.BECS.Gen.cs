@@ -18,13 +18,15 @@ namespace ME.BECS.Editor {
             BurstCompileOnUpdateNoBurst<AShooter.Systems.CharacterInputSystem>.MakeMethod(null);
             new AShooter.Systems.CharacterInputSystem().OnUpdate(ref nullContext);
             BurstCompileMethod.MakeUpdate<AShooter.Systems.CharacterInputSystem>(default);
-            StaticSystemTypes<AShooter.Systems.TestSystem>.Validate();
-            BurstCompileOnStartNoBurst<AShooter.Systems.TestSystem>.MakeMethod(null);
-            BurstCompileOnUpdateNoBurst<AShooter.Systems.TestSystem>.MakeMethod(null);
-            new AShooter.Systems.TestSystem().OnStart(ref nullContext);
-            new AShooter.Systems.TestSystem().OnUpdate(ref nullContext);
-            BurstCompileMethod.MakeStart<AShooter.Systems.TestSystem>(default);
-            BurstCompileMethod.MakeUpdate<AShooter.Systems.TestSystem>(default);
+            StaticSystemTypes<AShooter.Systems.InitializeSystem>.Validate();
+            BurstCompileOnStartNoBurst<AShooter.Systems.InitializeSystem>.MakeMethod(null);
+            new AShooter.Systems.InitializeSystem().OnStart(ref nullContext);
+            BurstCompileMethod.MakeStart<AShooter.Systems.InitializeSystem>(default);
+            StaticSystemTypes<AShooter.Systems.MovementSystem>.Validate();
+            BurstCompileOnUpdate<AShooter.Systems.MovementSystem>.MakeMethod(null);
+            BurstCompileOnUpdateNoBurst<AShooter.Systems.MovementSystem>.MakeMethod(null);
+            new AShooter.Systems.MovementSystem().OnUpdate(ref nullContext);
+            BurstCompileMethod.MakeUpdate<AShooter.Systems.MovementSystem>(default);
             StaticSystemTypes<ME.BECS.Attack.CanFireSystem>.Validate();
             BurstCompileOnUpdate<ME.BECS.Attack.CanFireSystem>.MakeMethod(null);
             BurstCompileOnUpdateNoBurst<ME.BECS.Attack.CanFireSystem>.MakeMethod(null);
@@ -645,7 +647,8 @@ namespace ME.BECS.Editor {
         public static void Load() {
             JobUtils.Initialize();
             StaticSystemTypes<AShooter.Systems.CharacterInputSystem>.Validate();
-            StaticSystemTypes<AShooter.Systems.TestSystem>.Validate();
+            StaticSystemTypes<AShooter.Systems.InitializeSystem>.Validate();
+            StaticSystemTypes<AShooter.Systems.MovementSystem>.Validate();
             StaticSystemTypes<ME.BECS.Attack.CanFireSystem>.Validate();
             StaticSystemTypes<ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem>.Validate();
             StaticSystemTypes<ME.BECS.Attack.FireSystem>.Validate();
@@ -1008,6 +1011,8 @@ namespace ME.BECS.Editor {
             StaticTypes<ME.BECS.Views.InstantiateAvatarViewComponent>.ValidateStatic(isTag: false);
             StaticTypes<ME.BECS.Views.InstantiateViewComponent>.ValidateStatic(isTag: false);
             AspectTypeInfo<AShooter.Aspects.PlayerCharacterAspect>.Validate();
+            AspectTypeInfo.with.Get(AspectTypeInfo<AShooter.Aspects.PlayerCharacterAspect>.typeId).Resize(1);
+            AspectTypeInfo.with.Get(AspectTypeInfo<AShooter.Aspects.PlayerCharacterAspect>.typeId).Get(0) = StaticTypes<AShooter.Components.PlayerCharacterComponent>.typeId;
             AspectTypeInfo<ME.BECS.Attack.AttackAspect>.Validate();
             AspectTypeInfo.with.Get(AspectTypeInfo<ME.BECS.Attack.AttackAspect>.typeId).Resize(2);
             AspectTypeInfo.with.Get(AspectTypeInfo<ME.BECS.Attack.AttackAspect>.typeId).Get(0) = StaticTypes<ME.BECS.Attack.AttackComponent>.typeId;
@@ -1176,7 +1181,7 @@ namespace ME.BECS.Editor {
             EarlyInit.DoAspect<ME.BECS.Units.SteeringSystem.Job, ME.BECS.Transforms.TransformAspect, ME.BECS.Units.UnitAspect, ME.BECS.QuadTreeQueryAspect>();
             EarlyInit.DoAspect<ME.BECS.Units.SteeringWithAvoidanceSystem.Job, ME.BECS.Transforms.TransformAspect, ME.BECS.Units.UnitAspect, ME.BECS.QuadTreeQueryAspect>();
             EarlyInit.DoAspect<ME.BECS.UnitsHealthBars.DrawHealthBarsSystem.Job, ME.BECS.Units.UnitAspect>();
-            EarlyInit.DoAspectsComponents1_1<AShooter.Systems.TestSystem.MoveJob, ME.BECS.Transforms.TransformAspect, AShooter.Components.MoveInputComponent>();
+            EarlyInit.DoAspectsComponents1_1<AShooter.Systems.MovementSystem.MoveJob, ME.BECS.Transforms.TransformAspect, AShooter.Components.MoveInputComponent>();
             JobStaticInfo<ME.BECS.Attack.MoveToAttackerSystem.ComebackAfterAttackJob>.loopCount = 0u;
             JobStaticInfo<ME.BECS.Attack.MoveToAttackerSystem.ComebackAfterAttackJob>.inlineCount = 1u;
             EarlyInit.DoAspectsComponents2_1<ME.BECS.Attack.MoveToAttackerSystem.ComebackAfterAttackJob, ME.BECS.Transforms.TransformAspect, ME.BECS.Units.UnitAspect, ME.BECS.Attack.ComebackAfterAttackComponent>();
@@ -1244,11 +1249,23 @@ namespace ME.BECS.Editor {
                 list.Add(new ComponentDependencyGraphInfo() { type = typeof(ME.BECS.IsInactive), op = 0 });
             }
             {
-                // system: AShooter.Systems.TestSystem
+                // system: AShooter.Systems.InitializeSystem
                 var list = new s::List<ComponentDependencyGraphInfo>();
                 var errors = new s::List<Systems.SystemDependenciesCodeGenerator.MethodInfoDependencies.Error>();
-                systemDependenciesComponentsGraph.Add(typeof(AShooter.Systems.TestSystem), list);
-                systemDependenciesGraphErrors.Add(typeof(AShooter.Systems.TestSystem), errors);
+                systemDependenciesComponentsGraph.Add(typeof(AShooter.Systems.InitializeSystem), list);
+                systemDependenciesGraphErrors.Add(typeof(AShooter.Systems.InitializeSystem), errors);
+                // |- OnStart:
+                // |--- ReadWrite: ME.BECS.Views.CameraComponent
+                // |--- ReadWrite: ME.BECS.EntityConfigComponent
+                list.Add(new ComponentDependencyGraphInfo() { type = typeof(ME.BECS.Views.CameraComponent), op = 2 });
+                list.Add(new ComponentDependencyGraphInfo() { type = typeof(ME.BECS.EntityConfigComponent), op = 2 });
+            }
+            {
+                // system: AShooter.Systems.MovementSystem
+                var list = new s::List<ComponentDependencyGraphInfo>();
+                var errors = new s::List<Systems.SystemDependenciesCodeGenerator.MethodInfoDependencies.Error>();
+                systemDependenciesComponentsGraph.Add(typeof(AShooter.Systems.MovementSystem), list);
+                systemDependenciesGraphErrors.Add(typeof(AShooter.Systems.MovementSystem), errors);
                 // |- OnUpdate:
                 // |--- ReadWrite: AShooter.Components.MoveInputComponent
                 // |--- ReadWrite: AShooter.Components.MoveSpeedComponent
@@ -1260,9 +1277,6 @@ namespace ME.BECS.Editor {
                 // |--- ReadOnly: ME.BECS.Transforms.LocalMatrixComponent
                 // |--- ReadOnly: ME.BECS.Transforms.WorldMatrixComponent
                 // |--- ReadOnly: ME.BECS.IsInactive
-                // |- OnStart:
-                // |--- ReadWrite: ME.BECS.Views.CameraComponent
-                // |--- ReadWrite: ME.BECS.EntityConfigComponent
                 list.Add(new ComponentDependencyGraphInfo() { type = typeof(AShooter.Components.MoveInputComponent), op = 2 });
                 list.Add(new ComponentDependencyGraphInfo() { type = typeof(AShooter.Components.MoveSpeedComponent), op = 2 });
                 list.Add(new ComponentDependencyGraphInfo() { type = typeof(ME.BECS.Transforms.LocalRotationComponent), op = 0 });
@@ -1273,8 +1287,6 @@ namespace ME.BECS.Editor {
                 list.Add(new ComponentDependencyGraphInfo() { type = typeof(ME.BECS.Transforms.LocalMatrixComponent), op = 0 });
                 list.Add(new ComponentDependencyGraphInfo() { type = typeof(ME.BECS.Transforms.WorldMatrixComponent), op = 0 });
                 list.Add(new ComponentDependencyGraphInfo() { type = typeof(ME.BECS.IsInactive), op = 0 });
-                list.Add(new ComponentDependencyGraphInfo() { type = typeof(ME.BECS.Views.CameraComponent), op = 2 });
-                list.Add(new ComponentDependencyGraphInfo() { type = typeof(ME.BECS.EntityConfigComponent), op = 2 });
             }
             {
                 // system: ME.BECS.Attack.CanFireSystem
@@ -3079,10 +3091,18 @@ namespace ME.BECS.Editor {
             }
             // Nodes:
             systemDependenciesGraph.Add(typeof(AShooter.Systems.CharacterInputSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem)
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem)
             });
-            systemDependenciesGraph.Add(typeof(AShooter.Systems.TestSystem),new s::HashSet<System.Type>() {
+            systemDependenciesGraph.Add(typeof(AShooter.Systems.InitializeSystem),new s::HashSet<System.Type>() {
+                typeof(ME.BECS.Attack.FireSystem),
+                typeof(ME.BECS.Attack.FireSystem),
+                typeof(ME.BECS.Bullets.DestroySystem),
+                typeof(ME.BECS.Bullets.DestroySystem),
+                typeof(ME.BECS.Units.DestroySystem),
+                typeof(ME.BECS.Units.DestroySystem)
+            });
+            systemDependenciesGraph.Add(typeof(AShooter.Systems.MovementSystem),new s::HashSet<System.Type>() {
                 typeof(AShooter.Systems.CharacterInputSystem),
                 typeof(AShooter.Systems.CharacterInputSystem),
                 typeof(ME.BECS.Attack.FireSystem),
@@ -3131,8 +3151,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.DestroySystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Attack.CanFireSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem),
                 typeof(ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem),
                 typeof(ME.BECS.Attack.FireSystem),
@@ -3244,8 +3264,10 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.SteeringWithAvoidanceSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Attack.FireSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.InitializeSystem),
+                typeof(AShooter.Systems.InitializeSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.CanFireSystem),
                 typeof(ME.BECS.Attack.CanFireSystem),
                 typeof(ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem),
@@ -3306,8 +3328,10 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.SteeringWithAvoidanceSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Attack.MoveToAttackerSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.InitializeSystem),
+                typeof(AShooter.Systems.InitializeSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem),
                 typeof(ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem),
                 typeof(ME.BECS.Attack.FireSystem),
@@ -3382,8 +3406,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Attack.CanFireSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Attack.ResetCanFireSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.CanFireSystem),
                 typeof(ME.BECS.Attack.CanFireSystem),
                 typeof(ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem),
@@ -3438,8 +3462,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.DestroySystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Attack.RotateWhileAttackSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.CanFireSystem),
                 typeof(ME.BECS.Attack.CanFireSystem),
                 typeof(ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem),
@@ -3498,8 +3522,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.SteeringWithAvoidanceSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Attack.SearchTargetSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.CanFireSystem),
                 typeof(ME.BECS.Attack.CanFireSystem),
                 typeof(ME.BECS.Attack.ChangeAttackTargetFromShadowCopySystem),
@@ -3604,8 +3628,10 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.DestroySystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Bullets.DestroySystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.InitializeSystem),
+                typeof(AShooter.Systems.InitializeSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -3658,8 +3684,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.HitSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Bullets.FlySystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -3705,8 +3731,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.DestroySystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Commands.CommandAttackCleanSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -3755,8 +3781,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.SteeringWithAvoidanceSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Commands.CommandAttackSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -3805,8 +3831,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.SteeringWithAvoidanceSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Commands.CommandBuildSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -3860,8 +3886,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.SteeringWithAvoidanceSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Commands.CommandBuildUpdateSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -3908,8 +3934,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.SteeringWithAvoidanceSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Commands.CommandMoveSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -3965,8 +3991,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.SteeringWithAvoidanceSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.DestroyWithLifetimeSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4009,8 +4035,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.DestroySystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.DestroyWithTicksSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4067,8 +4093,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Players.PlayersSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.FogOfWar.CreateTextureSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4112,8 +4138,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.DestroySystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.FogOfWar.QuadTreeQueryFogOfWarSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4162,8 +4188,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.DestroySystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.FogOfWar.ShadowCopySystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4211,8 +4237,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.DestroySystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.FogOfWar.ShadowCopyUpdateSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4264,8 +4290,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.DestroySystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.FogOfWar.UpdateSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4358,8 +4384,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Pathfinding.BuildGraphSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Pathfinding.FollowPathSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4419,8 +4445,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.SteeringWithAvoidanceSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Pathfinding.FollowPathWithAvoidanceSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4480,8 +4506,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.SteeringWithAvoidanceSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Pathfinding.LookAtSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4531,8 +4557,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.SteeringWithAvoidanceSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Pathfinding.ShowBuildingGridSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4582,8 +4608,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.DestroySystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Pathfinding.UpdateGraphSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4634,8 +4660,8 @@ namespace ME.BECS.Editor {
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Players.PlayersSystem),null);
             systemDependenciesGraph.Add(typeof(ME.BECS.QuadTreeInsertSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4680,8 +4706,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.DestroySystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.QuadTreeQuerySystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4791,8 +4817,8 @@ namespace ME.BECS.Editor {
             systemDependenciesGraph.Add(typeof(ME.BECS.Timers.TimersMsUpdateSystem<>),null);
             systemDependenciesGraph.Add(typeof(ME.BECS.Timers.TimersUpdateSystem<>),null);
             systemDependenciesGraph.Add(typeof(ME.BECS.Transforms.TransformWorldMatrixUpdateSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4837,8 +4863,10 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.DestroySystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Units.DestroySystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.InitializeSystem),
+                typeof(AShooter.Systems.InitializeSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4893,8 +4921,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Bullets.DestroySystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Units.SteeringSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -4951,8 +4979,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.SteeringWithAvoidanceSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.Units.SteeringWithAvoidanceSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.MovementSystem),
+                typeof(AShooter.Systems.MovementSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -5009,8 +5037,8 @@ namespace ME.BECS.Editor {
                 typeof(ME.BECS.Units.SteeringSystem)
             });
             systemDependenciesGraph.Add(typeof(ME.BECS.UnitsHealthBars.DrawHealthBarsSystem),new s::HashSet<System.Type>() {
-                typeof(AShooter.Systems.TestSystem),
-                typeof(AShooter.Systems.TestSystem),
+                typeof(AShooter.Systems.InitializeSystem),
+                typeof(AShooter.Systems.InitializeSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.FireSystem),
                 typeof(ME.BECS.Attack.MoveToAttackerSystem),
@@ -5060,6 +5088,7 @@ namespace ME.BECS.Editor {
             {
                 ref var aspect = ref world.InitializeAspect<AShooter.Aspects.PlayerCharacterAspect>();
                 aspect.MoveSpeedComponent = new ME.BECS.AspectDataPtr<AShooter.Components.MoveSpeedComponent>(in world);
+                aspect.PlayerCharacterComponent = new ME.BECS.AspectDataPtr<AShooter.Components.PlayerCharacterComponent>(in world);
             }
             {
                 ref var aspect = ref world.InitializeAspect<ME.BECS.Attack.AttackAspect>();
@@ -5221,6 +5250,10 @@ namespace ME.BECS.Editor {
             methods.Add(ME.BECS.Players.PlayersSystem.OnSetDefeatReceived);
         }
         public static unsafe void ViewsLoad(ref ME.BECS.Views.ViewsModuleData viewsModule) {
+            ME.BECS.Views.ViewsTypeInfo.RegisterType<AShooter.Views.CameraView>(new ME.BECS.Views.ViewTypeInfo() {
+                flags = (ME.BECS.Views.TypeFlags)0,
+                tracker = ViewsTracker.info[ViewsTracker.Tracker<AShooter.Views.CameraView>.id],
+            });
             ME.BECS.Views.ViewsTypeInfo.RegisterType<AShooter.Views.PlayerView>(new ME.BECS.Views.ViewTypeInfo() {
                 flags = (ME.BECS.Views.TypeFlags)16,
                 tracker = ViewsTracker.info[ViewsTracker.Tracker<AShooter.Views.PlayerView>.id],

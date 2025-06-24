@@ -16,14 +16,15 @@ namespace ME.BECS {
             // Dependencies scheme:
             // * dependsOn                        => dep1001_0_0         START                            [ SKIPPED ]
             // * dep1001_0_0                      => dep1001_3_0         ME.BECS.Players.PlayersSystem    [NOT BURST] - Method ME.BECS.IDestroy was not found. Node skipped.
-            // * dep1001_3_0                      => dep1001_4_0         AShooter.Systems.TestSystem      [NOT BURST] - Method ME.BECS.IDestroy was not found. Node skipped.
-            // * dep1001_4_0                      => dep30_2_0           START                            [ SKIPPED ]
+            // * dep1001_3_0                      => dep1001_4_0         AShooter.Systems.InitializeSy... [NOT BURST] - Method ME.BECS.IDestroy was not found. Node skipped.
+            // * dep1001_4_0                      => dep1001_5_0         AShooter.Systems.MovementSystem  [NOT BURST] - Method ME.BECS.IDestroy was not found. Node skipped.
+            // * dep1001_5_0                      => dep30_2_0           START                            [ SKIPPED ]
             // * dep30_2_0                        => dep30_4_0           ME.BECS.DestroyWithTicksSystem   [NOT BURST] - Method ME.BECS.IDestroy was not found. Node skipped.
             // * dep30_4_0                        => dep30_0_0           ME.BECS.DestroyWithLifetimeSy... [NOT BURST] - Method ME.BECS.IDestroy was not found. Node skipped.
             // * dep30_0_0                        => dep30_1_0           ME.BECS.Transforms.TransformW... [NOT BURST] - Method ME.BECS.IDestroy was not found. Node skipped.
             // * EXIT dep1001_2_0 = dep30_1_0;
             // * EXIT dependsOn = dep1001_2_0;
-            // * dependencies[5]                  => dependsOn       
+            // * dependencies[6]                  => dependsOn       
         }
     }
      

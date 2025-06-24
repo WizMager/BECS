@@ -1079,9 +1079,9 @@ namespace ME.BECS.Editor {
             public SafetyComponentContainerRO<ME.BECS.Views.CameraComponent> ME_BECS_Views_CameraComponent;
         }
         
-        public struct JobDebugData80 { // AShooter.Systems.TestSystem+MoveJob
+        public struct JobDebugData80 { // AShooter.Systems.MovementSystem+MoveJob
             [NativeDisableUnsafePtrRestriction] public ScheduleFlags scheduleFlags;
-            [NativeDisableUnsafePtrRestriction] public AShooter.Systems.TestSystem.MoveJob jobData;
+            [NativeDisableUnsafePtrRestriction] public AShooter.Systems.MovementSystem.MoveJob jobData;
             [NativeDisableUnsafePtrRestriction] public CommandBuffer* buffer;
             public ME.BECS.Transforms.TransformAspect a0;
             public RefRW<AShooter.Components.MoveInputComponent> c0;

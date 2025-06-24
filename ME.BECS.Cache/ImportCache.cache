@@ -2,14 +2,6 @@
     "items": [
         {
             "ns": "AShooter.Systems",
-            "className": "AShooter.Systems.MoveJob",
-            "type": "",
-            "assetPath": [
-                "Assets/AShooter/Systems/TestSystem.cs"
-            ]
-        },
-        {
-            "ns": "AShooter.Systems",
             "className": "AShooter.Systems.MoveInputData",
             "type": "",
             "assetPath": [
@@ -22,6 +14,14 @@
             "type": "",
             "assetPath": [
                 "Assets/AShooter/Systems/CharacterInputSystem.cs"
+            ]
+        },
+        {
+            "ns": "AShooter.Systems",
+            "className": "AShooter.Systems.MoveJob",
+            "type": "",
+            "assetPath": [
+                "Assets/AShooter/Systems/MovementSystem.cs"
             ]
         },
         {
@@ -2943,10 +2943,18 @@
         },
         {
             "ns": "AShooter.Systems",
-            "className": "AShooter.Systems.TestSystem",
-            "type": "AShooter.Systems.TestSystem, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "className": "AShooter.Systems.InitializeSystem",
+            "type": "AShooter.Systems.InitializeSystem, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
             "assetPath": [
-                "Assets/AShooter/Systems/TestSystem.cs"
+                "Assets/AShooter/Systems/InitializeSystem.cs"
+            ]
+        },
+        {
+            "ns": "AShooter.Systems",
+            "className": "AShooter.Systems.MovementSystem",
+            "type": "AShooter.Systems.MovementSystem, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "assetPath": [
+                "Assets/AShooter/Systems/MovementSystem.cs"
             ]
         },
         {
@@ -2955,6 +2963,14 @@
             "type": "AShooter.ViewInitializer, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
             "assetPath": [
                 "Assets/AShooter/ViewInitializer.cs"
+            ]
+        },
+        {
+            "ns": "AShooter.Views",
+            "className": "AShooter.Views.CameraView",
+            "type": "AShooter.Views.CameraView, AShooter, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
+            "assetPath": [
+                "Assets/AShooter/Views/CameraView.cs"
             ]
         },
         {

@@ -32,7 +32,13 @@ namespace ME.BECS.Editor {
             StaticTypes<ME.BECS.Transforms.LocalRotationComponent>.TrackVersion();
             StaticTypes<ME.BECS.Views.CameraComponent>.TrackVersion();
             StaticTypes<AShooter.Components.PlayerCharacterComponent>.TrackVersion();
-            ViewsTracker.SetTracker(17u);
+            ViewsTracker.SetTracker(18u);
+            // ==============================
+            // AShooter.Views.CameraView
+            {
+                var viewInfo = new ViewsTracker.ViewInfo();
+                ViewsTracker.TrackView<AShooter.Views.CameraView>(viewInfo);
+            }
             // ==============================
             // AShooter.Views.PlayerView
             {

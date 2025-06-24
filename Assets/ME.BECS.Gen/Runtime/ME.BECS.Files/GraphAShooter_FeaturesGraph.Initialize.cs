@@ -14,7 +14,7 @@ namespace ME.BECS {
         public static void GraphInitialize_1001_SystemsCodeGenerator() {
             // AShooter-FeaturesGraph
             var allocator = (AllocatorManager.AllocatorHandle)Constants.ALLOCATOR_DOMAIN;
-            graphNodes1001_SystemsCodeGenerator = CollectionHelper.CreateNativeArray<System.IntPtr>(5, allocator);
+            graphNodes1001_SystemsCodeGenerator = CollectionHelper.CreateNativeArray<System.IntPtr>(6, allocator);
             {
                 var item = allocator.Allocate(TSize<ME.BECS.DestroyWithLifetimeSystem>.sizeInt, TAlign<ME.BECS.DestroyWithLifetimeSystem>.alignInt);
                 *(ME.BECS.DestroyWithLifetimeSystem*)item = (ME.BECS.DestroyWithLifetimeSystem)((ME.BECS.FeaturesGraph.Nodes.SystemNode)ObjectReferenceRegistry.GetObjectBySourceId<ME.BECS.FeaturesGraph.SystemsGraph>(6).nodes[0]).system;
@@ -40,13 +40,19 @@ namespace ME.BECS {
                 graphNodes1001_SystemsCodeGenerator[3] = (System.IntPtr)item;
             }
             {
-                var item = allocator.Allocate(TSize<AShooter.Systems.TestSystem>.sizeInt, TAlign<AShooter.Systems.TestSystem>.alignInt);
-                *(AShooter.Systems.TestSystem*)item = (AShooter.Systems.TestSystem)((ME.BECS.FeaturesGraph.Nodes.SystemNode)ObjectReferenceRegistry.GetObjectBySourceId<ME.BECS.FeaturesGraph.SystemsGraph>(31).nodes[4]).system;
-                TSystemGraph.Register<AShooter.Systems.TestSystem>(1001, item);
+                var item = allocator.Allocate(TSize<AShooter.Systems.InitializeSystem>.sizeInt, TAlign<AShooter.Systems.InitializeSystem>.alignInt);
+                *(AShooter.Systems.InitializeSystem*)item = (AShooter.Systems.InitializeSystem)((ME.BECS.FeaturesGraph.Nodes.SystemNode)ObjectReferenceRegistry.GetObjectBySourceId<ME.BECS.FeaturesGraph.SystemsGraph>(31).nodes[4]).system;
+                TSystemGraph.Register<AShooter.Systems.InitializeSystem>(1001, item);
                 graphNodes1001_SystemsCodeGenerator[4] = (System.IntPtr)item;
             }
+            {
+                var item = allocator.Allocate(TSize<AShooter.Systems.MovementSystem>.sizeInt, TAlign<AShooter.Systems.MovementSystem>.alignInt);
+                *(AShooter.Systems.MovementSystem*)item = (AShooter.Systems.MovementSystem)((ME.BECS.FeaturesGraph.Nodes.SystemNode)ObjectReferenceRegistry.GetObjectBySourceId<ME.BECS.FeaturesGraph.SystemsGraph>(31).nodes[5]).system;
+                TSystemGraph.Register<AShooter.Systems.MovementSystem>(1001, item);
+                graphNodes1001_SystemsCodeGenerator[5] = (System.IntPtr)item;
+            }
             // Injections:
-            JobInject<AShooter.Systems.TestSystem.MoveJob>.RegisterDeltaTime(0, 1);
+            JobInject<AShooter.Systems.MovementSystem.MoveJob>.RegisterDeltaTime(0, 1);
         }
         [AOT.MonoPInvokeCallback(typeof(SystemsStatic.GetSystem))]
         public static void GraphGetSystem_1001_SystemsCodeGenerator(int index, out void* ptr) {
